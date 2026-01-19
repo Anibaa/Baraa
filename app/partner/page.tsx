@@ -5,8 +5,8 @@ import { PartnerForm } from "@/components/partner/partner-form"
 import { Users, TrendingUp, Zap } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Devenir Partenaire - Najahi",
-  description: "Rejoignez le réseau de partenaires Najahi et partagez vos livres avec des millions d'étudiants",
+  title: "Devenir Partenaire - Tunitest",
+  description: "Rejoignez le réseau de partenaires Tunitest et partagez vos livres avec des millions d'étudiants",
 }
 
 export default function PartnerPage() {
@@ -18,11 +18,11 @@ export default function PartnerPage() {
         <section className="bg-gradient-to-r from-primary to-primary/80 text-white py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-4 md:px-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance animate-slideInLeft">
-              Devenez Partenaire Najahi
+              Devenez Partenaire Tunitest
             </h1>
             <p className="text-white/90 text-base md:text-lg max-w-2xl text-pretty">
               Partagez vos livres avec des millions d'étudiants tunisiens et générez des revenus supplémentaires grâce à
-              la plateforme Najahi de confiance
+              la plateforme Tunitest de confiance
             </p>
           </div>
         </section>

@@ -8,14 +8,14 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Najahi - Plateforme de Livres Éducatifs Tunisienne",
+  title: "Tunitest - Plateforme de Livres Éducatifs Tunisienne",
   description: "Découvrez les meilleurs livres éducatifs pour les étudiants tunisiens à tous les niveaux scolaires",
   keywords: ["livres", "éducation", "tunisie", "étudiants", "apprentissage"],
   openGraph: {
     type: "website",
     locale: "fr_TN",
-    url: "https://najahi.com",
-    title: "Najahi - Plateforme de Livres Éducatifs",
+    url: "https://Tunitest.com",
+    title: "Tunitest - Plateforme de Livres Éducatifs",
     description: "Plateforme intégrée pour acheter et vendre des livres éducatifs tunisiens",
     images: [
       {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Najahi",
+    title: "Tunitest",
     description: "Plateforme de Livres Éducatifs Tunisienne",
   },
   icons: {

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react"
 import type { CartItem, Book } from "@/lib/types"
 
-const CART_STORAGE_KEY = "najahi_cart"
+const CART_STORAGE_KEY = "Tunitest_cart"
 
 export function useCart() {
   const [cart, setCart] = useState<CartItem[]>([])

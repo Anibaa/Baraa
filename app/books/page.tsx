@@ -9,7 +9,7 @@ import { Pagination } from "@/components/books/pagination"
 const ITEMS_PER_PAGE = 12
 
 export const metadata = {
-  title: "Livres - Najahi",
+  title: "Livres - Tunitest",
   description: "Parcourez notre collection complète de livres éducatifs tunisiens",
 }
 

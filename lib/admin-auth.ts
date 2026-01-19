@@ -1,4 +1,4 @@
-const ADMIN_STORAGE_KEY = "najahi_admin_auth"
+const ADMIN_STORAGE_KEY = "Tunitest_admin_auth"
 
 // Mock admin users
 const ADMIN_USERS = [

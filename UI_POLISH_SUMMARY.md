@@ -1,7 +1,7 @@
-# Najahi UI Polish & Animation Implementation
+# Tunitest UI Polish & Animation Implementation
 
 ## Overview
-Complete professional UI motion system, micro-interactions, personalization features, and comprehensive animations for the Najahi educational book platform.
+Complete professional UI motion system, micro-interactions, personalization features, and comprehensive animations for the Tunitest educational book platform.
 
 ## What's Been Implemented
 

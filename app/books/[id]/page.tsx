@@ -22,13 +22,13 @@ export async function generateMetadata({ params }: BookPageProps): Promise<Metad
   }
 
   return {
-    title: `${book.title} - Najahi`,
+    title: `${book.title} - Tunitest`,
     description: book.description,
     keywords: [book.title, book.author, book.category, book.level, "livre éducatif", "tunisie"],
     openGraph: {
       type: "website",
       locale: "fr_TN",
-      url: `https://najahi.com/books/${book.id}`,
+      url: `https://Tunitest.com/books/${book.id}`,
       title: book.title,
       description: book.description,
       images: [

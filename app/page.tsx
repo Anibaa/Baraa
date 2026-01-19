@@ -10,7 +10,7 @@ import { PersonalizedGreeting } from "@/components/home/personalized-greeting"
 import { RecentlyViewed } from "@/components/home/recently-viewed"
 
 export const metadata = {
-  title: "Najahi - Plateforme de Livres Éducatifs Tunisienne",
+  title: "Tunitest - Plateforme de Livres Éducatifs Tunisienne",
   description:
     "Découvrez les meilleurs livres éducatifs pour les étudiants tunisiens à tous les niveaux scolaires. Accédez à des milliers de titres, de la primaire à l'université.",
 }

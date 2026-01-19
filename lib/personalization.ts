@@ -1,7 +1,7 @@
 export const STORAGE_KEYS = {
-  RECENTLY_VIEWED: "najahi_recently_viewed",
-  LAST_VIEWED: "najahi_last_viewed",
-  FAVORITES: "najahi_favorites",
+  RECENTLY_VIEWED: "Tunitest_recently_viewed",
+  LAST_VIEWED: "Tunitest_last_viewed",
+  FAVORITES: "Tunitest_favorites",
 }
 
 export interface ViewedBook {

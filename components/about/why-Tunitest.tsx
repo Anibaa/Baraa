@@ -26,7 +26,7 @@ const features = [
   },
 ]
 
-export function WhyNajahi() {
+export function WhyTunitest() {
   return (
     <section className="px-4 md:px-8 py-12 md:py-20">
       <div className="max-w-6xl mx-auto">
@@ -37,7 +37,7 @@ export function WhyNajahi() {
           viewport={{ once: true, margin: "-100px" }}
           className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center"
         >
-          Pourquoi Najahi ?
+          Pourquoi Tunitest ?
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-8">

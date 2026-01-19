@@ -52,7 +52,7 @@ export function BookDetails({ book }: BookDetailsProps) {
 
   const handleShare = () => {
     const url = typeof window !== "undefined" ? window.location.href : ""
-    const text = `Découvrez ${book.title} sur Najahi`
+    const text = `Découvrez ${book.title} sur Tunitest`
 
     if (navigator.share) {
       navigator.share({
