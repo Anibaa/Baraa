@@ -101,6 +101,14 @@ export const mockSliders: SliderItem[] = [
     image: "/DEMO-BANNER.png",
     cta: " ",
     link: " ",
+  },
+    {
+    id: "1",
+    title: " ",
+    subtitle: " ",
+    image: "/demo-banner2.png",
+    cta: " ",
+    link: " ",
   }
 ]
 
