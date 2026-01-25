@@ -1,13 +1,13 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { mockSliders } from "@/lib/mock-data"
+import { getSliderById, updateSlider, deleteSlider } from "@/lib/api"
 
 export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params
     const body = await request.json()
 
-    const sliderIndex = mockSliders.findIndex((s) => s.id === id)
-    if (sliderIndex === -1) {
+    const updated = await updateSlider(id, body)
+    if (!updated) {
       return NextResponse.json(
         {
           success: false,
@@ -17,15 +17,10 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       )
     }
 
-    mockSliders[sliderIndex] = {
-      ...mockSliders[sliderIndex],
-      ...body,
-    }
-
     return NextResponse.json(
       {
         success: true,
-        data: mockSliders[sliderIndex],
+        data: updated,
         message: "Promotion mise à jour avec succès",
       },
       { status: 200 },
@@ -45,8 +40,8 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
   try {
     const { id } = await params
 
-    const sliderIndex = mockSliders.findIndex((s) => s.id === id)
-    if (sliderIndex === -1) {
+    const ok = await deleteSlider(id)
+    if (!ok) {
       return NextResponse.json(
         {
           success: false,
@@ -55,8 +50,6 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
         { status: 404 },
       )
     }
-
-    mockSliders.splice(sliderIndex, 1)
 
     return NextResponse.json(
       {

@@ -62,31 +62,7 @@ export function HeroSlider({ items }: HeroSliderProps) {
         <div className="absolute inset-0"></div>
       </div>
 
-      {/* Text Content */}
-      <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-16">
-        <h1
-          className={`text-3xl md:text-5xl font-bold text-white mb-3 md:mb-4 text-balance transition-all duration-500 ${
-            isTransitioning ? "opacity-0 translate-x-10" : "opacity-100 translate-x-0"
-          } animate-slideInLeft`}
-        >
-          {currentItem.title}
-        </h1>
-        <p
-          className={`text-base md:text-lg text-white/95 mb-6 md:mb-8 max-w-2xl text-pretty transition-all duration-500 delay-100 ${
-            isTransitioning ? "opacity-0 translate-x-10" : "opacity-100 translate-x-0"
-          }`}
-        >
-          {currentItem.subtitle}
-        </p>
-        {/* <a
-          href={currentItem.link}
-          className={`inline-block px-6 md:px-8 py-3 bg-secondary hover:bg-secondary/90 text-foreground font-semibold rounded-lg transition-all duration-200 w-fit hover:shadow-soft-hover hover:scale-105 active:scale-95 ${
-            isTransitioning ? "opacity-0 translate-x-10" : "opacity-100 translate-x-0"
-          }`}
-        >
-          {currentItem.cta}
-        </a> */}
-      </div>
+
 
       {/* Navigation Buttons */}
       <button

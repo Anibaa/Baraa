@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getSliders } from "@/lib/api"
+import { getSliders, createSlider } from "@/lib/api"
 
 export async function GET(request: NextRequest) {
   try {
@@ -28,23 +28,24 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
 
-    // Validate required fields
-    if (!body.title || !body.subtitle || !body.image || !body.cta || !body.link) {
+    // Validate required fields: only title and image are required
+    if (!body.title || !body.image) {
       return NextResponse.json(
         {
           success: false,
-          error: "Missing required fields",
+          error: "Missing required fields: title and image are required",
         },
         { status: 400 },
       )
     }
 
-    // In a real app, this would save to the database
-    const newSlider = {
-      id: Math.random().toString(36).substr(2, 9),
-      ...body,
-      createdAt: new Date(),
-    }
+    const newSlider = await createSlider({
+      title: body.title,
+      subtitle: body.subtitle || "",
+      image: body.image,
+      cta: body.cta || "",
+      link: body.link || "",
+    })
 
     return NextResponse.json(
       {
