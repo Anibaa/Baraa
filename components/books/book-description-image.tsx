@@ -16,11 +16,11 @@ export function BookDescriptionImage({ image, alt }: BookDescriptionImageProps) 
                     Aperçu détaillé
                 </p>
             </div>
-            <div className="relative aspect-video w-full bg-muted">
+            <div className="relative w-full bg-muted">
                 <img
                     src={image}
                     alt={`Description visuelle de ${alt}`}
-                    className="w-full h-full object-contain"
+                    className="w-full h-auto"
                     loading="lazy"
                 />
             </div>
