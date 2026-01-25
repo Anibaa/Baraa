@@ -1,10 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { mockOrders } from "@/lib/mock-data"
+import { getOrderById, updateOrder, deleteOrder } from "@/lib/api"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params
-    const order = mockOrders.find((o) => o.id === id)
+    const order = await getOrderById(id)
 
     if (!order) {
       return NextResponse.json(
@@ -39,8 +39,8 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
     const { id } = await params
     const body = await request.json()
 
-    const orderIndex = mockOrders.findIndex((o) => o.id === id)
-    if (orderIndex === -1) {
+    const updated = await updateOrder(id, body)
+    if (!updated) {
       return NextResponse.json(
         {
           success: false,
@@ -50,14 +50,10 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       )
     }
 
-    if (body.status) {
-      mockOrders[orderIndex].status = body.status
-    }
-
     return NextResponse.json(
       {
         success: true,
-        data: mockOrders[orderIndex],
+        data: updated,
         message: "Commande mise à jour avec succès",
       },
       { status: 200 },
@@ -76,9 +72,9 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params
-    const orderIndex = mockOrders.findIndex((o) => o.id === id)
+    const ok = await deleteOrder(id)
 
-    if (orderIndex === -1) {
+    if (!ok) {
       return NextResponse.json(
         {
           success: false,
@@ -87,8 +83,6 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
         { status: 404 },
       )
     }
-
-    mockOrders.splice(orderIndex, 1)
 
     return NextResponse.json(
       {

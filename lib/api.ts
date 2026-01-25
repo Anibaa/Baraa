@@ -1,7 +1,8 @@
 import dbConnect from "@/lib/db"
 import BookModel from "@/lib/models/book.model"
+import OrderModel from "@/lib/models/order.model"
 import type { Book, SliderItem, Order, Partner } from "./types"
-import { mockSliders, mockOrders, mockPartners } from "./mock-data" // Removed mockBooks
+import { mockSliders, mockPartners } from "./mock-data"
 
 // Helper to sanitize mongoose doc
 const sanitize = (doc: any): Book => {
@@ -16,6 +17,15 @@ const sanitize = (doc: any): Book => {
   if (obj.createdAt) obj.createdAt = new Date(obj.createdAt).toISOString();
   // Ensure numeric fields
   return obj as Book;
+}
+
+const sanitizeOrder = (doc: any): Order => {
+  const obj = doc.toObject ? doc.toObject() : doc;
+  obj.id = obj._id ? obj._id.toString() : obj.id;
+  delete obj._id;
+  delete obj.__v;
+  if (obj.createdAt) obj.createdAt = new Date(obj.createdAt).toISOString();
+  return obj as Order;
 }
 
 // Books API
@@ -62,28 +72,54 @@ export async function getRelatedBooks(bookId: string, limit = 4): Promise<Book[]
   }
 }
 
+// Orders API (Mongo)
+export async function getOrders(): Promise<Order[]> {
+  await dbConnect();
+  const orders = await OrderModel.find().sort({ createdAt: -1 });
+  return orders.map((doc: any) => sanitizeOrder(doc));
+}
+
+export async function getOrderById(id: string): Promise<Order | null> {
+  await dbConnect();
+  try {
+    const order = await OrderModel.findById(id);
+    return order ? sanitizeOrder(order) : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function createOrder(order: Omit<Order, "id" | "createdAt">): Promise<Order> {
+  await dbConnect();
+  const created = await OrderModel.create(order as any);
+  return sanitizeOrder(created);
+}
+
+export async function updateOrder(id: string, update: Partial<Order>): Promise<Order | null> {
+  await dbConnect();
+  try {
+    const updated = await OrderModel.findByIdAndUpdate(id, update as any, { new: true });
+    return updated ? sanitizeOrder(updated) : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function deleteOrder(id: string): Promise<boolean> {
+  await dbConnect();
+  try {
+    const res = await OrderModel.findByIdAndDelete(id);
+    return !!res;
+  } catch (error) {
+    return false;
+  }
+}
 // Slider API
 export async function getSliders(): Promise<SliderItem[]> {
   await new Promise((resolve) => setTimeout(resolve, 100))
   return mockSliders
 }
 
-// Orders API
-export async function getOrders(): Promise<Order[]> {
-  await new Promise((resolve) => setTimeout(resolve, 100))
-  return mockOrders
-}
-
-export async function createOrder(order: Omit<Order, "id" | "createdAt">): Promise<Order> {
-  await new Promise((resolve) => setTimeout(resolve, 100))
-  const newOrder: Order = {
-    ...order,
-    id: Math.random().toString(36).substr(2, 9),
-    createdAt: new Date(),
-  }
-  mockOrders.push(newOrder)
-  return newOrder
-}
 
 // Partners API
 export async function getPartners(): Promise<Partner[]> {

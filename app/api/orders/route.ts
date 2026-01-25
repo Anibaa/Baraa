@@ -1,6 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getOrders } from "@/lib/api"
-import { mockOrders } from "@/lib/mock-data"
+import { getOrders, createOrder } from "@/lib/api"
 
 export async function GET(request: NextRequest) {
   try {
@@ -46,8 +45,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const newOrder = {
-      id: Math.random().toString(36).substr(2, 9),
+    const newOrder = await createOrder({
       bookIds: body.bookIds,
       quantities: body.quantities,
       totalPrice: body.totalPrice,
@@ -56,11 +54,8 @@ export async function POST(request: NextRequest) {
       customerPhone: body.customerPhone,
       address: body.address,
       paymentMethod: body.paymentMethod || "Card",
-      status: "Préparation" as const,
-      createdAt: new Date(),
-    }
-
-    mockOrders.push(newOrder)
+      status: "Préparation",
+    })
 
     return NextResponse.json(
       {
