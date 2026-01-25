@@ -33,14 +33,16 @@ export function SlidersManagement({ sliders }: SlidersManagementProps) {
     setTitle("")
     setImageUrl("")
     setFile(null)
+    setPreviewUrl(null)
     setIsModalOpen(true)
   }
 
   const handleEdit = (slider: SliderItem) => {
     setEditingSlider(slider)
     setTitle(slider.title)
-    setImageUrl(slider.image || "")
+    setImageUrl("") // Clear input to hide path, using editingSlider.image for preview/fallback
     setFile(null)
+    setPreviewUrl(null)
     setIsModalOpen(true)
   }
 
@@ -54,7 +56,7 @@ export function SlidersManagement({ sliders }: SlidersManagementProps) {
     if (f) {
       const obj = URL.createObjectURL(f)
       setPreviewUrl(obj)
-      setImageUrl(obj)
+      setImageUrl("")
     }
     // allow selecting same file again
     if (fileInputRef.current) fileInputRef.current.value = ""
@@ -99,8 +101,13 @@ export function SlidersManagement({ sliders }: SlidersManagementProps) {
     e.preventDefault()
     setIsSubmitting(true)
     try {
-      // Ensure image is provided either by URL input or file
+      // Ensure image is provided either by URL input, file, or existing image (edit mode)
       let finalImage = imageUrl
+
+      if (!finalImage && !file && editingSlider) {
+        finalImage = editingSlider.image || ""
+      }
+
       if (!finalImage && !file) {
         toast({ title: "Erreur", description: "L'image est requise", variant: "destructive" })
         setIsSubmitting(false)
@@ -127,6 +134,11 @@ export function SlidersManagement({ sliders }: SlidersManagementProps) {
         if (res.ok) {
           setItems((prev) => prev.map((s) => (s.id === editingSlider.id ? json.data : s)))
           setIsModalOpen(false)
+          setFile(null)
+          setPreviewUrl(null)
+          setImageUrl("")
+          setTitle("")
+          setEditingSlider(null)
           toast({ title: "Succès", description: json.message || "Promotion mise à jour avec succès" })
           router.refresh()
         } else {
@@ -142,6 +154,10 @@ export function SlidersManagement({ sliders }: SlidersManagementProps) {
         if (res.ok) {
           setItems((prev) => [json.data, ...prev])
           setIsModalOpen(false)
+          setFile(null)
+          setPreviewUrl(null)
+          setImageUrl("")
+          setTitle("")
           toast({ title: "Succès", description: json.message || "Promotion créée avec succès" })
           router.refresh()
         } else {
@@ -262,8 +278,8 @@ export function SlidersManagement({ sliders }: SlidersManagementProps) {
                     </button>
                   </div>
                 </div>
-                {imageUrl && (
-                  <img src={imageUrl} alt="preview" className="mt-2 h-24 object-contain" />
+                {(previewUrl || imageUrl || editingSlider?.image) && (
+                  <img src={previewUrl || imageUrl || editingSlider?.image || ""} alt="preview" className="mt-2 h-24 object-contain" />
                 )}
               </div>
 
