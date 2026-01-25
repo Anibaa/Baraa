@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
 
     // Validate required fields
-    if (!body.title || !body.author || !body.price || !body.description || !body.images || body.images.length === 0) {
+    if (!body.title || !body.author || !body.price || !body.images || body.images.length === 0) {
       return NextResponse.json(
         {
           success: false,

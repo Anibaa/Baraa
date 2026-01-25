@@ -328,10 +328,12 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   <label className="block text-sm font-semibold text-foreground mb-2">Catégorie</label>
                   <select
                     name="category"
-                    value={formData.category || "primary"}
+                    value={formData.category || ""}
                     onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   >
+                    <option value="" disabled>Choisir une catégorie</option>
                     <option value="primary">Primaire</option>
                     <option value="secondary">Secondaire</option>
                     <option value="university">Université</option>
@@ -341,10 +343,12 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   <label className="block text-sm font-semibold text-foreground mb-2">Niveau</label>
                   <select
                     name="level"
-                    value={formData.level || "primary"}
+                    value={formData.level || ""}
                     onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   >
+                    <option value="" disabled>Choisir un niveau</option>
                     <option value="primary">Primaire</option>
                     <option value="secondary">Secondaire</option>
                     <option value="university">Université</option>
@@ -400,10 +404,12 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   <label className="block text-sm font-semibold text-foreground mb-2">Langue</label>
                   <select
                     name="language"
-                    value={formData.language || "fr"}
+                    value={formData.language || ""}
                     onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   >
+                    <option value="" disabled>Choisir une langue</option>
                     <option value="ar">Arabe</option>
                     <option value="fr">Français</option>
                     <option value="en">Anglais</option>
@@ -413,15 +419,17 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   <label className="block text-sm font-semibold text-foreground mb-2">Statut</label>
                   <select
                     name="status"
-                    value={formData.status || "En stock"}
+                    value={formData.status || ""}
                     onChange={handleInputChange}
+                    required
                     className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   >
-                    <option>En stock</option>
-                    <option>Hors stock</option>
-                    <option>Préparation</option>
-                    <option>Livraison</option>
-                    <option>Livré</option>
+                    <option value="" disabled>Choisir un statut</option>
+                    <option value="En stock">En stock</option>
+                    <option value="Hors stock">Hors stock</option>
+                    <option value="Préparation">Préparation</option>
+                    <option value="Livraison">Livraison</option>
+                    <option value="Livré">Livré</option>
                   </select>
                 </div>
               </div>
@@ -434,7 +442,6 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   value={formData.description || ""}
                   onChange={handleInputChange}
                   rows={4}
-                  required
                   className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
                 />
               </div>

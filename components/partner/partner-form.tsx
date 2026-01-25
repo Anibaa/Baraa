@@ -11,9 +11,9 @@ export function PartnerForm() {
     email: "",
     phone: "",
     bookTitle: "",
-    category: "primary" as Category,
-    level: "primary" as Level,
-    language: "ar" as Language,
+    category: "",
+    level: "",
+    language: "",
     description: "",
   })
 
@@ -27,6 +27,9 @@ export function PartnerForm() {
     if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) newErrors.email = "Un email valide est requis"
     if (!formData.phone.match(/^\+?[0-9\s\-()]{7,}$/)) newErrors.phone = "Un numéro de téléphone valide est requis"
     if (!formData.bookTitle.trim()) newErrors.bookTitle = "Le titre du livre est requis"
+    if (!formData.category) newErrors.category = "La catégorie est requise"
+    if (!formData.level) newErrors.level = "Le niveau est requis"
+    if (!formData.language) newErrors.language = "La langue est requise"
     if (!formData.description.trim() || formData.description.length < 30)
       newErrors.description = "La description doit contenir au moins 30 caractères"
 
@@ -69,9 +72,9 @@ export function PartnerForm() {
           email: "",
           phone: "",
           bookTitle: "",
-          category: "primary",
-          level: "primary",
-          language: "ar",
+          category: "",
+          level: "",
+          language: "",
           description: "",
         })
         setTimeout(() => setStatus("idle"), 5000)
@@ -174,8 +177,8 @@ export function PartnerForm() {
           value={formData.bookTitle}
           onChange={handleChange}
           className={`w-full px-4 py-3 md:py-3.5 rounded-lg md:rounded-xl border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 ${errors.bookTitle
-              ? "border-destructive bg-destructive/5"
-              : "border-border bg-background hover:border-primary/30"
+            ? "border-destructive bg-destructive/5"
+            : "border-border bg-background hover:border-primary/30"
             }`}
           placeholder="Titre du livre"
         />
@@ -193,8 +196,10 @@ export function PartnerForm() {
             name="category"
             value={formData.category}
             onChange={handleChange}
+            required
             className="w-full px-4 py-3 md:py-3.5 rounded-lg md:rounded-xl border border-border bg-background hover:border-primary/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200"
           >
+            <option value="" disabled>Choisir une catégorie</option>
             <option value="primary">Primaire</option>
             <option value="secondary">Secondaire</option>
             <option value="university">Université</option>
@@ -210,8 +215,10 @@ export function PartnerForm() {
             name="level"
             value={formData.level}
             onChange={handleChange}
+            required
             className="w-full px-4 py-3 md:py-3.5 rounded-lg md:rounded-xl border border-border bg-background hover:border-primary/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200"
           >
+            <option value="" disabled>Choisir un niveau</option>
             <option value="primary">Primaire</option>
             <option value="secondary">Secondaire</option>
             <option value="university">Université</option>
@@ -227,8 +234,10 @@ export function PartnerForm() {
             name="language"
             value={formData.language}
             onChange={handleChange}
+            required
             className="w-full px-4 py-3 md:py-3.5 rounded-lg md:rounded-xl border border-border bg-background hover:border-primary/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200"
           >
+            <option value="" disabled>Choisir une langue</option>
             <option value="ar">Arabe</option>
             <option value="fr">Français</option>
             <option value="en">Anglais</option>
@@ -248,8 +257,8 @@ export function PartnerForm() {
           onChange={handleChange}
           rows={6}
           className={`w-full px-4 py-3 md:py-3.5 rounded-lg md:rounded-xl border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none ${errors.description
-              ? "border-destructive bg-destructive/5"
-              : "border-border bg-background hover:border-primary/30"
+            ? "border-destructive bg-destructive/5"
+            : "border-border bg-background hover:border-primary/30"
             }`}
           placeholder="Décrivez le contenu du livre en détail..."
         />

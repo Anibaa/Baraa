@@ -10,7 +10,7 @@ const BookSchema = new Schema({
     price: { type: Number, required: true },
     image: { type: String, required: true },
     images: { type: [String], default: [] },
-    description: { type: String, required: true },
+    description: { type: String },
     rating: { type: Number, default: 0 },
     reviews: { type: Number, default: 0 },
     status: { type: String, enum: ["En stock", "Hors stock", "Préparation", "Livraison", "Livré"], default: "En stock" },
