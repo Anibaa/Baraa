@@ -29,7 +29,7 @@ export default function OrderConfirmationPage() {
             Merci pour votre achat. Vous recevrez bientôt un email de confirmation avec les détails de votre commande.
           </p>
 
-          <div
+          {/* <div
             className="bg-white rounded-lg shadow-soft p-6 mb-8 border border-primary/20 animate-slideUp"
             style={{ animationDelay: "0.2s" }}
           >
@@ -38,7 +38,7 @@ export default function OrderConfirmationPage() {
               {orderNumber}
             </p>
             <p className="text-xs text-muted-foreground mt-2">Conservez ce numéro pour votre référence</p>
-          </div>
+          </div> */}
 
           <div className="space-y-3 animate-slideUp" style={{ animationDelay: "0.3s" }}>
             <Link

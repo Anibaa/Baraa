@@ -191,19 +191,7 @@ export default function CheckoutPage() {
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">Méthode de paiement</label>
-                      <select
-                        name="paymentMethod"
-                        value={formData.paymentMethod}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200"
-                        disabled={isLoading}
-                      >
-                        <option value="Card">Carte bancaire</option>
-                        <option value="Cash">Paiement à la livraison</option>
-                      </select>
-                    </div>
+
 
                     <button
                       type="submit"
