@@ -20,6 +20,7 @@ export function BookDetails({ book }: BookDetailsProps) {
   const [quantity, setQuantity] = useState(1)
   const [isFavorite, setIsFavorite] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
 
   useEffect(() => {
     setIsFavorite(isFavorited(book.id))
@@ -104,9 +105,22 @@ export function BookDetails({ book }: BookDetailsProps) {
 
         {/* Description */}
         {book.description && (
-          <div className="mb-8 p-6 md:p-7 bg-primary/5 border border-primary/20 rounded-lg md:rounded-xl hover:border-primary/40 transition-colors">
+          <div className="mb-8 p-6 md:p-7 bg-primary/5 border border-primary/20 rounded-lg md:rounded-xl hover:border-primary/40 transition-colors overflow-hidden">
             <h3 className="font-semibold text-card-foreground mb-3 text-base md:text-lg">Description</h3>
-            <p className="text-muted-foreground text-pretty text-sm md:text-base leading-relaxed">{book.description}</p>
+            <p
+              className={`text-muted-foreground text-pretty text-sm md:text-base leading-relaxed break-words whitespace-pre-wrap ${!isExpanded ? "line-clamp-2" : ""
+                }`}
+            >
+              {book.description}
+            </p>
+            {book.description.length > 150 && (
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="mt-2 text-primary font-semibold hover:underline text-sm"
+              >
+                {isExpanded ? "Voir moins" : "Voir plus"}
+              </button>
+            )}
           </div>
         )}
 
