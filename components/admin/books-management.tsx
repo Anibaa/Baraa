@@ -27,16 +27,19 @@ export function BooksManagement({ books }: BooksManagementProps) {
     images: [],
     descriptionImages: [],
   })
-  const [imageInput, setImageInput] = useState("")
+  const [galleryImageInput, setGalleryImageInput] = useState("")
+  const [descriptionImageInput, setDescriptionImageInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [isUploading, setIsUploading] = useState(false)
+  const [isUploadingGallery, setIsUploadingGallery] = useState(false)
+  const [isUploadingDescription, setIsUploadingDescription] = useState(false)
   const { toast } = useToast()
   const router = useRouter()
 
   const handleEdit = (book: Book) => {
     setEditingBook(book)
     setFormData(book)
-    setImageInput("")
+    setGalleryImageInput("")
+    setDescriptionImageInput("")
     setIsModalOpen(true)
   }
 
@@ -72,14 +75,14 @@ export function BooksManagement({ books }: BooksManagementProps) {
     }))
   }
 
-  const handleAddImage = () => {
-    if (imageInput.trim()) {
+  const handleAddGalleryImage = () => {
+    if (galleryImageInput.trim()) {
       setFormData((prev) => ({
         ...prev,
-        images: [...(prev.images || []), imageInput.trim()],
-        image: prev.image || imageInput.trim(), // Set primary image if empty
+        images: [...(prev.images || []), galleryImageInput.trim()],
+        image: prev.image || galleryImageInput.trim(), // Set primary image if empty
       }))
-      setImageInput("")
+      setGalleryImageInput("")
       toast({
         title: "Image ajoutée",
         description: "L'image a été ajoutée à la galerie",
@@ -96,6 +99,13 @@ export function BooksManagement({ books }: BooksManagementProps) {
       title: "Image descriptive ajoutée",
       description: "L'image a été ajoutée aux images descriptives",
     })
+  }
+
+  const handleAddDescriptionImageFromInput = () => {
+    if (descriptionImageInput.trim()) {
+      handleAddDescriptionImage(descriptionImageInput.trim())
+      setDescriptionImageInput("")
+    }
   }
 
   const handleRemoveImage = (index: number) => {
@@ -142,7 +152,12 @@ export function BooksManagement({ books }: BooksManagementProps) {
     const file = e.target.files?.[0]
     if (!file) return
 
-    setIsUploading(true)
+    if (field === 'gallery') {
+      setIsUploadingGallery(true)
+    } else {
+      setIsUploadingDescription(true)
+    }
+
     const formData = new FormData()
     formData.append("file", file)
     formData.append("uploadType", field) // Add upload type for unique naming
@@ -177,7 +192,11 @@ export function BooksManagement({ books }: BooksManagementProps) {
         variant: "destructive",
       })
     } finally {
-      setIsUploading(false)
+      if (field === 'gallery') {
+        setIsUploadingGallery(false)
+      } else {
+        setIsUploadingDescription(false)
+      }
       // Reset input value to allow selecting same file again
       e.target.value = ""
     }
@@ -219,6 +238,8 @@ export function BooksManagement({ books }: BooksManagementProps) {
       router.refresh()
       setIsModalOpen(false)
       setFormData({ images: [], descriptionImages: [] })
+      setGalleryImageInput("")
+      setDescriptionImageInput("")
       setEditingBook(null)
     } catch (error) {
       toast({
@@ -242,7 +263,9 @@ export function BooksManagement({ books }: BooksManagementProps) {
         <button
           onClick={() => {
             setEditingBook(null)
-            setFormData({})
+            setFormData({ images: [], descriptionImages: [] })
+            setGalleryImageInput("")
+            setDescriptionImageInput("")
             setIsModalOpen(true)
           }}
           className="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 w-full md:w-auto justify-center md:justify-start"
@@ -315,7 +338,9 @@ export function BooksManagement({ books }: BooksManagementProps) {
               <button
                 onClick={() => {
                   setIsModalOpen(false)
-                  setFormData({})
+                  setFormData({ images: [], descriptionImages: [] })
+                  setGalleryImageInput("")
+                  setDescriptionImageInput("")
                 }}
                 className="p-2 hover:bg-muted rounded-lg transition-colors"
                 aria-label="Fermer"
@@ -456,12 +481,12 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   <input
                     type="text"
                     placeholder="Ajouter une URL d'image..."
-                    value={imageInput}
-                    onChange={(e) => setImageInput(e.target.value)}
+                    value={galleryImageInput}
+                    onChange={(e) => setGalleryImageInput(e.target.value)}
                     onKeyPress={(e) => {
                       if (e.key === "Enter") {
                         e.preventDefault()
-                        handleAddImage()
+                        handleAddGalleryImage()
                       }
                     }}
                     className="flex-1 px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
@@ -472,15 +497,15 @@ export function BooksManagement({ books }: BooksManagementProps) {
                       accept="image/*"
                       onChange={(e) => handleFileUpload(e, 'gallery')}
                       className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                      disabled={isUploading}
+                      disabled={isUploadingGallery}
                     />
                     <button 
                       type="button" 
-                      className={`px-4 py-3 ${isUploading ? 'bg-gray-400' : 'bg-secondary hover:bg-secondary/80'} rounded-lg border border-border h-full flex items-center justify-center min-w-[3rem] mr-2`} 
+                      className={`px-4 py-3 ${isUploadingGallery ? 'bg-gray-400' : 'bg-secondary hover:bg-secondary/80'} rounded-lg border border-border h-full flex items-center justify-center min-w-[3rem] mr-2`} 
                       title="Upload"
-                      disabled={isUploading}
+                      disabled={isUploadingGallery}
                     >
-                      {isUploading ? (
+                      {isUploadingGallery ? (
                         <div className="w-5 h-5 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
                       ) : (
                         <Plus className="w-5 h-5" />
@@ -489,7 +514,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   </div>
                   <button
                     type="button"
-                    onClick={handleAddImage}
+                    onClick={handleAddGalleryImage}
                     className="px-4 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95"
                   >
                     <Plus className="w-5 h-5" />
@@ -535,15 +560,12 @@ export function BooksManagement({ books }: BooksManagementProps) {
                       <input
                         type="text"
                         placeholder="Ajouter une URL d'image descriptive..."
-                        value={imageInput}
-                        onChange={(e) => setImageInput(e.target.value)}
+                        value={descriptionImageInput}
+                        onChange={(e) => setDescriptionImageInput(e.target.value)}
                         onKeyPress={(e) => {
                           if (e.key === "Enter") {
                             e.preventDefault()
-                            if (imageInput.trim()) {
-                              handleAddDescriptionImage(imageInput.trim())
-                              setImageInput("")
-                            }
+                            handleAddDescriptionImageFromInput()
                           }
                         }}
                         className="flex-1 px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
@@ -554,15 +576,15 @@ export function BooksManagement({ books }: BooksManagementProps) {
                           accept="image/*"
                           onChange={(e) => handleFileUpload(e, 'descriptionImages')}
                           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                          disabled={isUploading}
+                          disabled={isUploadingDescription}
                         />
                         <button 
                           type="button" 
-                          className={`px-4 py-3 ${isUploading ? 'bg-gray-400' : 'bg-secondary hover:bg-secondary/80'} rounded-lg border border-border h-full flex items-center justify-center min-w-[3rem]`} 
+                          className={`px-4 py-3 ${isUploadingDescription ? 'bg-gray-400' : 'bg-secondary hover:bg-secondary/80'} rounded-lg border border-border h-full flex items-center justify-center min-w-[3rem]`} 
                           title="Upload"
-                          disabled={isUploading}
+                          disabled={isUploadingDescription}
                         >
-                          {isUploading ? (
+                          {isUploadingDescription ? (
                             <div className="w-5 h-5 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
                           ) : (
                             <Plus className="w-5 h-5" />
@@ -571,12 +593,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
                       </div>
                       <button
                         type="button"
-                        onClick={() => {
-                          if (imageInput.trim()) {
-                            handleAddDescriptionImage(imageInput.trim())
-                            setImageInput("")
-                          }
-                        }}
+                        onClick={handleAddDescriptionImageFromInput}
                         className="px-4 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95"
                       >
                         <Plus className="w-5 h-5" />
@@ -640,7 +657,9 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   type="button"
                   onClick={() => {
                     setIsModalOpen(false)
-                    setFormData({})
+                    setFormData({ images: [], descriptionImages: [] })
+                    setGalleryImageInput("")
+                    setDescriptionImageInput("")
                   }}
                   className="flex-1 px-6 py-3 border border-border rounded-lg hover:bg-muted transition-all duration-200 font-semibold"
                 >
