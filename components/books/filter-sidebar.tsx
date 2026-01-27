@@ -27,9 +27,9 @@ export function FilterSidebar() {
   const currentLanguage = searchParams.get("language") || ""
 
   const categories: { value: Category; label: string }[] = [
-    { value: "primary", label: "Primaire" },
-    { value: "secondary", label: "Secondaire" },
-    { value: "university", label: "Université" },
+    { value: "writing", label: "Writing" },
+    { value: "cours", label: "Cours" },
+    { value: "devoirs", label: "Devoirs" },
   ]
 
   const levels: { value: Level; label: string }[] = [

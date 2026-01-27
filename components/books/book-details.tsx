@@ -95,7 +95,7 @@ export function BookDetails({ book }: BookDetailsProps) {
             {book.language === "ar" ? "Arabe" : book.language === "fr" ? "Français" : "English"}
           </span>
           <span className="text-xs md:text-sm text-foreground bg-secondary px-3 py-1 rounded-full font-semibold">
-            {book.category === "primary" ? "Primaire" : book.category === "secondary" ? "Secondaire" : "Université"}
+            {book.category === "writing" ? "Writing" : book.category === "cours" ? "Cours" : "Devoirs"}
           </span>
         </div>
 
@@ -138,7 +138,7 @@ export function BookDetails({ book }: BookDetailsProps) {
             <div className="p-4 md:p-5 border border-border rounded-lg md:rounded-xl hover:border-primary/50 transition-colors">
               <p className="text-xs md:text-sm text-muted-foreground mb-2">Catégorie</p>
               <p className="font-semibold text-card-foreground text-sm md:text-base">
-                {book.category === "primary" ? "Primaire" : book.category === "secondary" ? "Secondaire" : "Université"}
+                {book.category === "writing" ? "Writing" : book.category === "cours" ? "Cours" : "Devoirs"}
               </p>
             </div>
           )}

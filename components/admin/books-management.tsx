@@ -401,9 +401,9 @@ export function BooksManagement({ books }: BooksManagementProps) {
                     className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   >
                     <option value="" disabled>Choisir une catégorie</option>
-                    <option value="primary">Primaire</option>
-                    <option value="secondary">Secondaire</option>
-                    <option value="university">Université</option>
+                    <option value="writing">Writing</option>
+                    <option value="cours">Cours</option>
+                    <option value="devoirs">Devoirs</option>
                   </select>
                 </div>
                 <div>
