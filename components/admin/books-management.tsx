@@ -397,105 +397,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   </select>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Images Descriptives</label>
-                  <div className="border border-primary/20 rounded-lg p-4 bg-primary/5">
-                    {/* Add Description Image Input */}
-                    <div className="flex gap-2 mb-4">
-                      <input
-                        type="text"
-                        placeholder="Ajouter une URL d'image descriptive..."
-                        value={imageInput}
-                        onChange={(e) => setImageInput(e.target.value)}
-                        onKeyPress={(e) => {
-                          if (e.key === "Enter") {
-                            e.preventDefault()
-                            if (imageInput.trim()) {
-                              handleAddDescriptionImage(imageInput.trim())
-                              setImageInput("")
-                            }
-                          }
-                        }}
-                        className="flex-1 px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
-                      />
-                      <div className="relative">
-                        <input
-                          type="file"
-                          accept="image/*"
-                          onChange={(e) => handleFileUpload(e, 'descriptionImages')}
-                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                          disabled={isUploading}
-                        />
-                        <button 
-                          type="button" 
-                          className={`px-4 py-3 ${isUploading ? 'bg-gray-400' : 'bg-secondary hover:bg-secondary/80'} rounded-lg border border-border h-full flex items-center justify-center min-w-[3rem]`} 
-                          title="Upload"
-                          disabled={isUploading}
-                        >
-                          {isUploading ? (
-                            <div className="w-5 h-5 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
-                          ) : (
-                            <Plus className="w-5 h-5" />
-                          )}
-                        </button>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (imageInput.trim()) {
-                            handleAddDescriptionImage(imageInput.trim())
-                            setImageInput("")
-                          }
-                        }}
-                        className="px-4 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95"
-                      >
-                        <Plus className="w-5 h-5" />
-                      </button>
-                    </div>
 
-                    {/* Description Image Thumbnails */}
-                    {formData.descriptionImages && formData.descriptionImages.length > 0 ? (
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        {formData.descriptionImages.map((img, index) => (
-                          <div key={index} className="relative group">
-                            <img
-                              src={img || "/placeholder.svg"}
-                              alt={`Description ${index + 1}`}
-                              className="w-full aspect-video object-cover rounded-lg border-2 border-primary/30"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => handleRemoveDescriptionImage(index)}
-                              className="absolute top-1 right-1 bg-destructive hover:bg-destructive/90 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"
-                            >
-                              <X className="w-4 h-4" />
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setFormData(prev => ({
-                                  ...prev,
-                                  images: [...(prev.images || []), img],
-                                  image: prev.image || img
-                                }))
-                                toast({
-                                  title: "Image copiée",
-                                  description: "L'image a été ajoutée à la galerie",
-                                })
-                              }}
-                              className="absolute bottom-1 right-1 bg-primary hover:bg-primary/90 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"
-                              title="Copier vers la galerie"
-                            >
-                              <Plus className="w-3 h-3" />
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="text-sm text-muted-foreground italic">Aucune image descriptive ajoutée</p>
-                    )}
-                  </div>
-                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -624,9 +526,105 @@ export function BooksManagement({ books }: BooksManagementProps) {
                 )}
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className=" gap-4">
                 <div>
-                  {/* Additional fields can be added here */}
+                  <label className="block text-sm font-semibold text-foreground mb-2">Images Descriptives</label>
+                  <div className="border border-primary/20 rounded-lg p-4 bg-primary/5">
+                    {/* Add Description Image Input */}
+                    <div className="flex gap-2 mb-4">
+                      <input
+                        type="text"
+                        placeholder="Ajouter une URL d'image descriptive..."
+                        value={imageInput}
+                        onChange={(e) => setImageInput(e.target.value)}
+                        onKeyPress={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault()
+                            if (imageInput.trim()) {
+                              handleAddDescriptionImage(imageInput.trim())
+                              setImageInput("")
+                            }
+                          }
+                        }}
+                        className="flex-1 px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
+                      />
+                      <div className="relative">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleFileUpload(e, 'descriptionImages')}
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                          disabled={isUploading}
+                        />
+                        <button 
+                          type="button" 
+                          className={`px-4 py-3 ${isUploading ? 'bg-gray-400' : 'bg-secondary hover:bg-secondary/80'} rounded-lg border border-border h-full flex items-center justify-center min-w-[3rem]`} 
+                          title="Upload"
+                          disabled={isUploading}
+                        >
+                          {isUploading ? (
+                            <div className="w-5 h-5 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
+                          ) : (
+                            <Plus className="w-5 h-5" />
+                          )}
+                        </button>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (imageInput.trim()) {
+                            handleAddDescriptionImage(imageInput.trim())
+                            setImageInput("")
+                          }
+                        }}
+                        className="px-4 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95"
+                      >
+                        <Plus className="w-5 h-5" />
+                      </button>
+                    </div>
+
+                    {/* Description Image Thumbnails */}
+                    {formData.descriptionImages && formData.descriptionImages.length > 0 ? (
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        {formData.descriptionImages.map((img, index) => (
+                          <div key={index} className="relative group">
+                            <img
+                              src={img || "/placeholder.svg"}
+                              alt={`Description ${index + 1}`}
+                              className="w-full aspect-[3/4] object-cover rounded-lg border-2 border-primary/30"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveDescriptionImage(index)}
+                              className="absolute top-1 right-1 bg-destructive hover:bg-destructive/90 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  images: [...(prev.images || []), img],
+                                  image: prev.image || img
+                                }))
+                                toast({
+                                  title: "Image copiée",
+                                  description: "L'image a été ajoutée à la galerie",
+                                })
+                              }}
+                              className="absolute bottom-1 right-1 bg-primary hover:bg-primary/90 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"
+                              title="Copier vers la galerie"
+                            >
+                              <Plus className="w-3 h-3" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-sm text-muted-foreground italic">Aucune image descriptive ajoutée</p>
+                    )}
+                  </div>
                 </div>
               </div>
 
