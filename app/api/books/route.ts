@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
 
     const newBook = await Book.create({
       ...body,
-      descriptionImage: body.descriptionImage, // Ensure this is saved
+      descriptionImages: body.descriptionImages || [], // Ensure this is saved as array
       image: body.image || body.images[0], // Set primary image from first image
     })
 

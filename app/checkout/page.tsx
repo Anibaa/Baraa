@@ -26,7 +26,7 @@ export default function CheckoutPage() {
   const [error, setError] = useState("")
   const [isSuccess, setIsSuccess] = useState(false)
 
-  if (cart.length === 0) {
+  if (cart.length === 0 && !isSuccess) {
     return (
       <>
         <Header />
@@ -78,9 +78,9 @@ export default function CheckoutPage() {
       if (!response.ok) throw new Error("Échec de la création de la commande")
 
       setIsSuccess(true)
-      clearCart()
 
       setTimeout(() => {
+        clearCart()
         router.push("/order-confirmation")
       }, 1500)
     } catch (err) {

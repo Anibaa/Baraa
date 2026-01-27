@@ -15,7 +15,7 @@ const BookSchema = new Schema({
     reviews: { type: Number, default: 0 },
     status: { type: String, enum: ["En stock", "Hors stock", "Préparation", "Livraison", "Livré"], default: "En stock" },
     specifications: { type: Map, of: String }, // Flexible for key-value pairs
-    descriptionImage: { type: String },
+    descriptionImages: { type: [String], default: [] }, // Changed to array
     createdAt: { type: Date, default: Date.now },
 }, {
     timestamps: true,

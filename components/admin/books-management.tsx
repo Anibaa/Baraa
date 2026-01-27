@@ -25,6 +25,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
   const [editingBook, setEditingBook] = useState<Book | null>(null)
   const [formData, setFormData] = useState<Partial<Book>>({
     images: [],
+    descriptionImages: [],
   })
   const [imageInput, setImageInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -76,7 +77,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
       setFormData((prev) => ({
         ...prev,
         images: [...(prev.images || []), imageInput.trim()],
-        image: imageInput.trim(), // Set primary image
+        image: prev.image || imageInput.trim(), // Set primary image if empty
       }))
       setImageInput("")
       toast({
@@ -86,7 +87,19 @@ export function BooksManagement({ books }: BooksManagementProps) {
     }
   }
 
+  const handleAddDescriptionImage = (imageUrl: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      descriptionImages: [...(prev.descriptionImages || []), imageUrl],
+    }))
+    toast({
+      title: "Image descriptive ajoutée",
+      description: "L'image a été ajoutée aux images descriptives",
+    })
+  }
+
   const handleRemoveImage = (index: number) => {
+    const imageToRemove = formData.images?.[index]
     setFormData((prev) => {
       const newImages = prev.images?.filter((_, i) => i !== index) || []
       return {
@@ -95,15 +108,44 @@ export function BooksManagement({ books }: BooksManagementProps) {
         image: newImages.length > 0 ? newImages[0] : "", // Sync primary image
       }
     })
+    
+    // Delete from Vercel Blob if it's a blob URL
+    if (imageToRemove && imageToRemove.includes('blob.vercel-storage.com')) {
+      deleteFromBlob(imageToRemove)
+    }
   }
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, field: 'descriptionImage' | 'gallery') => {
+  const handleRemoveDescriptionImage = (index: number) => {
+    const imageToRemove = formData.descriptionImages?.[index]
+    setFormData((prev) => ({
+      ...prev,
+      descriptionImages: prev.descriptionImages?.filter((_, i) => i !== index) || [],
+    }))
+    
+    // Delete from Vercel Blob if it's a blob URL
+    if (imageToRemove && imageToRemove.includes('blob.vercel-storage.com')) {
+      deleteFromBlob(imageToRemove)
+    }
+  }
+
+  const deleteFromBlob = async (url: string) => {
+    try {
+      await fetch(`/api/upload?url=${encodeURIComponent(url)}`, {
+        method: 'DELETE',
+      })
+    } catch (error) {
+      console.error('Failed to delete from blob:', error)
+    }
+  }
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, field: 'descriptionImages' | 'gallery') => {
     const file = e.target.files?.[0]
     if (!file) return
 
     setIsUploading(true)
     const formData = new FormData()
     formData.append("file", file)
+    formData.append("uploadType", field) // Add upload type for unique naming
 
     try {
       const res = await fetch("/api/upload", {
@@ -115,20 +157,19 @@ export function BooksManagement({ books }: BooksManagementProps) {
 
       const data = await res.json()
 
-      if (field === 'descriptionImage') {
-        setFormData(prev => ({ ...prev, descriptionImage: data.url }))
+      if (field === 'descriptionImages') {
+        handleAddDescriptionImage(data.url)
       } else {
         setFormData(prev => ({
           ...prev,
           images: [...(prev.images || []), data.url],
           image: prev.image || data.url // Set primary if empty
         }))
+        toast({
+          title: "Succès",
+          description: "Image ajoutée à la galerie",
+        })
       }
-
-      toast({
-        title: "Succès",
-        description: "Image téléchargée avec succès",
-      })
     } catch (error) {
       toast({
         title: "Erreur",
@@ -150,7 +191,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
     if (!formData.images || formData.images.length === 0) {
       toast({
         title: "Erreur",
-        description: "Veuillez ajouter au moins une image",
+        description: "Veuillez ajouter au moins une image à la galerie",
       })
       setIsLoading(false)
       return
@@ -177,7 +218,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
 
       router.refresh()
       setIsModalOpen(false)
-      setFormData({ images: [] })
+      setFormData({ images: [], descriptionImages: [] })
       setEditingBook(null)
     } catch (error) {
       toast({
@@ -238,6 +279,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   <span className={`text - sm font - semibold ${statusColors[book.status]}`}>{book.status}</span>
                 </td>
 
+                <td className="px-6 py-4 text-muted-foreground hidden md:table-cell text-sm">{book.rating || 'N/A'}</td>
                 <td className="px-6 py-4">
                   <div className="flex gap-2 justify-center">
                     <button
@@ -356,46 +398,103 @@ export function BooksManagement({ books }: BooksManagementProps) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Image Descriptif (URL ou Upload)</label>
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      name="descriptionImage"
-                      placeholder="URL de l'image (optionnel)"
-                      value={formData.descriptionImage || ""}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                    />
-                    <div className="relative">
+                  <label className="block text-sm font-semibold text-foreground mb-2">Images Descriptives</label>
+                  <div className="border border-primary/20 rounded-lg p-4 bg-primary/5">
+                    {/* Add Description Image Input */}
+                    <div className="flex gap-2 mb-4">
                       <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => handleFileUpload(e, 'descriptionImage')}
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                        disabled={isUploading}
+                        type="text"
+                        placeholder="Ajouter une URL d'image descriptive..."
+                        value={imageInput}
+                        onChange={(e) => setImageInput(e.target.value)}
+                        onKeyPress={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault()
+                            if (imageInput.trim()) {
+                              handleAddDescriptionImage(imageInput.trim())
+                              setImageInput("")
+                            }
+                          }
+                        }}
+                        className="flex-1 px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
                       />
-                      <button type="button" className="px-4 py-3 bg-secondary hover:bg-secondary/80 rounded-lg border border-border h-full flex items-center justify-center min-w-[3rem]">
+                      <div className="relative">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleFileUpload(e, 'descriptionImages')}
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                          disabled={isUploading}
+                        />
+                        <button 
+                          type="button" 
+                          className={`px-4 py-3 ${isUploading ? 'bg-gray-400' : 'bg-secondary hover:bg-secondary/80'} rounded-lg border border-border h-full flex items-center justify-center min-w-[3rem]`} 
+                          title="Upload"
+                          disabled={isUploading}
+                        >
+                          {isUploading ? (
+                            <div className="w-5 h-5 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
+                          ) : (
+                            <Plus className="w-5 h-5" />
+                          )}
+                        </button>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (imageInput.trim()) {
+                            handleAddDescriptionImage(imageInput.trim())
+                            setImageInput("")
+                          }
+                        }}
+                        className="px-4 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95"
+                      >
                         <Plus className="w-5 h-5" />
                       </button>
                     </div>
+
+                    {/* Description Image Thumbnails */}
+                    {formData.descriptionImages && formData.descriptionImages.length > 0 ? (
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        {formData.descriptionImages.map((img, index) => (
+                          <div key={index} className="relative group">
+                            <img
+                              src={img || "/placeholder.svg"}
+                              alt={`Description ${index + 1}`}
+                              className="w-full aspect-video object-cover rounded-lg border-2 border-primary/30"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveDescriptionImage(index)}
+                              className="absolute top-1 right-1 bg-destructive hover:bg-destructive/90 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setFormData(prev => ({
+                                  ...prev,
+                                  images: [...(prev.images || []), img],
+                                  image: prev.image || img
+                                }))
+                                toast({
+                                  title: "Image copiée",
+                                  description: "L'image a été ajoutée à la galerie",
+                                })
+                              }}
+                              className="absolute bottom-1 right-1 bg-primary hover:bg-primary/90 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"
+                              title="Copier vers la galerie"
+                            >
+                              <Plus className="w-3 h-3" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-sm text-muted-foreground italic">Aucune image descriptive ajoutée</p>
+                    )}
                   </div>
-                  {formData.descriptionImage && (
-                    <div className="mt-3 relative w-full sm:w-1/2 md:w-1/3 group animate-fadeInUp">
-                      <img
-                        src={formData.descriptionImage}
-                        alt="Aperçu description"
-                        className="w-full aspect-video object-cover rounded-lg border border-border bg-muted"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setFormData(prev => ({ ...prev, descriptionImage: "" }))}
-                        className="absolute top-2 right-2 bg-destructive/90 hover:bg-destructive text-white p-1.5 rounded-full backdrop-blur-sm transition-all hover:scale-110 active:scale-95"
-                        title="Supprimer l'image"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  )}
                 </div>
               </div>
 
@@ -473,8 +572,17 @@ export function BooksManagement({ books }: BooksManagementProps) {
                       className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                       disabled={isUploading}
                     />
-                    <button type="button" className="px-4 py-3 bg-secondary hover:bg-secondary/80 rounded-lg border border-border h-full flex items-center justify-center min-w-[3rem] mr-2" title="Upload">
-                      <Plus className="w-5 h-5" />
+                    <button 
+                      type="button" 
+                      className={`px-4 py-3 ${isUploading ? 'bg-gray-400' : 'bg-secondary hover:bg-secondary/80'} rounded-lg border border-border h-full flex items-center justify-center min-w-[3rem] mr-2`} 
+                      title="Upload"
+                      disabled={isUploading}
+                    >
+                      {isUploading ? (
+                        <div className="w-5 h-5 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
+                      ) : (
+                        <Plus className="w-5 h-5" />
+                      )}
                     </button>
                   </div>
                   <button

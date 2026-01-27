@@ -67,7 +67,7 @@ export default async function BookPage({ params }: BookPageProps) {
         <section className="py-8 md:py-12">
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <BookDetails book={book} />
-            <BookDescriptionImage image={book.descriptionImage} alt={book.title} />
+            <BookDescriptionImage images={book.descriptionImages} alt={book.title} />
             <RelatedBooks books={relatedBooks} />
           </div>
         </section>

@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { getBookById } from "@/lib/api"
 import dbConnect from "@/lib/db"
 import Book from "@/lib/models/book.model"
+import { del } from "@vercel/blob"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -102,8 +103,8 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     // Delete associated images from Vercel Blob
     if (deletedBook) {
       const imagesToDelete = [...(deletedBook.images || [])];
-      if (deletedBook.descriptionImage) {
-        imagesToDelete.push(deletedBook.descriptionImage);
+      if (deletedBook.descriptionImages && deletedBook.descriptionImages.length > 0) {
+        imagesToDelete.push(...deletedBook.descriptionImages);
       }
 
       // Filter for blob URLs if necessary, or just attempt delete.
@@ -113,14 +114,6 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
 
       if (validUrls.length > 0) {
         try {
-          // Dynamic import to avoid issues if not used elsewhere, or just import at top?
-          // Better to import at top. I will add import statement in a separate edit or assume the user accepts full file replacement.
-          // Since I am replacing this block, I need to make sure 'del' is imported.
-          // I will use a separate import at the top of the file in the next step or use require?
-          // Typescript requires import. 
-          // I'll add the import to the top of the file in a separate tool call first or do a full file replace.
-          // I'll do a MultiReplace or just ensure I add the import.
-          const { del } = await import('@vercel/blob');
           await Promise.all(validUrls.map(url => del(url)));
         } catch (err) {
           console.error("Failed to delete blob images:", err);

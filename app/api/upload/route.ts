@@ -6,6 +6,7 @@ export async function POST(request: Request) {
     try {
         const formData = await request.formData();
         const file = formData.get("file") as File;
+        const uploadType = formData.get("uploadType") as string || "gallery";
 
         if (!file) {
             return NextResponse.json(
@@ -14,8 +15,15 @@ export async function POST(request: Request) {
             );
         }
 
-        const blob = await put(file.name, file, {
+        // Generate unique filename with timestamp and upload type
+        const timestamp = Date.now();
+        const randomSuffix = Math.floor(Math.random() * 1000000);
+        const fileExtension = file.name.split('.').pop();
+        const uniqueFilename = `${uploadType}-${timestamp}-${randomSuffix}.${fileExtension}`;
+
+        const blob = await put(uniqueFilename, file, {
             access: "public",
+            addRandomSuffix: true,
         });
 
         return NextResponse.json({

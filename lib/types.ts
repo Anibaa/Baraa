@@ -20,7 +20,7 @@ export interface Book {
   reviews: number
   status: BookStatus
   specifications?: Record<string, string>
-  descriptionImage?: string // Added descriptive image
+  descriptionImages?: string[] // Changed to array for multiple descriptive images
   createdAt?: string
 }
 
