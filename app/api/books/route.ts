@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { getBooks } from "@/lib/api"
 import dbConnect from "@/lib/db"
 import Book from "@/lib/models/book.model"
+import { revalidatePath } from "next/cache"
 
 export async function GET(request: NextRequest) {
   try {
@@ -56,6 +57,11 @@ export async function POST(request: NextRequest) {
       descriptionImages: body.descriptionImages || [], // Ensure this is saved as array
       image: body.image || body.images[0], // Set primary image from first image
     })
+
+    // Revalidate pages that show books
+    revalidatePath('/')
+    revalidatePath('/books')
+    revalidatePath('/admin')
 
     return NextResponse.json(
       {

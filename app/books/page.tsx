@@ -13,6 +13,10 @@ export const metadata = {
   description: "Parcourez notre collection complète de livres éducatifs tunisiens",
 }
 
+// Ensure this page is not statically cached
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 interface BooksPageProps {
   searchParams: Promise<{
     category?: string

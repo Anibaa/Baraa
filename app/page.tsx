@@ -15,6 +15,10 @@ export const metadata = {
     "Découvrez les meilleurs livres éducatifs pour les étudiants tunisiens à tous les niveaux scolaires. Accédez à des milliers de titres, de la primaire à l'université.",
 }
 
+// Ensure this page is not statically cached
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function Home() {
   const sliders = await getSliders()
   const books = await getBooks()

@@ -12,6 +12,10 @@ interface BookPageProps {
   params: Promise<{ id: string }>
 }
 
+// Ensure this page is not statically cached
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export async function generateMetadata({ params }: BookPageProps): Promise<Metadata> {
   const { id } = await params
   const book = await getBookById(id)

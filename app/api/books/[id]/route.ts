@@ -3,6 +3,7 @@ import { getBookById } from "@/lib/api"
 import dbConnect from "@/lib/db"
 import Book from "@/lib/models/book.model"
 import { del } from "@vercel/blob"
+import { revalidatePath } from "next/cache"
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -60,6 +61,12 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       )
     }
 
+    // Revalidate pages that might show this book
+    revalidatePath('/')
+    revalidatePath('/books')
+    revalidatePath(`/books/${id}`)
+    revalidatePath('/admin')
+
     return NextResponse.json(
       {
         success: true,
@@ -98,28 +105,55 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
       )
     }
 
+    // Delete the book from database
     const deletedBook = await Book.findByIdAndDelete(id)
 
     // Delete associated images from Vercel Blob
     if (deletedBook) {
-      const imagesToDelete = [...(deletedBook.images || [])];
+      const imagesToDelete = [];
+      
+      // Add gallery images
+      if (deletedBook.images && deletedBook.images.length > 0) {
+        imagesToDelete.push(...deletedBook.images);
+      }
+      
+      // Add primary image if different from gallery images
+      if (deletedBook.image && !imagesToDelete.includes(deletedBook.image)) {
+        imagesToDelete.push(deletedBook.image);
+      }
+      
+      // Add description images
       if (deletedBook.descriptionImages && deletedBook.descriptionImages.length > 0) {
         imagesToDelete.push(...deletedBook.descriptionImages);
       }
 
-      // Filter for blob URLs if necessary, or just attempt delete.
-      // Vercel blob URLs usually contain the token or specific domain. 
-      // We attempt to delete any full URL.
-      const validUrls = imagesToDelete.filter(url => url && url.startsWith('http'));
+      // Filter for blob URLs and delete them
+      const blobUrls = imagesToDelete.filter(url => 
+        url && 
+        typeof url === 'string' && 
+        (url.includes('blob.vercel-storage.com') || url.includes('vercel-storage.com'))
+      );
 
-      if (validUrls.length > 0) {
+      if (blobUrls.length > 0) {
         try {
-          await Promise.all(validUrls.map(url => del(url)));
+          await Promise.all(blobUrls.map(async (url) => {
+            try {
+              await del(url);
+              console.log(`Successfully deleted blob: ${url}`);
+            } catch (err) {
+              console.error(`Failed to delete blob ${url}:`, err);
+            }
+          }));
         } catch (err) {
-          console.error("Failed to delete blob images:", err);
+          console.error("Failed to delete some blob images:", err);
         }
       }
     }
+
+    // Revalidate all pages that might show books
+    revalidatePath('/')
+    revalidatePath('/books')
+    revalidatePath('/admin')
 
     return NextResponse.json(
       {

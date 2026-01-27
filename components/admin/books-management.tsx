@@ -56,7 +56,19 @@ export function BooksManagement({ books }: BooksManagementProps) {
           title: "Succès",
           description: "Livre supprimé avec succès",
         })
+        
+        // Refresh the current page
         router.refresh()
+        
+        // Also trigger a refresh of the home page cache
+        fetch('/', { 
+          method: 'GET',
+          cache: 'no-store',
+          headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate'
+          }
+        }).catch(() => {}) // Silent fail if this doesn't work
+        
       } catch (error) {
         toast({
           title: "Erreur",
@@ -235,7 +247,18 @@ export function BooksManagement({ books }: BooksManagementProps) {
           : `Livre "${formData.title}" ajouté avec succès`,
       })
 
+      // Refresh the current page and clear cache
       router.refresh()
+      
+      // Also trigger a refresh of the home page cache
+      fetch('/', { 
+        method: 'GET',
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate'
+        }
+      }).catch(() => {}) // Silent fail if this doesn't work
+
       setIsModalOpen(false)
       setFormData({ images: [], descriptionImages: [] })
       setGalleryImageInput("")
