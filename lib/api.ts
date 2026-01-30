@@ -53,6 +53,7 @@ export async function getBooks(filters?: {
   category?: string
   level?: string
   language?: string
+  search?: string
 }): Promise<Book[]> {
   await dbConnect();
 
@@ -60,6 +61,23 @@ export async function getBooks(filters?: {
   if (filters?.category) query.category = filters.category;
   if (filters?.level) query.level = filters.level;
   if (filters?.language) query.language = filters.language;
+
+  // Add search functionality
+  if (filters?.search) {
+    const searchRegex = new RegExp(filters.search, 'i'); // Case-insensitive search
+    query.$or = [
+      { title: searchRegex },
+      { author: searchRegex },
+      { description: searchRegex },
+      { category: searchRegex },
+      { level: searchRegex },
+      { language: searchRegex },
+      // Search in specifications if they exist
+      { 'specifications.subject': searchRegex },
+      { 'specifications.publisher': searchRegex },
+      { 'specifications.isbn': searchRegex },
+    ];
+  }
 
   const books = await BookModel.find(query).sort({ createdAt: -1 });
   return books.map(doc => sanitize(doc));

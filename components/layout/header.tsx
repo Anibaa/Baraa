@@ -50,7 +50,7 @@ export function Header() {
         </nav>
 
         {/* Right Side Icons */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <button 
             onClick={() => router.push("/cart")}
             className="p-2 hover:bg-muted rounded-lg transition-all duration-200 relative group"

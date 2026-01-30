@@ -6,16 +6,27 @@ import type { Book } from "@/lib/types"
 
 interface BooksGridProps {
   books: Book[]
+  searchQuery?: string
 }
 
-export function BooksGrid({ books }: BooksGridProps) {
+export function BooksGrid({ books, searchQuery }: BooksGridProps) {
   if (books.length === 0) {
     return (
       <div className="col-span-full flex flex-col items-center justify-center py-16 text-center">
         <BookOpen className="w-16 h-16 md:w-20 md:h-20 text-muted-foreground mb-4 opacity-40" />
-        <h3 className="text-xl md:text-2xl font-semibold text-card-foreground mb-2">Aucun Livre Trouvé</h3>
-        <p className="text-muted-foreground text-sm md:text-base">
-          Essayez de modifier vos filtres pour trouver les livres que vous recherchez
+        <h3 className="text-xl md:text-2xl font-semibold text-card-foreground mb-2">
+          {searchQuery ? "Aucun Résultat Trouvé" : "Aucun Livre Trouvé"}
+        </h3>
+        <p className="text-muted-foreground text-sm md:text-base max-w-md">
+          {searchQuery ? (
+            <>
+              Aucun livre ne correspond à votre recherche "<strong className="text-foreground">{searchQuery}</strong>".
+              <br />
+              Essayez avec d'autres mots-clés ou modifiez vos filtres.
+            </>
+          ) : (
+            "Essayez de modifier vos filtres pour trouver les livres que vous recherchez"
+          )}
         </p>
       </div>
     )
