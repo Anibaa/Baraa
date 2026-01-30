@@ -94,6 +94,7 @@ export function FilterSidebar() {
       { value: "writing" as Category, label: "Writing", icon: "✍️", shortLabel: "Writing" },
       { value: "cours" as Category, label: "Cours", icon: "📚", shortLabel: "Cours" },
       { value: "devoirs" as Category, label: "Devoirs", icon: "📝", shortLabel: "Devoirs" },
+      { value: "histoire" as Category, label: "Histoire", icon: "📜", shortLabel: "Histoire" },
     ],
     levels: [
       { value: "primary" as Level, label: "Primaire", icon: "🎒", shortLabel: "1° Prim." },

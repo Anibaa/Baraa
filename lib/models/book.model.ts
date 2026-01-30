@@ -4,7 +4,7 @@ import mongoose, { Schema } from 'mongoose';
 const BookSchema = new Schema({
     title: { type: String, required: true },
     author: { type: String, required: true },
-    category: { type: String, enum: ["writing", "cours", "devoirs"], required: true },
+    category: { type: String, enum: ["writing", "cours", "devoirs", "histoire"], required: true },
     level: { type: String, enum: ["primary", "secondary", "university"], required: true },
     language: { type: String, enum: ["ar", "fr", "en"], required: true },
     price: { type: Number, required: true },
