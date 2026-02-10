@@ -76,10 +76,26 @@ export function RecentlyViewed() {
 
 
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-lg md:text-xl font-bold text-primary">{book.price} DT</span>
-                  <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">
-                    {book.level === "college" ? "Collège" : book.level === "lycee" ? "Lycée" : "Préparatoire"}
-                  </span>
+                  <div className="flex flex-col">
+                    {book.promoPrice ? (
+                      <>
+                        <span className="text-lg md:text-xl font-bold text-red-600">{book.promoPrice} DT</span>
+                        <span className="text-xs text-muted-foreground line-through">{book.price} DT</span>
+                      </>
+                    ) : (
+                      <span className="text-lg md:text-xl font-bold text-primary">{book.price} DT</span>
+                    )}
+                  </div>
+
+                  {book.promoPrice ? (
+                    <span className="text-xs font-bold text-white bg-red-600 px-2 py-1 rounded-full">
+                      -{Math.round(((book.price - book.promoPrice) / book.price) * 100 / 5) * 5}%
+                    </span>
+                  ) : (
+                    <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">
+                      {book.level === "college" ? "Collège" : book.level === "lycee" ? "Lycée" : "Préparatoire"}
+                    </span>
+                  )}
                 </div>
               </div>
             </Link>

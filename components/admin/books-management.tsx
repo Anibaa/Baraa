@@ -83,7 +83,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "price" ? Number.parseFloat(value) : value,
+      [name]: name === "price" || name === "promoPrice" ? (value === "" ? undefined : Number.parseFloat(value)) : value,
     }))
   }
 
@@ -320,7 +320,16 @@ export function BooksManagement({ books }: BooksManagementProps) {
               >
                 <td className="px-6 py-4 font-semibold text-foreground line-clamp-1">{book.title}</td>
                 <td className="px-6 py-4 text-muted-foreground hidden sm:table-cell text-sm">{book.author}</td>
-                <td className="px-6 py-4 font-bold text-primary">{book.price} DT</td>
+                <td className="px-6 py-4 font-bold text-primary">
+                  {book.promoPrice ? (
+                    <div className="flex flex-col">
+                      <span className="text-red-500 font-bold">{book.promoPrice} DT</span>
+                      <span className="text-muted-foreground line-through text-xs">{book.price} DT</span>
+                    </div>
+                  ) : (
+                    <span>{book.price} DT</span>
+                  )}
+                </td>
                 <td className="px-6 py-4">
                   <span className={`text - sm font - semibold ${statusColors[book.status]}`}>{book.status}</span>
                 </td>
@@ -411,6 +420,18 @@ export function BooksManagement({ books }: BooksManagementProps) {
                     onChange={handleInputChange}
                     step="0.01"
                     required
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-foreground mb-2">Prix Promo (Optionnel)</label>
+                  <input
+                    type="number"
+                    name="promoPrice"
+                    placeholder="Prix Promo"
+                    value={formData.promoPrice || ""}
+                    onChange={handleInputChange}
+                    step="0.01"
                     className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   />
                 </div>

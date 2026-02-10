@@ -8,6 +8,7 @@ const BookSchema = new Schema({
     level: { type: String, enum: ["college", "lycee", "preparatoire"], required: true },
     language: { type: String, enum: ["ar", "fr", "en"], required: true },
     price: { type: Number, required: true },
+    promoPrice: { type: Number }, // Optional promotional price
     image: { type: String, required: true },
     images: { type: [String], default: [] },
     description: { type: String },

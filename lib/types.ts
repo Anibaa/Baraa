@@ -13,6 +13,7 @@ export interface Book {
   level: Level
   language: Language
   price: number
+  promoPrice?: number // Optional promotional price
   image: string
   images: string[] // Multiple images for gallery
   description: string
