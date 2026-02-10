@@ -36,7 +36,7 @@ export function TrustedBy() {
                             key={partner.name}
                             className="
                 relative
-                h-10 w-28 md:h-14 md:w-40
+                h-10 w-14 md:h-14 md:w-40
               "
                         >
                             <Image
