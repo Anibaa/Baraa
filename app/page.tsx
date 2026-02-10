@@ -8,6 +8,7 @@ import { PromotionBanner } from "@/components/home/promotion-banner"
 import { Testimonials } from "@/components/home/testimonials"
 import { PersonalizedGreeting } from "@/components/home/personalized-greeting"
 import { RecentlyViewed } from "@/components/home/recently-viewed"
+import { WhatsAppButton } from "@/components/home/whatsapp-button"
 
 export const metadata = {
   title: "Tunitest - Plateforme de Livres Éducatifs Tunisienne",
@@ -55,6 +56,9 @@ export default async function Home() {
 
         {/* Testimonials */}
         <Testimonials />
+
+        {/* WhatsApp Floating Button */}
+        <WhatsAppButton />
       </main>
       <Footer />
     </>
