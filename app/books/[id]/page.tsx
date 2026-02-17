@@ -3,9 +3,9 @@ import type { Metadata } from "next"
 import { getBookById, getRelatedBooks } from "@/lib/api"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
-import { BookDetails } from "@/components/books/book-details"
-import { RelatedBooks } from "@/components/books/related-books"
-import { BookDescriptionImage } from "@/components/books/book-description-image"
+import { BookDetails } from "@/components/articles/book-details"
+import { RelatedBooks } from "@/components/articles/related-books"
+import { BookDescriptionImage } from "@/components/articles/book-description-image"
 import { ViewTracker } from "@/components/common/view-tracker"
 
 interface BookPageProps {

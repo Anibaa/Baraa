@@ -12,9 +12,9 @@ import { WhatsAppButton } from "@/components/home/whatsapp-button"
 import { TrustedBy } from "@/components/home/trusted-by"
 
 export const metadata = {
-  title: "Baraa - Plateforme de Livres Éducatifs Tunisienne",
+  title: "Baraa - براءة | Collection Mode Islamique Féminine",
   description:
-    "Découvrez les meilleurs livres éducatifs pour les étudiants tunisiens à tous les niveaux scolaires. Accédez à des milliers de titres, de la primaire à l'université.",
+    "Découvrez notre collection exclusive de vêtements islamiques pour femmes. Abayas élégantes, hijabs raffinés, et tenues modestes de haute qualité.",
 }
 
 // Ensure this page is not statically cached
@@ -23,12 +23,12 @@ export const revalidate = 0
 
 export default async function Home() {
   const sliders = await getSliders()
-  const books = await getBooks()
+  const articles = await getBooks()
 
   return (
     <>
       <Header />
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-gradient-to-b from-background via-muted/30 to-background">
         {/* Hero Slider */}
         <section className="px-4 md:px-8 py-6 md:py-8 animate-fadeInUp">
           <div className="max-w-6xl mx-auto">
@@ -49,8 +49,8 @@ export default async function Home() {
         {/* Trusted By */}
         <TrustedBy />
 
-        {/* Featured Books */}
-        <FeaturedBooks books={books.slice(0, 8)} />
+        {/* Featured Articles */}
+        <FeaturedBooks books={articles.slice(0, 8)} />
 
         {/* Recently Viewed */}
         <RecentlyViewed />

@@ -51,16 +51,17 @@ const sanitizePartner = (doc: any): Partner => {
 // Books API
 export async function getBooks(filters?: {
   category?: string
-  level?: string
-  language?: string
+  size?: string
+  color?: string
   search?: string
+  sort?: string
 }): Promise<Book[]> {
   await dbConnect();
 
   const query: any = {};
   if (filters?.category) query.category = filters.category;
-  if (filters?.level) query.level = filters.level;
-  if (filters?.language) query.language = filters.language;
+  if (filters?.size) query.size = filters.size;
+  if (filters?.color) query.color = filters.color;
 
   // Add search functionality
   if (filters?.search) {
@@ -70,16 +71,29 @@ export async function getBooks(filters?: {
       { author: searchRegex },
       { description: searchRegex },
       { category: searchRegex },
-      { level: searchRegex },
-      { language: searchRegex },
+      { size: searchRegex },
+      { color: searchRegex },
+      { fabric: searchRegex },
       // Search in specifications if they exist
-      { 'specifications.subject': searchRegex },
-      { 'specifications.publisher': searchRegex },
-      { 'specifications.isbn': searchRegex },
+      { 'specifications.material': searchRegex },
+      { 'specifications.style': searchRegex },
     ];
   }
 
-  const books = await BookModel.find(query).sort({ createdAt: -1 });
+  // Sorting logic
+  let sortOption: any = { createdAt: -1 }; // Default: newest first
+  
+  if (filters?.sort === 'price-asc') {
+    sortOption = { price: 1 };
+  } else if (filters?.sort === 'price-desc') {
+    sortOption = { price: -1 };
+  } else if (filters?.sort === 'popular') {
+    sortOption = { reviews: -1, rating: -1 };
+  } else if (filters?.sort === 'newest') {
+    sortOption = { createdAt: -1 };
+  }
+
+  const books = await BookModel.find(query).sort(sortOption);
   return books.map(doc => sanitize(doc));
 }
 
@@ -101,7 +115,7 @@ export async function getRelatedBooks(bookId: string, limit = 4): Promise<Book[]
 
     const related = await BookModel.find({
       _id: { $ne: bookId },
-      $or: [{ category: book.category }, { level: book.level }]
+      $or: [{ category: book.category }, { size: book.size }]
     }).limit(limit);
 
     return related.map(doc => sanitize(doc));

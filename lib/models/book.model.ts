@@ -4,19 +4,21 @@ import mongoose, { Schema } from 'mongoose';
 const BookSchema = new Schema({
     title: { type: String, required: true },
     author: { type: String, required: true },
-    category: { type: String, enum: ["writing", "cours", "devoirs", "histoire"], required: true },
-    level: { type: String, enum: ["college", "lycee", "preparatoire"], required: true },
-    language: { type: String, enum: ["ar", "fr", "en"], required: true },
+    category: { type: String, enum: ["abaya", "hijab", "jilbab", "kaftan", "ensemble", "accessories"], required: true },
+    size: { type: String, enum: ["S", "M", "L", "XL", "XXL", "Unique"], required: true },
+    color: { type: String, enum: ["noir", "blanc", "beige", "or", "bronze", "rose", "bleu", "vert", "bordeaux"], required: true },
     price: { type: Number, required: true },
-    promoPrice: { type: Number }, // Optional promotional price
+    promoPrice: { type: Number },
     image: { type: String, required: true },
     images: { type: [String], default: [] },
     description: { type: String },
     rating: { type: Number, default: 0 },
     reviews: { type: Number, default: 0 },
     status: { type: String, enum: ["En stock", "Hors stock", "Préparation", "Livraison", "Livré"], default: "En stock" },
-    specifications: { type: Map, of: String }, // Flexible for key-value pairs
-    descriptionImages: { type: [String], default: [] }, // Changed to array
+    specifications: { type: Map, of: String },
+    descriptionImages: { type: [String], default: [] },
+    fabric: { type: String },
+    care: { type: String },
     createdAt: { type: Date, default: Date.now },
 }, {
     timestamps: true,

@@ -27,7 +27,7 @@ export function Header() {
         >
           <div className="relative w-8 h-8">
             <Image
-              src="/logo.png"        // put your logo in /public/logo.png
+              src="/logo.jpeg"        // put your logo in /public/logo.png
               alt="Baraa logo"
               fill
               className="object-contain"
@@ -43,13 +43,16 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <Link href="/books" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-            Livres
+            Articles
           </Link>
           <Link href="/about" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
             À propos
           </Link>
-          <Link href="/partner" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-            Devenir Partenaire
+          <Link href="/blog" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
+            Blog
+          </Link>
+          <Link href="/faq" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
+            FAQ
           </Link>
 
         </nav>
@@ -88,7 +91,7 @@ export function Header() {
               href="/books"
               className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors font-medium"
             >
-              Livres
+              Articles
             </Link>
             <Link
               href="/about"
@@ -97,10 +100,16 @@ export function Header() {
               À propos
             </Link>
             <Link
-              href="/partner"
+              href="/blog"
               className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors font-medium"
             >
-              Devenir Partenaire
+              Blog
+            </Link>
+            <Link
+              href="/faq"
+              className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors font-medium"
+            >
+              FAQ
             </Link>
             <Link
               href="/admin"

@@ -2,16 +2,16 @@ import { Suspense } from "react"
 import { getBooks } from "@/lib/api"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
-import { FilterSidebar } from "@/components/books/filter-sidebar"
-import { BooksGrid } from "@/components/books/books-grid"
-import { Pagination } from "@/components/books/pagination"
-import { SearchResultsSummary } from "@/components/books/search-results-summary"
+import { FilterSidebar } from "@/components/articles/filter-sidebar"
+import { BooksGrid } from "@/components/articles/books-grid"
+import { Pagination } from "@/components/articles/pagination"
+import { SearchResultsSummary } from "@/components/articles/search-results-summary"
 
 const ITEMS_PER_PAGE = 12
 
 export const metadata = {
-  title: "Livres - Baraa",
-  description: "Parcourez notre collection complète de livres éducatifs tunisiens",
+  title: "Articles - Baraa | براءة",
+  description: "Parcourez notre collection complète de vêtements islamiques pour femmes",
 }
 
 // Ensure this page is not statically cached
@@ -21,9 +21,10 @@ export const revalidate = 0
 interface BooksPageProps {
   searchParams: Promise<{
     category?: string
-    level?: string
-    language?: string
+    size?: string
+    color?: string
     search?: string
+    sort?: string
     page?: string
   }>
 }
@@ -31,16 +32,18 @@ interface BooksPageProps {
 export default async function BooksPage({ searchParams }: BooksPageProps) {
   const params = await searchParams
   const category = params.category
-  const level = params.level
-  const language = params.language
+  const size = params.size
+  const color = params.color
   const search = params.search
+  const sort = params.sort
   const page = Number.parseInt(params.page || "1")
 
   const allBooks = await getBooks({
     category: category as any,
-    level: level as any,
-    language: language as any,
+    size: size as any,
+    color: color as any,
     search: search,
+    sort: sort,
   })
 
   const totalItems = allBooks.length
@@ -54,9 +57,9 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
         {/* Page Header */}
         <section className="bg-linear-to-r from-primary to-primary/80 text-white py-8 md:py-12">
           <div className="max-w-6xl mx-auto px-4 md:px-8">
-            <h1 className="text-4xl md:text-5xl font-bold animate-slideInLeft">Parcourir les Livres</h1>
+            <h1 className="text-4xl md:text-5xl font-bold animate-slideInLeft">Nos Articles</h1>
             <p className="text-white/85 mt-2 md:mt-3 text-sm md:text-base">
-              Découvrez notre vaste collection de livres éducatifs
+              Découvrez notre collection de vêtements islamiques élégants
             </p>
           </div>
         </section>

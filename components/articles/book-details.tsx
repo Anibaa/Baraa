@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { ShoppingCart, Package, Truck, ShieldCheck, Zap } from "lucide-react"
+import { ShoppingCart, Package, Truck, ShieldCheck, Zap, Ruler, Palette, Shirt } from "lucide-react"
 import { useCart } from "@/hooks/use-cart"
 import { useToast } from "@/hooks/use-toast"
 import { saveFavorite, isFavorited } from "@/lib/personalization"
@@ -30,44 +30,44 @@ export function BookDetails({ book }: BookDetailsProps) {
     addToCart(book, quantity)
     toast({
       title: "Succès",
-      description: `${quantity} exemplaire(s) de "${book.title}" ajouté(e)(s) au panier`,
+      description: `${quantity} article(s) "${book.title}" ajouté(s) au panier`,
     })
   }
 
   const handleBuyNow = async () => {
     setIsLoading(true)
     addToCart(book, quantity)
-    // Simulate processing
     await new Promise((resolve) => setTimeout(resolve, 300))
     router.push("/checkout")
   }
 
-  const handleToggleFavorite = () => {
-    saveFavorite(book.id)
-    setIsFavorite(!isFavorite)
-    toast({
-      title: isFavorite ? "Supprimé des favoris" : "Ajouté aux favoris",
-      description: book.title,
-    })
+  // Category labels
+  const getCategoryLabel = (category: string) => {
+    const labels: Record<string, string> = {
+      abaya: "Abaya",
+      hijab: "Hijab",
+      jilbab: "Jilbab",
+      kaftan: "Kaftan",
+      ensemble: "Ensemble",
+      accessories: "Accessoires"
+    }
+    return labels[category] || category
   }
 
-  const handleShare = () => {
-    const url = typeof window !== "undefined" ? window.location.href : ""
-    const text = `Découvrez ${book.title} sur Baraa`
-
-    if (navigator.share) {
-      navigator.share({
-        title: book.title,
-        text: text,
-        url: url,
-      })
-    } else {
-      navigator.clipboard.writeText(url)
-      toast({
-        title: "Lien copié",
-        description: "Le lien a été copié dans le presse-papiers",
-      })
+  // Color labels
+  const getColorLabel = (color: string) => {
+    const labels: Record<string, string> = {
+      noir: "Noir",
+      blanc: "Blanc",
+      beige: "Beige",
+      or: "Or",
+      bronze: "Bronze",
+      rose: "Rose",
+      bleu: "Bleu",
+      vert: "Vert",
+      bordeaux: "Bordeaux"
     }
+    return labels[color] || color
   }
 
   // Use images array if available, otherwise fall back to single image
@@ -85,17 +85,13 @@ export function BookDetails({ book }: BookDetailsProps) {
         {/* Badges */}
         <div className="flex flex-wrap gap-2 mb-6">
           <span className="text-xs md:text-sm text-white bg-primary px-3 py-1 rounded-full font-semibold">
-            {book.level === "college"
-              ? "Niveau Collège"
-              : book.level === "lycee"
-                ? "Niveau Lycée"
-                : "Niveau Préparatoire"}
+            {getCategoryLabel(book.category)}
           </span>
           <span className="text-xs md:text-sm text-foreground bg-accent px-3 py-1 rounded-full font-semibold">
-            {book.language === "ar" ? "Arabe" : book.language === "fr" ? "Français" : "English"}
+            Taille {book.size}
           </span>
           <span className="text-xs md:text-sm text-foreground bg-secondary px-3 py-1 rounded-full font-semibold">
-            {book.category === "writing" ? "Writing" : book.category === "cours" ? "Cours" : "Devoirs"}
+            {getColorLabel(book.color)}
           </span>
         </div>
 
@@ -108,7 +104,7 @@ export function BookDetails({ book }: BookDetailsProps) {
           <div className="mb-8 p-6 md:p-7 bg-primary/5 border border-primary/20 rounded-lg md:rounded-xl hover:border-primary/40 transition-colors overflow-hidden">
             <h3 className="font-semibold text-card-foreground mb-3 text-base md:text-lg">Description</h3>
             <p
-              className={`text-muted-foreground text-pretty text-sm md:text-base leading-relaxed break-words whitespace-pre-wrap ${!isExpanded ? "line-clamp-2" : ""
+              className={`text-muted-foreground text-pretty text-sm md:text-base leading-relaxed wrap-break-word whitespace-pre-wrap ${!isExpanded ? "line-clamp-2" : ""
                 }`}
             >
               {book.description}
@@ -126,26 +122,64 @@ export function BookDetails({ book }: BookDetailsProps) {
 
         {/* Specifications */}
         <div className="grid grid-cols-2 gap-4 mb-8">
-          {book.language && (
-            <div className="p-4 md:p-5 border border-border rounded-lg md:rounded-xl hover:border-primary/50 transition-colors">
-              <p className="text-xs md:text-sm text-muted-foreground mb-2">Langue</p>
-              <p className="font-semibold text-card-foreground text-sm md:text-base">
-                {book.language === "ar" ? "Arabe" : book.language === "fr" ? "Français" : "Anglais"}
-              </p>
+          <div className="p-4 md:p-5 border border-border rounded-lg md:rounded-xl hover:border-primary/50 transition-colors">
+            <div className="flex items-center gap-2 mb-2">
+              <Ruler className="w-4 h-4 text-primary" />
+              <p className="text-xs md:text-sm text-muted-foreground">Taille</p>
             </div>
-          )}
-          {book.category && (
+            <p className="font-semibold text-card-foreground text-sm md:text-base">
+              {book.size}
+            </p>
+          </div>
+
+          <div className="p-4 md:p-5 border border-border rounded-lg md:rounded-xl hover:border-primary/50 transition-colors">
+            <div className="flex items-center gap-2 mb-2">
+              <Palette className="w-4 h-4 text-primary" />
+              <p className="text-xs md:text-sm text-muted-foreground">Couleur</p>
+            </div>
+            <p className="font-semibold text-card-foreground text-sm md:text-base">
+              {getColorLabel(book.color)}
+            </p>
+          </div>
+
+          <div className="p-4 md:p-5 border border-border rounded-lg md:rounded-xl hover:border-primary/50 transition-colors">
+            <div className="flex items-center gap-2 mb-2">
+              <Shirt className="w-4 h-4 text-primary" />
+              <p className="text-xs md:text-sm text-muted-foreground">Catégorie</p>
+            </div>
+            <p className="font-semibold text-card-foreground text-sm md:text-base">
+              {getCategoryLabel(book.category)}
+            </p>
+          </div>
+
+          {book.fabric && (
             <div className="p-4 md:p-5 border border-border rounded-lg md:rounded-xl hover:border-primary/50 transition-colors">
-              <p className="text-xs md:text-sm text-muted-foreground mb-2">Catégorie</p>
+              <div className="flex items-center gap-2 mb-2">
+                <Package className="w-4 h-4 text-primary" />
+                <p className="text-xs md:text-sm text-muted-foreground">Tissu</p>
+              </div>
               <p className="font-semibold text-card-foreground text-sm md:text-base">
-                {book.category === "writing" ? "Writing" : book.category === "cours" ? "Cours" : "Devoirs"}
+                {book.fabric}
               </p>
             </div>
           )}
         </div>
 
+        {/* Care Instructions */}
+        {book.care && (
+          <div className="mb-8 p-6 md:p-7 bg-accent/5 border border-accent/20 rounded-lg md:rounded-xl">
+            <h3 className="font-semibold text-card-foreground mb-3 text-base md:text-lg flex items-center gap-2">
+              <ShieldCheck className="w-5 h-5 text-accent" />
+              Instructions d'entretien
+            </h3>
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+              {book.care}
+            </p>
+          </div>
+        )}
+
         {/* Price and Actions */}
-        <div className="mb-8 p-6 md:p-8 bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 rounded-lg md:rounded-xl hover:border-primary/40 transition-colors relative overflow-hidden">
+        <div className="mb-8 p-6 md:p-8 bg-linear-to-br from-primary/10 to-accent/10 border border-primary/20 rounded-lg md:rounded-xl hover:border-primary/40 transition-colors relative overflow-hidden">
           {book.promoPrice && (
             <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-md animate-pulse">
               -{Math.round(((book.price - book.promoPrice) / book.price) * 100 / 5) * 5}%
@@ -211,7 +245,7 @@ export function BookDetails({ book }: BookDetailsProps) {
             </div>
             <div className="flex items-center gap-3 text-muted-foreground">
               <Package className="w-5 h-5 text-accent" />
-              <span>Livres garantis d'origine</span>
+              <span>Produits authentiques garantis</span>
             </div>
           </div>
         </div>

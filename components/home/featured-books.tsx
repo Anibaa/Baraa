@@ -12,12 +12,12 @@ export function FeaturedBooks({ books }: FeaturedBooksProps) {
   return (
     <section className="py-12 md:py-20 px-4 md:px-8 bg-muted/40">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-3 text-primary animate-fadeInUp">Livres en Vedette</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-3 text-primary animate-fadeInUp">Articles en Vedette</h2>
         <p
           className="text-muted-foreground mb-12 max-w-2xl text-sm md:text-base animate-fadeInUp"
           style={{ animationDelay: "0.1s" }}
         >
-          Découvrez les meilleurs livres sélectionnés avec soin par notre équipe pour les étudiants tunisiens
+          Découvrez notre sélection de vêtements islamiques élégants, choisis avec soin pour vous
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -39,7 +39,7 @@ export function FeaturedBooks({ books }: FeaturedBooksProps) {
                   className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-semibold shadow-md animate-slideInRight"
                   style={{ animationDelay: "0s" }}
                 >
-                  {book.language === "ar" ? "العربية" : book.language === "fr" ? "Français" : "English"}
+                  {book.size}
                 </div>
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                   <button className="p-3 rounded-full bg-secondary hover:bg-secondary/90 text-foreground transition-all duration-200 hover:scale-110 shadow-lg active:scale-95 animate-scaleIn">
@@ -75,7 +75,7 @@ export function FeaturedBooks({ books }: FeaturedBooksProps) {
                     </span>
                   ) : (
                     <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded group-hover:bg-primary/10 group-hover:text-primary transition-colors duration-300">
-                      {book.level === "college" ? "Collège" : book.level === "lycee" ? "Lycée" : "Préparatoire"}
+                      {book.category === "abaya" ? "Abaya" : book.category === "hijab" ? "Hijab" : book.category === "jilbab" ? "Jilbab" : book.category === "kaftan" ? "Kaftan" : book.category === "ensemble" ? "Ensemble" : "Accessoire"}
                     </span>
                   )}
                 </div>

@@ -1,12 +1,12 @@
 "use client"
 
 import { useRouter, useSearchParams } from "next/navigation"
-import { X, Search, Loader2, Sparkles, ChevronDown, Filter } from "lucide-react"
+import { X, Search, Loader2, ChevronDown, Filter, ArrowUpDown } from "lucide-react"
 import { useState, useEffect, useRef, useCallback, useMemo } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import type { Category, Level, Language } from "@/lib/types"
+import type { Category, Size, Color } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
 export function FilterSidebar() {
@@ -21,11 +21,12 @@ export function FilterSidebar() {
   // Mobile collapsible state
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false)
 
-  // Get current filters - memoized to prevent unnecessary re-renders
+  // Get current filters
   const currentFilters = useMemo(() => ({
     category: searchParams.get("category") || "",
-    level: searchParams.get("level") || "",
-    language: searchParams.get("language") || "",
+    size: searchParams.get("size") || "",
+    color: searchParams.get("color") || "",
+    sort: searchParams.get("sort") || "",
     search: searchParams.get("search") || ""
   }), [searchParams])
 
@@ -34,7 +35,7 @@ export function FilterSidebar() {
     setSearchQuery(currentFilters.search)
   }, [currentFilters.search])
 
-  // Optimized search handler with useCallback
+  // Search handler
   const handleSearch = useCallback((query: string) => {
     setIsSearching(true)
 
@@ -68,11 +69,10 @@ export function FilterSidebar() {
     handleSearch("")
   }, [handleSearch])
 
-  // Optimized filter change handler
+  // Filter change handler
   const handleFilterChange = useCallback((key: string, value: string) => {
     const params = new URLSearchParams(searchParams)
 
-    // For radio buttons, always set the new value (no toggle)
     if (value) {
       params.set(key, value)
     } else {
@@ -88,52 +88,49 @@ export function FilterSidebar() {
     router.push("/books")
   }, [router])
 
-  // Static filter data with mobile-optimized labels
+  // Filter data for clothing
   const filterData = useMemo(() => ({
     categories: [
-      { value: "writing" as Category, label: "Writing", icon: "✍️", shortLabel: "Writing" },
-      { value: "cours" as Category, label: "Cours", icon: "📚", shortLabel: "Cours" },
-      { value: "devoirs" as Category, label: "Devoirs", icon: "📝", shortLabel: "Devoirs" },
-      { value: "histoire" as Category, label: "Histoire", icon: "📜", shortLabel: "Histoire" },
+      { value: "abaya" as Category, label: "Abayas", icon: "👗", shortLabel: "Abaya" },
+      { value: "hijab" as Category, label: "Hijabs", icon: "🧕", shortLabel: "Hijab" },
+      { value: "jilbab" as Category, label: "Jilbabs", icon: "👘", shortLabel: "Jilbab" },
+      { value: "kaftan" as Category, label: "Kaftans", icon: "✨", shortLabel: "Kaftan" },
+      { value: "ensemble" as Category, label: "Ensembles", icon: "👔", shortLabel: "Ensemble" },
+      { value: "accessories" as Category, label: "Accessoires", icon: "💎", shortLabel: "Access." },
     ],
-    levels: [
-      { value: "college" as Level, label: "Collège", icon: "🎒", shortLabel: "Collège" },
-      { value: "lycee" as Level, label: "Lycée", icon: "📓", shortLabel: "Lycée" },
-      { value: "preparatoire" as Level, label: "Préparatoire", icon: "🧠", shortLabel: "Prépa" },
+    sizes: [
+      { value: "S" as Size, label: "Small (S)", icon: "📏", shortLabel: "S" },
+      { value: "M" as Size, label: "Medium (M)", icon: "📏", shortLabel: "M" },
+      { value: "L" as Size, label: "Large (L)", icon: "📏", shortLabel: "L" },
+      { value: "XL" as Size, label: "Extra Large (XL)", icon: "📏", shortLabel: "XL" },
+      { value: "XXL" as Size, label: "Double XL (XXL)", icon: "📏", shortLabel: "XXL" },
+      { value: "Unique" as Size, label: "Taille Unique", icon: "📏", shortLabel: "Unique" },
     ],
-    languages: [
-      { value: "ar" as Language, label: "العربية", icon: "🇹🇳", shortLabel: "AR" },
-      { value: "fr" as Language, label: "Français", icon: "🇫🇷", shortLabel: "FR" },
-      { value: "en" as Language, label: "English", icon: "🇬🇧", shortLabel: "EN" },
+    colors: [
+      { value: "noir" as Color, label: "Noir", icon: "⚫", shortLabel: "Noir" },
+      { value: "blanc" as Color, label: "Blanc", icon: "⚪", shortLabel: "Blanc" },
+      { value: "beige" as Color, label: "Beige", icon: "🟤", shortLabel: "Beige" },
+      { value: "or" as Color, label: "Or", icon: "🟡", shortLabel: "Or" },
+      { value: "bronze" as Color, label: "Bronze", icon: "🟠", shortLabel: "Bronze" },
+      { value: "rose" as Color, label: "Rose", icon: "🌸", shortLabel: "Rose" },
+      { value: "bleu" as Color, label: "Bleu", icon: "🔵", shortLabel: "Bleu" },
+      { value: "vert" as Color, label: "Vert", icon: "🟢", shortLabel: "Vert" },
+      { value: "bordeaux" as Color, label: "Bordeaux", icon: "🔴", shortLabel: "Bordeaux" },
+    ],
+    sortOptions: [
+      { value: "newest", label: "Plus récents", icon: "🆕" },
+      { value: "price-asc", label: "Prix croissant", icon: "💰" },
+      { value: "price-desc", label: "Prix décroissant", icon: "💎" },
+      { value: "popular", label: "Populaires", icon: "⭐" },
     ]
   }), [])
 
-  const hasActiveFilters = currentFilters.category || currentFilters.level || currentFilters.language || currentFilters.search
-  const activeFiltersCount = Object.values(currentFilters).filter(Boolean).length
+  const hasActiveFilters = currentFilters.category || currentFilters.size || currentFilters.color || currentFilters.search
+  const activeFiltersCount = Object.values(currentFilters).filter(v => v && v !== "newest").length
 
-  // Get active filter labels for display
-  const getActiveFilterLabels = useMemo(() => {
-    const labels = []
-    if (currentFilters.search) labels.push(`"${currentFilters.search}"`)
-    if (currentFilters.category) {
-      const cat = filterData.categories.find(c => c.value === currentFilters.category)
-      if (cat) labels.push(cat.label)
-    }
-    if (currentFilters.level) {
-      const level = filterData.levels.find(l => l.value === currentFilters.level)
-      if (level) labels.push(level.label)
-    }
-    if (currentFilters.language) {
-      const lang = filterData.languages.find(l => l.value === currentFilters.language)
-      if (lang) labels.push(lang.label)
-    }
-    return labels
-  }, [currentFilters, filterData])
-
-  // Mobile Quick Filters (collapsible dropdown)
+  // Mobile Quick Filters
   const MobileQuickFilters = () => (
     <div className="lg:hidden">
-      {/* Dropdown Toggle Button */}
       <Collapsible open={isMobileFiltersOpen} onOpenChange={setIsMobileFiltersOpen}>
         <CollapsibleTrigger asChild>
           <Button
@@ -142,7 +139,7 @@ export function FilterSidebar() {
           >
             <div className="flex items-center gap-2">
               <Filter className="w-4 h-4" />
-              <span className="font-medium">Filtres rapides</span>
+              <span className="font-medium">Filtres</span>
               {activeFiltersCount > 0 && (
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
@@ -186,16 +183,40 @@ export function FilterSidebar() {
               </div>
             </div>
 
-            {/* Levels */}
+            {/* Sizes */}
             <div className="space-y-2">
-              <span className="text-xs text-muted-foreground font-medium">Niveau</span>
+              <span className="text-xs text-muted-foreground font-medium">Taille</span>
               <div className="flex flex-wrap gap-2">
-                {filterData.levels.map((item) => {
-                  const isSelected = currentFilters.level === item.value
+                {filterData.sizes.map((item) => {
+                  const isSelected = currentFilters.size === item.value
                   return (
                     <button
                       key={item.value}
-                      onClick={() => handleFilterChange("level", isSelected ? "" : item.value)}
+                      onClick={() => handleFilterChange("size", isSelected ? "" : item.value)}
+                      className={cn(
+                        "flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all duration-200 border",
+                        isSelected
+                          ? "bg-primary text-primary-foreground border-primary shadow-sm scale-105"
+                          : "bg-background hover:bg-muted border-border hover:border-primary/30 hover:scale-105"
+                      )}
+                    >
+                      <span>{item.shortLabel}</span>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Colors */}
+            <div className="space-y-2">
+              <span className="text-xs text-muted-foreground font-medium">Couleur</span>
+              <div className="flex flex-wrap gap-2">
+                {filterData.colors.map((item) => {
+                  const isSelected = currentFilters.color === item.value
+                  return (
+                    <button
+                      key={item.value}
+                      onClick={() => handleFilterChange("color", isSelected ? "" : item.value)}
                       className={cn(
                         "flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all duration-200 border",
                         isSelected
@@ -211,16 +232,16 @@ export function FilterSidebar() {
               </div>
             </div>
 
-            {/* Languages */}
+            {/* Sort */}
             <div className="space-y-2">
-              <span className="text-xs text-muted-foreground font-medium">Langue</span>
+              <span className="text-xs text-muted-foreground font-medium">Trier par</span>
               <div className="flex flex-wrap gap-2">
-                {filterData.languages.map((item) => {
-                  const isSelected = currentFilters.language === item.value
+                {filterData.sortOptions.map((item) => {
+                  const isSelected = currentFilters.sort === item.value
                   return (
                     <button
                       key={item.value}
-                      onClick={() => handleFilterChange("language", isSelected ? "" : item.value)}
+                      onClick={() => handleFilterChange("sort", isSelected ? "" : item.value)}
                       className={cn(
                         "flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all duration-200 border",
                         isSelected
@@ -229,20 +250,21 @@ export function FilterSidebar() {
                       )}
                     >
                       <span>{item.icon}</span>
-                      <span>{item.shortLabel}</span>
+                      <span>{item.label}</span>
                     </button>
                   )
                 })}
               </div>
             </div>
 
-            {/* Quick tip for mobile */}
-            <div className="pt-2 border-t border-border/30">
-              <p className="text-xs text-muted-foreground flex items-center gap-2">
-                <span className="text-sm">💡</span>
-                Sélectionnez vos filtres préférés
-              </p>
-            </div>
+            {hasActiveFilters && (
+              <button
+                onClick={clearAllFilters}
+                className="w-full px-3 py-2 text-xs font-medium text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
+              >
+                Effacer tous les filtres
+              </button>
+            )}
           </div>
         </CollapsibleContent>
       </Collapsible>
@@ -289,8 +311,7 @@ export function FilterSidebar() {
 
   return (
     <div className="space-y-4 lg:space-y-6">
-
-      {/* Enhanced Search Section */}
+      {/* Search Section */}
       <div className="space-y-3 lg:space-y-4">
         <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
           <div className="w-1 h-4 bg-primary rounded-full" />
@@ -305,7 +326,7 @@ export function FilterSidebar() {
             type="text"
             value={searchQuery}
             onChange={handleSearchInputChange}
-            placeholder="Rechercher des livres..."
+            placeholder="Rechercher des articles..."
             className="pl-10 pr-10 lg:pl-12 lg:pr-12 h-10 lg:h-12 text-sm bg-background/90 border-2 border-border/60 focus:border-primary focus:bg-background transition-all duration-200 rounded-xl shadow-sm focus:shadow-md"
           />
           <div className="absolute right-3 lg:right-4 top-1/2 transform -translate-y-1/2 flex items-center">
@@ -331,6 +352,26 @@ export function FilterSidebar() {
 
       {/* Desktop Filter Sections */}
       <div className="hidden lg:block space-y-6">
+        {/* Sort Options */}
+        <div className="space-y-3">
+          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+            <ArrowUpDown className="w-4 h-4" />
+            Trier par
+          </h3>
+          <select
+            value={currentFilters.sort}
+            onChange={(e) => handleFilterChange("sort", e.target.value)}
+            className="w-full px-4 py-3 border-2 border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 bg-background transition-all"
+          >
+            <option value="">Par défaut</option>
+            {filterData.sortOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.icon} {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <DesktopRadioGroup
           title="Catégorie"
           items={filterData.categories}
@@ -339,29 +380,35 @@ export function FilterSidebar() {
         />
 
         <DesktopRadioGroup
-          title="Niveau"
-          items={filterData.levels}
-          currentValue={currentFilters.level}
-          filterKey="level"
+          title="Taille"
+          items={filterData.sizes}
+          currentValue={currentFilters.size}
+          filterKey="size"
         />
 
         <DesktopRadioGroup
-          title="Langue"
-          items={filterData.languages}
-          currentValue={currentFilters.language}
-          filterKey="language"
+          title="Couleur"
+          items={filterData.colors}
+          currentValue={currentFilters.color}
+          filterKey="color"
         />
+
+        {hasActiveFilters && (
+          <button
+            onClick={clearAllFilters}
+            className="w-full px-4 py-3 text-sm font-medium text-destructive hover:bg-destructive/10 rounded-xl transition-colors border-2 border-dashed border-destructive/30"
+          >
+            Effacer tous les filtres
+          </button>
+        )}
       </div>
 
-      {/* Enhanced tip */}
+      {/* Tip */}
       <div className="relative bg-linear-to-r from-muted/60 to-muted/40 rounded-xl p-3 lg:p-4 border border-border/50 shadow-sm">
-        <div className="absolute top-2 right-2">
-          <div className="w-2 h-2 bg-primary/40 rounded-full animate-pulse" />
-        </div>
         <p className="text-xs text-muted-foreground flex items-center gap-2 font-medium">
           <span className="text-base lg:text-lg">💡</span>
-          <span className="lg:hidden">Utilisez les filtres rapides ci-dessus</span>
-          <span className="hidden lg:inline">Combinez recherche et filtres pour des résultats précis</span>
+          <span className="lg:hidden">Utilisez les filtres pour affiner</span>
+          <span className="hidden lg:inline">Combinez les filtres pour trouver l'article parfait</span>
         </p>
       </div>
     </div>

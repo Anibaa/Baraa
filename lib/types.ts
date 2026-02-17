@@ -1,8 +1,8 @@
-export type Category = "writing" | "cours" | "devoirs" | "histoire"
-export type Level = "college" | "lycee" | "preparatoire"
-export type Language = "ar" | "fr" | "en"
+export type Category = "abaya" | "hijab" | "jilbab" | "kaftan" | "ensemble" | "accessories"
+export type Size = "S" | "M" | "L" | "XL" | "XXL" | "Unique"
+export type Color = "noir" | "blanc" | "beige" | "or" | "bronze" | "rose" | "bleu" | "vert" | "bordeaux"
 
-export type BookStatus = "En stock" | "Hors stock" | "Préparation" | "Livraison" | "Livré"
+export type ProductStatus = "En stock" | "Hors stock" | "Préparation" | "Livraison" | "Livré"
 export type OrderStatus = "Préparation" | "Livraison" | "Livré"
 
 export interface Book {
@@ -10,19 +10,21 @@ export interface Book {
   title: string
   author: string
   category: Category
-  level: Level
-  language: Language
+  size: Size
+  color: Color
   price: number
-  promoPrice?: number // Optional promotional price
+  promoPrice?: number
   image: string
-  images: string[] // Multiple images for gallery
+  images: string[]
   description: string
   rating: number
   reviews: number
-  status: BookStatus
+  status: ProductStatus
   specifications?: Record<string, string>
-  descriptionImages?: string[] // Changed to array for multiple descriptive images
+  descriptionImages?: string[]
   createdAt?: string
+  fabric?: string
+  care?: string
 }
 
 export interface SliderItem {
@@ -50,10 +52,10 @@ export interface Partner {
   name: string
   email: string
   phone: string
-  bookTitle: string
+  productTitle: string
   category: Category
-  level: Level
-  language: Language
+  size: Size
+  color: Color
   description: string
   createdAt: Date
 }

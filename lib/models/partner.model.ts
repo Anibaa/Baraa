@@ -4,10 +4,10 @@ const PartnerSchema = new Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: String, required: true },
-    bookTitle: { type: String, required: true },
+    productTitle: { type: String, required: true },
     category: { type: String, required: true },
-    level: { type: String, required: true },
-    language: { type: String, required: true },
+    size: { type: String, required: true },
+    color: { type: String, required: true },
     description: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
 }, {

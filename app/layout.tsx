@@ -8,15 +8,15 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Baraa - Plateforme de Livres Éducatifs Tunisienne",
-  description: "Découvrez les meilleurs livres éducatifs pour les étudiants tunisiens à tous les niveaux scolaires",
-  keywords: ["livres", "éducation", "tunisie", "étudiants", "apprentissage"],
+  title: "Baraa - براءة | Mode Islamique Féminine de Luxe",
+  description: "Découvrez notre collection exclusive de vêtements islamiques pour femmes. Abayas, hijabs, et tenues modestes élégantes.",
+  keywords: ["mode islamique", "abaya", "hijab", "vêtements modestes", "mode féminine", "élégance", "luxe", "baraa", "براءة"],
   openGraph: {
     type: "website",
     locale: "fr_TN",
-    url: "https://Baraa.com",
-    title: "Baraa - Plateforme de Livres Éducatifs",
-    description: "Plateforme intégrée pour acheter et vendre des livres éducatifs tunisiens",
+    url: "https://baraa.com",
+    title: "Baraa - براءة | Mode Islamique Féminine",
+    description: "Collection exclusive de vêtements islamiques élégants pour femmes modernes",
     images: [
       {
         url: "/og-image.png",
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Baraa",
-    description: "Plateforme de Livres Éducatifs Tunisienne",
+    title: "Baraa - براءة",
+    description: "Mode Islamique Féminine de Luxe",
   },
   icons: {
     icon: [
@@ -56,8 +56,8 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#1742f8" },
-    { media: "(prefers-color-scheme: dark)", color: "#1742f8" },
+    { media: "(prefers-color-scheme: light)", color: "#D4AF37" },
+    { media: "(prefers-color-scheme: dark)", color: "#D4AF37" },
   ],
 }
 
