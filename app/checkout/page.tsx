@@ -61,27 +61,49 @@ export default function CheckoutPage() {
     setIsLoading(true)
 
     try {
+      // Validate cart items before sending
+      const invalidItems = cart.filter(item => 
+        !item.book?.id || 
+        !item.quantity || 
+        !item.selectedSize || 
+        !item.selectedColor
+      )
+
+      if (invalidItems.length > 0) {
+        console.error("Invalid cart items:", invalidItems)
+        throw new Error("Certains articles du panier sont invalides. Veuillez vider votre panier et réessayer.")
+      }
+
+      const orderData = {
+        items: cart.map((item) => ({
+          bookId: item.book.id,
+          quantity: item.quantity,
+          size: item.selectedSize,
+          color: item.selectedColor,
+          price: item.book.promoPrice || item.book.price
+        })),
+        totalPrice: total,
+        customerName: formData.name,
+        customerEmail: formData.email,
+        customerPhone: formData.phone,
+        address: formData.address,
+        paymentMethod: formData.paymentMethod,
+      }
+
+      console.log("Sending order data:", orderData)
+
       const response = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          items: cart.map((item) => ({
-            bookId: item.book.id,
-            quantity: item.quantity,
-            size: item.selectedSize,
-            color: item.selectedColor,
-            price: item.book.promoPrice || item.book.price
-          })),
-          totalPrice: total,
-          customerName: formData.name,
-          customerEmail: formData.email,
-          customerPhone: formData.phone,
-          address: formData.address,
-          paymentMethod: formData.paymentMethod,
-        }),
+        body: JSON.stringify(orderData),
       })
 
-      if (!response.ok) throw new Error("Échec de la création de la commande")
+      const result = await response.json()
+      console.log("Order response:", result)
+
+      if (!response.ok) {
+        throw new Error(result.error || "Échec de la création de la commande")
+      }
 
       setIsSuccess(true)
 
@@ -90,6 +112,7 @@ export default function CheckoutPage() {
         router.push("/order-confirmation")
       }, 1500)
     } catch (err) {
+      console.error("Order error:", err)
       setError(err instanceof Error ? err.message : "Une erreur est survenue lors de la création de votre commande")
     } finally {
       setIsLoading(false)
