@@ -4,21 +4,21 @@ import { Footer } from "@/components/layout/footer"
 import { AboutHero } from "@/components/about/about-hero"
 import { MissionSection } from "@/components/about/mission-section"
 import { VisionSection } from "@/components/about/vision-section"
-import { WhyTunitest } from "@/components/about/why-Tunitest"
+import { WhyBaraa } from "@/components/about/why-Baraa"
 import { ImpactStatistics } from "@/components/about/impact-statistics"
 import { PartnerCTA } from "@/components/about/partner-cta"
 import { WhatsAppContact } from "@/components/about/whatsapp-contact"
 
 export const metadata: Metadata = {
-  title: "À propos de Tunitest – Livres scolaires en Tunisie",
+  title: "À propos de Baraa – Livres scolaires en Tunisie",
   description:
-    "Découvrez la mission et la vision de Tunitest, la plateforme qui accompagne les étudiants tunisiens vers la réussite avec accès à des livres scolaires.",
-  keywords: ["à propos", "Tunitest", "mission", "vision", "éducation", "tunisie"],
+    "Découvrez la mission et la vision de Baraa, la plateforme qui accompagne les étudiants tunisiens vers la réussite avec accès à des livres scolaires.",
+  keywords: ["à propos", "Baraa", "mission", "vision", "éducation", "tunisie"],
   openGraph: {
     type: "website",
     locale: "fr_TN",
-    url: "https://Tunitest.com/about",
-    title: "À propos de Tunitest",
+    url: "https://Baraa.com/about",
+    title: "À propos de Baraa",
     description: "Découvrez la plateforme qui accompagne les étudiants tunisiens",
     images: [
       {
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "À propos de Tunitest",
+    title: "À propos de Baraa",
     description: "Découvrez la plateforme qui accompagne les étudiants tunisiens",
   },
 }
@@ -43,7 +43,7 @@ export default function AboutPage() {
         <AboutHero />
         <MissionSection />
         <VisionSection />
-        <WhyTunitest />
+        <WhyBaraa />
         <ImpactStatistics />
         <PartnerCTA />
         <WhatsAppContact />

@@ -3,9 +3,9 @@
 export function PersonalizedGreeting() {
   const getGreeting = () => {
     const hour = new Date().getHours()
-    if (hour < 12) return "Bienvenue le matin sur Tunitest"
-    if (hour < 18) return "Bon après-midi sur Tunitest"
-    return "Bonsoir sur Tunitest"
+    if (hour < 12) return "Bienvenue le matin sur Baraa"
+    if (hour < 18) return "Bon après-midi sur Baraa"
+    return "Bonsoir sur Baraa"
   }
 
   return (

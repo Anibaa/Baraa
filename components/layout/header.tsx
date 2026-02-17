@@ -28,7 +28,7 @@ export function Header() {
           <div className="relative w-8 h-8">
             <Image
               src="/logo.png"        // put your logo in /public/logo.png
-              alt="Tunitest logo"
+              alt="Baraa logo"
               fill
               className="object-contain"
               priority
@@ -36,7 +36,7 @@ export function Header() {
           </div>
 
           <span className="font-bold text-lg text-primary hidden sm:inline">
-            Tunitest
+            Baraa
           </span>
         </Link>
 

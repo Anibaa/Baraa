@@ -12,7 +12,7 @@ import { WhatsAppButton } from "@/components/home/whatsapp-button"
 import { TrustedBy } from "@/components/home/trusted-by"
 
 export const metadata = {
-  title: "Tunitest - Plateforme de Livres Éducatifs Tunisienne",
+  title: "Baraa - Plateforme de Livres Éducatifs Tunisienne",
   description:
     "Découvrez les meilleurs livres éducatifs pour les étudiants tunisiens à tous les niveaux scolaires. Accédez à des milliers de titres, de la primaire à l'université.",
 }

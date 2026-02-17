@@ -17,7 +17,7 @@ interface AdminPageProps {
 }
 
 export const metadata = {
-  title: "Tableau de Bord - Tunitest",
+  title: "Tableau de Bord - Baraa",
   description: "Gérez les livres, les commandes et les promotions",
 }
 

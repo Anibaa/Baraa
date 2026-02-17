@@ -10,7 +10,7 @@ import { SearchResultsSummary } from "@/components/books/search-results-summary"
 const ITEMS_PER_PAGE = 12
 
 export const metadata = {
-  title: "Livres - Tunitest",
+  title: "Livres - Baraa",
   description: "Parcourez notre collection complète de livres éducatifs tunisiens",
 }
 

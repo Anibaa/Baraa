@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react"
 import type { CartItem, Book } from "@/lib/types"
 
-const CART_STORAGE_KEY = "Tunitest_cart"
+const CART_STORAGE_KEY = "Baraa_cart"
 
 export function useCart() {
   const [cart, setCart] = useState<CartItem[]>([])
@@ -28,7 +28,7 @@ export function useCart() {
       localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart))
       // Notify other listeners in the same window (storage event doesn't fire in same window)
       try {
-        const event = new CustomEvent("tunitest_cart_updated", { detail: cart })
+        const event = new CustomEvent("Baraa_cart_updated", { detail: cart })
         window.dispatchEvent(event)
       } catch (e) {
         // ignore
@@ -60,11 +60,11 @@ export function useCart() {
     }
 
     window.addEventListener("storage", onStorage)
-    window.addEventListener("tunitest_cart_updated", onCustom)
+    window.addEventListener("Baraa_cart_updated", onCustom)
 
     return () => {
       window.removeEventListener("storage", onStorage)
-      window.removeEventListener("tunitest_cart_updated", onCustom)
+      window.removeEventListener("Baraa_cart_updated", onCustom)
     }
   }, [])
 

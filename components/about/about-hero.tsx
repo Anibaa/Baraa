@@ -9,7 +9,7 @@ export function AboutHero() {
       <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-            À propos de <span className="text-primary">Tunitest</span>
+            À propos de <span className="text-primary">Baraa</span>
           </h1>
         </motion.div>
 

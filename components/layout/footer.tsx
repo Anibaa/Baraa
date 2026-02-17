@@ -7,7 +7,7 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="font-bold text-lg mb-4">Tunitest</h3>
+            <h3 className="font-bold text-lg mb-4">Baraa</h3>
             <p className="text-sm opacity-80">Plateforme éducative intégrée pour les étudiants tunisiens</p>
           </div>
 
@@ -70,7 +70,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-background/20 pt-8">
-          <p className="text-center text-sm opacity-80">© 2026 Tunitest. Tous droits réservés.</p>
+          <p className="text-center text-sm opacity-80">© 2026 Baraa. Tous droits réservés.</p>
         </div>
       </div>
     </footer>
