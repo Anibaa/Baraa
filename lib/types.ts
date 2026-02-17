@@ -8,7 +8,7 @@ export type PredefinedColor = "noir" | "blanc" | "beige" | "or" | "bronze" | "ro
 export type Color = PredefinedColor | string // Allows custom colors like "Noir et Or"
 
 export type ProductStatus = "En stock" | "Hors stock" | "Préparation" | "Livraison" | "Livré"
-export type OrderStatus = "Préparation" | "Livraison" | "Livré"
+export type OrderStatus = "Préparation" | "Confirmé" | "Livraison" | "Livré"
 
 export interface ColorOption {
   value: string // The color value (can be predefined or custom)

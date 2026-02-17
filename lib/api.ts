@@ -246,3 +246,55 @@ export async function deletePartner(id: string): Promise<boolean> {
     return false;
   }
 }
+
+// Stock Management
+export async function reduceStock(
+  bookId: string,
+  size: string,
+  color: string,
+  quantity: number
+): Promise<boolean> {
+  await dbConnect();
+  try {
+    const book = await BookModel.findById(bookId);
+    if (!book) {
+      console.error(`Book not found: ${bookId}`);
+      return false;
+    }
+
+    // Find the variant for this size/color combination
+    const variantIndex = book.variants?.findIndex(
+      (v: any) => v.size === size && v.color === color
+    );
+
+    if (variantIndex === undefined || variantIndex === -1) {
+      console.error(`Variant not found for book ${bookId}, size ${size}, color ${color}`);
+      return false;
+    }
+
+    const variant = book.variants[variantIndex];
+    
+    // Check if enough stock
+    if (variant.stock < quantity) {
+      console.error(`Insufficient stock for book ${bookId}, size ${size}, color ${color}. Available: ${variant.stock}, Requested: ${quantity}`);
+      return false;
+    }
+
+    // Reduce stock
+    book.variants[variantIndex].stock -= quantity;
+    
+    // Update book status if all variants are out of stock
+    const allOutOfStock = book.variants.every((v: any) => v.stock === 0);
+    if (allOutOfStock) {
+      book.status = 'Hors stock';
+    }
+
+    await book.save();
+    console.log(`Stock reduced for book ${bookId}, size ${size}, color ${color}. New stock: ${book.variants[variantIndex].stock}`);
+    return true;
+  } catch (error) {
+    console.error("Error reducing stock:", error);
+    return false;
+  }
+}
+

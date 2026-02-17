@@ -16,7 +16,7 @@ const OrderSchema = new Schema({
     customerPhone: { type: String, required: true },
     address: { type: String, required: true },
     paymentMethod: { type: String, default: 'Card' },
-    status: { type: String, enum: ['Préparation', 'Livraison', 'Livré'], default: 'Préparation' },
+    status: { type: String, enum: ['Préparation', 'Confirmé', 'Livraison', 'Livré'], default: 'Préparation' },
     createdAt: { type: Date, default: Date.now },
 }, {
     timestamps: true,

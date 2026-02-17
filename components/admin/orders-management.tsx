@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Eye, Edit2 } from "lucide-react"
 import type { Order } from "@/lib/types"
 import { useEffect } from "react"
+import { useToast } from "@/hooks/use-toast"
 
 interface OrdersManagementProps {
   orders: Order[]
@@ -11,6 +12,7 @@ interface OrdersManagementProps {
 
 const statusColors: Record<string, string> = {
   Préparation: "bg-yellow-100 text-yellow-800",
+  Confirmé: "bg-purple-100 text-purple-800",
   Livraison: "bg-blue-100 text-blue-800",
   Livré: "bg-green-100 text-green-800",
 }
@@ -21,6 +23,8 @@ export function OrdersManagement({ orders }: OrdersManagementProps) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [editingStatus, setEditingStatus] = useState<Order["status"]>("Préparation")
   const [books, setBooks] = useState<any[]>([])
+  const [isSaving, setIsSaving] = useState(false)
+  const { toast } = useToast()
 
   useEffect(() => {
     fetch("/api/books")
@@ -47,15 +51,55 @@ export function OrdersManagement({ orders }: OrdersManagementProps) {
 
   const handleSaveStatus = async () => {
     if (!selectedOrder) return
+    
+    setIsSaving(true)
+    
     try {
-      await fetch(`/api/orders/${selectedOrder.id}`, {
+      const response = await fetch(`/api/orders/${selectedOrder.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: editingStatus }),
       })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        toast({
+          title: "Erreur",
+          description: result.error || 'Échec de la mise à jour',
+          variant: "destructive",
+        })
+        return
+      }
+
+      // Success message
+      if (result.stockUpdated) {
+        toast({
+          title: "Succès",
+          description: `Statut mis à jour et stock diminué pour ${result.stockUpdated} article(s)`,
+        })
+      } else {
+        toast({
+          title: "Succès",
+          description: "Statut de la commande mis à jour",
+        })
+      }
+
       setIsEditModalOpen(false)
+      
+      // Refresh the page after a short delay
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
     } catch (error) {
       console.error("Failed to update order:", error)
+      toast({
+        title: "Erreur",
+        description: "Erreur lors de la mise à jour de la commande",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSaving(false)
     }
   }
 
@@ -211,21 +255,37 @@ export function OrdersManagement({ orders }: OrdersManagementProps) {
                 className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
               >
                 <option value="Préparation">Préparation</option>
+                <option value="Confirmé">Confirmé</option>
                 <option value="Livraison">Livraison</option>
                 <option value="Livré">Livré</option>
               </select>
+              
+              {editingStatus === "Confirmé" && selectedOrder.status !== "Confirmé" && (
+                <p className="text-xs text-purple-600 mt-2 p-2 bg-purple-50 rounded">
+                  ⚠️ Le passage au statut "Confirmé" diminuera automatiquement le stock des articles
+                </p>
+              )}
             </div>
 
             <div className="flex gap-3">
               <button
                 onClick={handleSaveStatus}
-                className="flex-1 px-4 py-2 bg-primary hover:bg-primary/90 text-white rounded-lg transition-colors font-semibold"
+                disabled={isSaving}
+                className="flex-1 px-4 py-2 bg-primary hover:bg-primary/90 disabled:bg-primary/50 disabled:cursor-not-allowed text-white rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 font-semibold flex items-center justify-center gap-2"
               >
-                Enregistrer
+                {isSaving ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Enregistrement...
+                  </>
+                ) : (
+                  "Enregistrer"
+                )}
               </button>
               <button
                 onClick={() => setIsEditModalOpen(false)}
-                className="flex-1 px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors font-semibold"
+                disabled={isSaving}
+                className="flex-1 px-4 py-2 border border-border rounded-lg hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-semibold"
               >
                 Annuler
               </button>
