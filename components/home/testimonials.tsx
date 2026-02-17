@@ -3,21 +3,21 @@ import { Star } from "lucide-react"
 export function Testimonials() {
   const testimonials = [
     {
-      name: "Fatima Mahmoud",
-      role: "Parent",
-      content: "Plateforme formidable qui m'a aidée à trouver les livres dont j'avais besoin à des prix abordables",
+      name: "Amira Ben Salem",
+      role: "Cliente Fidèle",
+      content: "Des vêtements élégants et de qualité exceptionnelle. Barra comprend vraiment le style féminin moderne",
       rating: 5,
     },
     {
-      name: "Ali Saadi",
-      role: "Parent",
-      content: "Service excellent et livraison rapide, je reviens certainement",
+      name: "Salma Trabelsi",
+      role: "Fashionista",
+      content: "J'adore la collection Barra ! Des pièces uniques qui me font sentir belle et confiante",
       rating: 5,
     },
     {
-      name: "Leila Jamal",
-      role: "Enseignante",
-      content: "Plateforme professionnelle offrant tout ce dont les étudiants et les enseignants ont besoin",
+      name: "Nour Hamdi",
+      role: "Professionnelle",
+      content: "Parfait pour le bureau et les sorties. Barra offre l'équilibre idéal entre élégance et confort",
       rating: 4.5,
     },
   ]
@@ -26,10 +26,10 @@ export function Testimonials() {
     <section className="py-12 md:py-20 px-4 md:px-8 bg-card border-t border-border">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 text-primary animate-fadeInUp">
-          Avis des Parents
+          Avis de Nos Clientes
         </h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto text-sm md:text-base animate-slideUp">
-          Découvrez ce que les parents disent de leur expérience avec nous
+          Découvrez ce que nos clientes disent de leur expérience avec Barra
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

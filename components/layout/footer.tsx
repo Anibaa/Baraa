@@ -7,8 +7,8 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="font-bold text-lg mb-4">Baraa</h3>
-            <p className="text-sm opacity-80">Plateforme éducative intégrée pour les étudiants tunisiens</p>
+            <h3 className="font-bold text-lg mb-4">Barra</h3>
+            <p className="text-sm opacity-80">La marque de vêtements féminins qui célèbre l'élégance et le style moderne</p>
           </div>
 
           <div>
@@ -16,7 +16,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/books" className="hover:opacity-80 transition-opacity">
-                  Livres
+                  Collections
                 </Link>
               </li>
               <li>
