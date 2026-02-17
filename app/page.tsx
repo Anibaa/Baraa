@@ -47,7 +47,7 @@ export default async function Home() {
         <CategorySection />
 
         {/* Trusted By */}
-        <TrustedBy />
+        {/* <TrustedBy /> */}
 
         {/* Featured Articles */}
         <FeaturedBooks books={articles.slice(0, 8)} />

@@ -1,21 +1,21 @@
 import Link from "next/link"
-import { BookPlus, Users, Zap } from "lucide-react"
+import { Shirt, Sparkles, TrendingUp } from "lucide-react"
 
 export function PromotionBanner() {
   const features = [
     {
-      icon: Users,
-      text: "Accès à des millions d'étudiants",
+      icon: Sparkles,
+      text: "Nouvelle collection printemps",
       delay: "0s",
     },
     {
-      icon: Zap,
-      text: "Support technique spécialisé",
+      icon: TrendingUp,
+      text: "Tendances mode 2026",
       delay: "0.1s",
     },
     {
-      icon: BookPlus,
-      text: "Outils marketing puissants",
+      icon: Shirt,
+      text: "Qualité premium garantie",
       delay: "0.2s",
     },
   ]
@@ -32,19 +32,27 @@ export function PromotionBanner() {
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <div className="flex-1 animate-slideInLeft">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4 text-balance">
-              Ajoutez vos livres et devenez partenaire
+              Découvrez notre collection de vêtements
             </h2>
             <p className="text-white/90 text-base md:text-lg mb-6 md:mb-8">
-              Rejoignez notre réseau de partenaires et faites partie d'une plateforme éducative intégrée pour les
-              étudiants tunisiens
+              Explorez les dernières tendances mode et trouvez le style qui vous correspond
             </p>
-            <Link
-              href="/partner"
-              className="inline-flex items-center gap-2 px-6 md:px-8 py-3 bg-secondary hover:bg-secondary/90 text-foreground font-semibold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 animate-slideUp"
-            >
-              <BookPlus className="w-5 h-5" />
-              Ajouter votre livre
-            </Link>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 px-6 md:px-8 py-3 bg-secondary hover:bg-secondary/90 text-foreground font-semibold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 animate-slideUp"
+              >
+                <Shirt className="w-5 h-5" />
+                Voir le blog mode
+              </Link>
+              <Link
+                href="/faq"
+                className="inline-flex items-center gap-2 px-6 md:px-8 py-3 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 animate-slideUp backdrop-blur-sm border border-white/30"
+                style={{ animationDelay: "0.1s" }}
+              >
+                Questions fréquentes
+              </Link>
+            </div>
           </div>
 
           <div className="flex-1 flex justify-center md:justify-end animate-slideInRight">
