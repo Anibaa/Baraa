@@ -17,7 +17,7 @@ export function Header() {
       {/* Top Banner */}
       <div className="bg-primary text-primary-foreground py-2 px-4 text-center text-sm font-medium flex justify-center items-center gap-2">
         <span>📞</span>
-        <span>Appelez-nous au +216 53 386 886</span>
+        <span>Appelez-nous au +216 98 711 586</span>
       </div>
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
@@ -36,7 +36,7 @@ export function Header() {
           </div>
 
           <span className="font-bold text-lg text-primary hidden sm:inline">
-            Baraa
+            براءة
           </span>
         </Link>
 
