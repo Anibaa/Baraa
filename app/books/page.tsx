@@ -10,8 +10,8 @@ import { SearchResultsSummary } from "@/components/articles/search-results-summa
 const ITEMS_PER_PAGE = 12
 
 export const metadata = {
-  title: "Articles - Baraa | براءة",
-  description: "Parcourez notre collection complète de vêtements islamiques pour femmes",
+  title: "Collection - Baraa | براءة",
+  description: "Découvrez notre collection exclusive de vêtements islamiques élégants pour femmes",
 }
 
 // Ensure this page is not statically cached
@@ -55,11 +55,11 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
       <Header />
       <main className="min-h-screen bg-muted/40">
         {/* Page Header */}
-        <section className="bg-linear-to-r from-primary to-primary/80 text-white py-8 md:py-12">
+        <section className="bg-linear-to-r from-primary to-primary/80 text-white py-12 md:py-16">
           <div className="max-w-6xl mx-auto px-4 md:px-8">
-            <h1 className="text-4xl md:text-5xl font-bold animate-slideInLeft">Nos Articles</h1>
-            <p className="text-white/85 mt-2 md:mt-3 text-sm md:text-base">
-              Découvrez notre collection de vêtements islamiques élégants
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold animate-slideInLeft mb-3">Notre Collection</h1>
+            <p className="text-white/90 mt-2 md:mt-3 text-base md:text-lg max-w-2xl">
+              Explorez notre sélection exclusive de vêtements islamiques modernes et élégants, conçus pour la femme musulmane contemporaine
             </p>
           </div>
         </section>

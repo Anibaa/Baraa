@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { Star, ShoppingCart } from "lucide-react"
+import { ShoppingCart, Clock } from "lucide-react"
 import { getRecentlyViewed } from "@/lib/personalization"
 import type { Book } from "@/lib/types"
 
@@ -37,68 +37,96 @@ export function RecentlyViewed() {
   if (!isLoaded || books.length === 0) return null
 
   return (
-    <section className="py-12 md:py-16 px-4 md:px-8 bg-card border-t border-border">
+    <section className="py-16 md:py-20 px-4 md:px-8 bg-card/50 backdrop-blur-sm border-t border-border/50">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold mb-2 text-foreground">Récemment consultés</h2>
-        <p className="text-muted-foreground mb-8">Découvrez les livres que vous avez récemment visité</p>
+        <div className="flex items-center gap-3 mb-3 animate-fadeInUp">
+          <Clock className="w-6 h-6 text-primary/70" />
+          <h2 className="text-2xl md:text-4xl font-light text-foreground tracking-wide">Récemment Consultés</h2>
+        </div>
+        <p className="text-muted-foreground mb-10 font-light text-sm md:text-base">Retrouvez les articles que vous avez récemment découverts</p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
           {books.map((book, idx) => (
-            <Link
+            <div
               key={book.id}
-              href={`/books/${book.id}`}
-              className="group bg-card rounded-lg md:rounded-xl overflow-hidden border border-border hover:border-primary/50 hover:shadow-soft-hover transition-all duration-300 hover:-translate-y-2 animate-fadeInUp"
+              className="group relative bg-white dark:bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl border border-border/50 hover:border-primary/30 transition-all duration-700 animate-fadeInUp"
               style={{ animationDelay: `${idx * 0.05}s` }}
             >
-              <div className="relative overflow-hidden bg-muted aspect-[3/4]">
-                <img
-                  src={book.image || "/placeholder.svg"}
-                  alt={book.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-semibold shadow-md">
-                  {book.language === "ar" ? "العربية" : book.language === "fr" ? "Français" : "English"}
-                </div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                  <button className="p-3 rounded-full bg-secondary hover:bg-secondary/90 text-foreground transition-all duration-200 hover:scale-110 shadow-lg">
-                    <ShoppingCart className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
+              {/* Image Container */}
+              <Link href={`/books/${book.id}`} className="block relative">
+                <div className="relative overflow-hidden bg-linear-to-br from-muted/30 to-muted aspect-3/4">
+                  <img
+                    src={book.image || "/placeholder.svg"}
+                    alt={book.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
+                    loading="lazy"
+                  />
+                  
+                  {/* Elegant Gradient Overlay */}
+                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <div className="p-4 md:p-5">
-                <h3 className="font-semibold text-card-foreground line-clamp-2 mb-2 group-hover:text-primary transition-colors text-sm md:text-base">
-                  {book.title}
-                </h3>
-                <p className="text-xs md:text-sm text-muted-foreground mb-3 line-clamp-1">{book.author}</p>
-
-
-
-                <div className="flex items-center justify-between gap-2">
-                  <div className="flex flex-col">
-                    {book.promoPrice ? (
-                      <>
-                        <span className="text-lg md:text-xl font-bold text-red-600">{book.promoPrice} DT</span>
-                        <span className="text-xs text-muted-foreground line-through">{book.price} DT</span>
-                      </>
-                    ) : (
-                      <span className="text-lg md:text-xl font-bold text-primary">{book.price} DT</span>
+                  {/* Elegant Badges */}
+                  <div className="absolute top-4 right-4 flex flex-col gap-2">
+                    {book.promoPrice && (
+                      <div className="bg-linear-to-r from-red-600 to-red-500 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-xl backdrop-blur-sm">
+                        -{Math.round(((book.price - book.promoPrice) / book.price) * 100 / 5) * 5}%
+                      </div>
                     )}
                   </div>
 
-                  {book.promoPrice ? (
-                    <span className="text-xs font-bold text-white bg-red-600 px-2 py-1 rounded-full">
-                      -{Math.round(((book.price - book.promoPrice) / book.price) * 100 / 5) * 5}%
-                    </span>
-                  ) : (
-                    <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">
-                      {book.level === "college" ? "Collège" : book.level === "lycee" ? "Lycée" : "Préparatoire"}
-                    </span>
-                  )}
+                  {/* Refined Add to Cart Button */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                    <button className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white/95 backdrop-blur-md hover:bg-primary hover:text-white text-foreground font-medium rounded-xl transition-all duration-400 shadow-2xl hover:shadow-primary/20 hover:scale-[1.02]">
+                      <ShoppingCart className="w-4 h-4" />
+                      <span className="text-sm tracking-wide">Ajouter</span>
+                    </button>
+                  </div>
+                </div>
+              </Link>
+
+              {/* Product Info - Clean & Minimal */}
+              <div className="p-3 md:p-4">
+                {/* Category Badge - Elegant */}
+                <div className="mb-2">
+                  <span className="text-[10px] font-medium text-primary/70 uppercase tracking-wider">
+                    {book.category === "abaya" ? "Abaya" : 
+                     book.category === "hijab" ? "Hijab" : 
+                     book.category === "jilbab" ? "Jilbab" : 
+                     book.category === "kaftan" ? "Kaftan" : 
+                     book.category === "ensemble" ? "Ensemble" : "Accessoire"}
+                  </span>
+                </div>
+
+                {/* Title - Prominent */}
+                <Link href={`/books/${book.id}`}>
+                  <h3 className="font-medium text-card-foreground line-clamp-2 group-hover:text-primary transition-colors duration-300 text-base md:text-lg leading-snug mb-2">
+                    {book.title}
+                  </h3>
+                </Link>
+
+                {/* Author/Brand - Subtle */}
+                <p className="text-xs text-muted-foreground/70 line-clamp-1 font-light mb-3">{book.author}</p>
+
+                {/* Price - Elegant */}
+                <div className="flex items-center justify-between pt-2.5 border-t border-border/30">
+                  <div className="flex items-baseline gap-2">
+                    {book.promoPrice ? (
+                      <>
+                        <span className="text-lg md:text-xl font-semibold text-red-600">{book.promoPrice} DT</span>
+                        <span className="text-xs text-muted-foreground line-through font-light">{book.price} DT</span>
+                      </>
+                    ) : (
+                      <span className="text-lg md:text-xl font-semibold text-foreground">{book.price} DT</span>
+                    )}
+                  </div>
+
+                  {/* Mobile Quick Add - Refined */}
+                  <button className="md:hidden p-2 rounded-full bg-primary/10 hover:bg-primary text-primary hover:text-white transition-all duration-300 hover:scale-110">
+                    <ShoppingCart className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
