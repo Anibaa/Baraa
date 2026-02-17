@@ -5,9 +5,9 @@ import { Sparkles } from "lucide-react"
 export function PersonalizedGreeting() {
   const getGreeting = () => {
     const hour = new Date().getHours()
-    if (hour < 12) return "Bienvenue chez Baraa"
-    if (hour < 18) return "Bon après-midi chez Baraa"
-    return "Bonsoir chez Baraa"
+    if (hour < 12) return "Bienvenue chez Baraa-براءة"
+    if (hour < 18) return "Bon après-midi chez Baraa-براءة"
+    return "Bonsoir chez Baraa-براءة "
   }
 
   const getSubtitle = () => {

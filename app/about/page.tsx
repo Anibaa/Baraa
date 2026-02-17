@@ -44,8 +44,6 @@ export default function AboutPage() {
         <MissionSection />
         <VisionSection />
         <WhyBaraa />
-        <ImpactStatistics />
-        <PartnerCTA />
         <WhatsAppContact />
       </main>
       <Footer />

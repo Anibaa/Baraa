@@ -1,28 +1,28 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Package, CheckCircle2, Users, MessageCircle } from "lucide-react"
+import { Sparkles, Heart, Shield, Truck } from "lucide-react"
 
 const features = [
   {
-    icon: Package,
-    title: "Livraison rapide",
-    description: "Accédez à vos livres rapidement avec nos partenaires logistiques de confiance.",
+    icon: Sparkles,
+    title: "Designs exclusifs",
+    description: "Collections uniques créées par nos designers pour allier élégance et pudeur avec raffinement.",
   },
   {
-    icon: CheckCircle2,
-    title: "Livres vérifiés",
-    description: "Tous nos livres sont contrôlés pour garantir leur authenticité et qualité.",
+    icon: Heart,
+    title: "Qualité premium",
+    description: "Tissus nobles et finitions soignées pour un confort optimal et une durabilité exceptionnelle.",
   },
   {
-    icon: Users,
-    title: "Partenaires locaux",
-    description: "Nous collaborons avec les meilleures librairies et éditeurs tunisiens.",
+    icon: Shield,
+    title: "Respect des valeurs",
+    description: "Mode pudique et élégante qui célèbre la beauté de la femme musulmane moderne.",
   },
   {
-    icon: MessageCircle,
-    title: "Support client réactif",
-    description: "Notre équipe est disponible pour répondre à vos questions 24/7.",
+    icon: Truck,
+    title: "Livraison soignée",
+    description: "Emballage élégant et livraison rapide partout en Tunisie pour une expérience premium.",
   },
 ]
 

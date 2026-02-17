@@ -19,19 +19,20 @@ export function AboutHero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
         >
-          La plateforme qui accompagne les étudiants tunisiens vers la réussite.
+          Mode islamique élégante et moderne pour la femme musulmane d'aujourd'hui.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link
             href="/books"
-            className="inline-flex items-center px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-soft hover:shadow-soft-hover"
+            className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-soft hover:shadow-soft-hover"
           >
-            Découvrir nos livres
+            Découvrir la collection
           </Link>
         </motion.div>
       </div>

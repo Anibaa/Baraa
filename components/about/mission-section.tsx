@@ -15,8 +15,10 @@ export function MissionSection() {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">Notre Mission</h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Notre mission est de rendre l'accès aux livres scolaires simple, rapide et abordable pour
-            tous les étudiants en Tunisie.
+            Offrir aux femmes musulmanes une mode élégante, pudique et moderne qui célèbre leur identité tout en respectant leurs valeurs. Nous croyons que chaque femme mérite de se sentir belle, confiante et authentique dans ses vêtements.
+          </p>
+          <p className="text-lg text-muted-foreground leading-relaxed mt-4">
+            Chez Baraa - براءة, nous combinons qualité exceptionnelle, designs contemporains et respect des traditions pour créer des pièces intemporelles qui accompagnent la femme moderne dans tous les moments de sa vie.
           </p>
         </motion.div>
       </div>

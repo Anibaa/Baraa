@@ -16,7 +16,7 @@ export function WhatsAppContact() {
         className="max-w-4xl mx-auto text-center space-y-6"
       >
         <h2 className="text-2xl md:text-3xl font-bold text-foreground">Contactez-nous facilement</h2>
-        <p className="text-lg text-muted-foreground">Une question ? Notre équipe Baraa est disponible sur WhatsApp.</p>
+        <p className="text-lg text-muted-foreground">Une question sur nos collections ? Notre équipe Baraa est disponible sur WhatsApp pour vous conseiller.</p>
         <a
           href={whatsappLink}
           target="_blank"

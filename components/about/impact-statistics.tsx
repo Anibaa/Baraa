@@ -26,9 +26,9 @@ function AnimatedCounter({ target }: { target: number }) {
 }
 
 const stats = [
-  { label: "Étudiants servis", value: 15000 },
-  { label: "Livres disponibles", value: 5000 },
-  { label: "Partenaires actifs", value: 250 },
+  { label: "Clientes satisfaites", value: 8500 },
+  { label: "Pièces vendues", value: 25000 },
+  { label: "Collections lancées", value: 45 },
 ]
 
 export function ImpactStatistics() {

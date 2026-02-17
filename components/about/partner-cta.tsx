@@ -13,9 +13,9 @@ export function PartnerCTA() {
         viewport={{ once: true, margin: "-100px" }}
         className="max-w-4xl mx-auto bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-8 md:p-12 border border-primary/20 text-center space-y-6"
       >
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground">Vous êtes libraire ou éditeur ?</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground">Vous êtes créatrice ou boutique de mode ?</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Rejoignez notre écosystème et participez à la démocratisation de l'éducation en Tunisie.
+          Rejoignez Baraa et participez à la révolution de la mode islamique féminine en Tunisie et dans le monde arabe.
         </p>
         <Link
           href="/partner"

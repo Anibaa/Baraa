@@ -15,7 +15,10 @@ export function VisionSection() {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">Notre Vision</h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Construire un écosystème éducatif numérique fiable, moderne et accessible.
+            Devenir la référence de la mode islamique féminine en Tunisie et au-delà, en créant une communauté de femmes confiantes qui embrassent leur beauté naturelle et leur foi avec fierté.
+          </p>
+          <p className="text-lg text-muted-foreground leading-relaxed mt-4">
+            Nous aspirons à redéfinir les standards de l'élégance islamique en proposant des collections qui allient tradition et modernité, confort et raffinement, accessibilité et qualité premium.
           </p>
         </motion.div>
       </div>
