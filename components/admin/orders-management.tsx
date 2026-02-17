@@ -151,13 +151,31 @@ export function OrdersManagement({ orders }: OrdersManagementProps) {
               </div>
 
               <div className="border-t border-border pt-4">
-                <p className="text-sm text-muted-foreground mb-2">Livres</p>
-                <div className="space-y-2">
-                  {selectedOrder.bookIds.map((bookId, idx) => (
-                    <p key={idx} className="text-sm font-medium">
-                      {books.find((b) => b.id === bookId)?.title || `Livre #${bookId}`} x{selectedOrder.quantities[idx]}
-                    </p>
-                  ))}
+                <p className="text-sm text-muted-foreground mb-2">Articles</p>
+                <div className="space-y-3">
+                  {selectedOrder.items.map((item, idx) => {
+                    const book = books.find((b) => b.id === item.bookId)
+                    return (
+                      <div key={idx} className="flex justify-between items-start p-3 bg-muted/30 rounded-lg">
+                        <div className="flex-1">
+                          <p className="text-sm font-semibold text-foreground">
+                            {book?.title || `Article #${item.bookId}`}
+                          </p>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Taille: {item.size} • Couleur: {item.color}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            Quantité: {item.quantity} × {item.price.toFixed(2)} DT
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-sm font-bold text-primary">
+                            {(item.quantity * item.price).toFixed(2)} DT
+                          </p>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
 
