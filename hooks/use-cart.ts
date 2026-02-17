@@ -68,28 +68,44 @@ export function useCart() {
     }
   }, [])
 
-  const addToCart = useCallback((book: Book, quantity = 1) => {
+  const addToCart = useCallback((book: Book, quantity = 1, selectedSize: import("@/lib/types").Size, selectedColor: import("@/lib/types").Color) => {
     setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.book.id === book.id)
+      const existingItem = prevCart.find(
+        (item) => item.book.id === book.id && item.selectedSize === selectedSize && item.selectedColor === selectedColor
+      )
       if (existingItem) {
         return prevCart.map((item) =>
-          item.book.id === book.id ? { ...item, quantity: item.quantity + quantity } : item,
+          item.book.id === book.id && item.selectedSize === selectedSize && item.selectedColor === selectedColor
+            ? { ...item, quantity: item.quantity + quantity }
+            : item,
         )
       }
-      return [...prevCart, { book, quantity }]
+      return [...prevCart, { book, quantity, selectedSize, selectedColor }]
     })
   }, [])
 
-  const removeFromCart = useCallback((bookId: string) => {
-    setCart((prevCart) => prevCart.filter((item) => item.book.id !== bookId))
+  const removeFromCart = useCallback((bookId: string, selectedSize?: import("@/lib/types").Size, selectedColor?: import("@/lib/types").Color) => {
+    setCart((prevCart) => prevCart.filter((item) => {
+      if (selectedSize && selectedColor) {
+        return !(item.book.id === bookId && item.selectedSize === selectedSize && item.selectedColor === selectedColor)
+      }
+      return item.book.id !== bookId
+    }))
   }, [])
 
   const updateQuantity = useCallback(
-    (bookId: string, quantity: number) => {
+    (bookId: string, quantity: number, selectedSize?: import("@/lib/types").Size, selectedColor?: import("@/lib/types").Color) => {
       if (quantity <= 0) {
-        removeFromCart(bookId)
+        removeFromCart(bookId, selectedSize, selectedColor)
       } else {
-        setCart((prevCart) => prevCart.map((item) => (item.book.id === bookId ? { ...item, quantity } : item)))
+        setCart((prevCart) => prevCart.map((item) => {
+          if (selectedSize && selectedColor) {
+            return item.book.id === bookId && item.selectedSize === selectedSize && item.selectedColor === selectedColor
+              ? { ...item, quantity }
+              : item
+          }
+          return item.book.id === bookId ? { ...item, quantity } : item
+        }))
       }
     },
     [removeFromCart],
@@ -99,7 +115,10 @@ export function useCart() {
     setCart([])
   }, [])
 
-  const subtotal = cart.reduce((sum, item) => sum + item.book.price * item.quantity, 0)
+  const subtotal = cart.reduce((sum, item) => {
+    const price = item.book.promoPrice || item.book.price
+    return sum + price * item.quantity
+  }, 0)
   const total = subtotal
 
   return {

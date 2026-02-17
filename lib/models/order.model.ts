@@ -1,8 +1,15 @@
 import mongoose, { Schema } from 'mongoose';
 
+const OrderItemSchema = new Schema({
+    bookId: { type: String, required: true },
+    quantity: { type: Number, required: true },
+    size: { type: String, enum: ["S", "M", "L", "XL", "XXL", "Unique"], required: true },
+    color: { type: String, required: true }, // Allow any string for custom colors
+    price: { type: Number, required: true }
+}, { _id: false });
+
 const OrderSchema = new Schema({
-    bookIds: { type: [String], required: true },
-    quantities: { type: [Number], required: true },
+    items: { type: [OrderItemSchema], required: true },
     totalPrice: { type: Number, required: true },
     customerName: { type: String, required: true },
     customerEmail: { type: String },

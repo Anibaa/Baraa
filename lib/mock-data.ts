@@ -6,8 +6,14 @@ export const mockBooks: Book[] = [
     title: "Abaya Élégance Dorée",
     author: "Baraa",
     category: "abaya",
-    size: "M",
-    color: "or",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["noir", "or", "bronze", "Noir et Or"],
+    colorOptions: [
+      { value: "noir", label: "Noir", isPredefined: true, colorCodes: ["#000000"] },
+      { value: "or", label: "Or", isPredefined: true, colorCodes: ["#FFD700"] },
+      { value: "bronze", label: "Bronze", isPredefined: true, colorCodes: ["#CD7F32"] },
+      { value: "Noir et Or", label: "Noir et Or", isPredefined: false, colorCodes: ["#000000", "#FFD700"] },
+    ],
     price: 189.99,
     promoPrice: 149.99,
     image: "/placeholder.jpg",
@@ -21,11 +27,19 @@ export const mockBooks: Book[] = [
   },
   {
     id: "2",
-    title: "Hijab Soie Premium Noir",
+    title: "Hijab Soie Premium",
     author: "Baraa",
     category: "hijab",
-    size: "Unique",
-    color: "noir",
+    sizes: ["Unique"],
+    colors: ["noir", "blanc", "beige", "rose", "bleu", "Blanc et Rose"],
+    colorOptions: [
+      { value: "noir", label: "Noir", isPredefined: true, colorCodes: ["#000000"] },
+      { value: "blanc", label: "Blanc", isPredefined: true, colorCodes: ["#FFFFFF"] },
+      { value: "beige", label: "Beige", isPredefined: true, colorCodes: ["#F5F5DC"] },
+      { value: "rose", label: "Rose", isPredefined: true, colorCodes: ["#FFC0CB"] },
+      { value: "bleu", label: "Bleu", isPredefined: true, colorCodes: ["#3B82F6"] },
+      { value: "Blanc et Rose", label: "Blanc et Rose", isPredefined: false, colorCodes: ["#FFFFFF", "#FFC0CB"] },
+    ],
     price: 45.99,
     image: "/placeholder.jpg",
     images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
@@ -38,11 +52,17 @@ export const mockBooks: Book[] = [
   },
   {
     id: "3",
-    title: "Jilbab Moderne Beige",
+    title: "Jilbab Moderne",
     author: "Baraa",
     category: "jilbab",
-    size: "L",
-    color: "beige",
+    sizes: ["M", "L", "XL"],
+    colors: ["beige", "noir", "vert", "Beige et Bronze"],
+    colorOptions: [
+      { value: "beige", label: "Beige", isPredefined: true, colorCodes: ["#F5F5DC"] },
+      { value: "noir", label: "Noir", isPredefined: true, colorCodes: ["#000000"] },
+      { value: "vert", label: "Vert", isPredefined: true, colorCodes: ["#22C55E"] },
+      { value: "Beige et Bronze", label: "Beige et Bronze", isPredefined: false, colorCodes: ["#F5F5DC", "#CD7F32"] },
+    ],
     price: 129.99,
     image: "/placeholder.jpg",
     images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
@@ -55,11 +75,17 @@ export const mockBooks: Book[] = [
   },
   {
     id: "4",
-    title: "Kaftan Royal Bronze",
+    title: "Kaftan Royal",
     author: "Baraa",
     category: "kaftan",
-    size: "XL",
-    color: "bronze",
+    sizes: ["M", "L", "XL", "XXL"],
+    colors: ["bronze", "or", "bordeaux", "Bordeaux et Or"],
+    colorOptions: [
+      { value: "bronze", label: "Bronze", isPredefined: true, colorCodes: ["#CD7F32"] },
+      { value: "or", label: "Or", isPredefined: true, colorCodes: ["#FFD700"] },
+      { value: "bordeaux", label: "Bordeaux", isPredefined: true, colorCodes: ["#800020"] },
+      { value: "Bordeaux et Or", label: "Bordeaux et Or", isPredefined: false, colorCodes: ["#800020", "#FFD700"] },
+    ],
     price: 249.99,
     promoPrice: 199.99,
     image: "/placeholder.jpg",
@@ -73,11 +99,16 @@ export const mockBooks: Book[] = [
   },
   {
     id: "5",
-    title: "Ensemble Prière Rose",
+    title: "Ensemble Prière",
     author: "Baraa",
     category: "ensemble",
-    size: "M",
-    color: "rose",
+    sizes: ["S", "M", "L"],
+    colors: ["rose", "blanc", "beige"],
+    colorOptions: [
+      { value: "rose", label: "Rose", isPredefined: true, colorCodes: ["#FFC0CB"] },
+      { value: "blanc", label: "Blanc", isPredefined: true, colorCodes: ["#FFFFFF"] },
+      { value: "beige", label: "Beige", isPredefined: true, colorCodes: ["#F5F5DC"] },
+    ],
     price: 79.99,
     image: "/placeholder.jpg",
     images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
@@ -90,11 +121,17 @@ export const mockBooks: Book[] = [
   },
   {
     id: "6",
-    title: "Abaya Quotidienne Noire",
+    title: "Abaya Quotidienne",
     author: "Baraa",
     category: "abaya",
-    size: "S",
-    color: "noir",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: ["noir", "bleu", "vert", "Bleu et Blanc"],
+    colorOptions: [
+      { value: "noir", label: "Noir", isPredefined: true, colorCodes: ["#000000"] },
+      { value: "bleu", label: "Bleu", isPredefined: true, colorCodes: ["#3B82F6"] },
+      { value: "vert", label: "Vert", isPredefined: true, colorCodes: ["#22C55E"] },
+      { value: "Bleu et Blanc", label: "Bleu et Blanc", isPredefined: false, colorCodes: ["#3B82F6", "#FFFFFF"] },
+    ],
     price: 99.99,
     image: "/placeholder.jpg",
     images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
@@ -110,8 +147,13 @@ export const mockBooks: Book[] = [
     title: "Hijab Collection Pastel",
     author: "Baraa",
     category: "hijab",
-    size: "Unique",
-    color: "beige",
+    sizes: ["Unique"],
+    colors: ["beige", "rose", "blanc"],
+    colorOptions: [
+      { value: "beige", label: "Beige", isPredefined: true, colorCodes: ["#F5F5DC"] },
+      { value: "rose", label: "Rose", isPredefined: true, colorCodes: ["#FFC0CB"] },
+      { value: "blanc", label: "Blanc", isPredefined: true, colorCodes: ["#FFFFFF"] },
+    ],
     price: 35.99,
     image: "/placeholder.jpg",
     images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
@@ -127,8 +169,12 @@ export const mockBooks: Book[] = [
     title: "Abaya Cérémonie Bordeaux",
     author: "Baraa",
     category: "abaya",
-    size: "L",
-    color: "bordeaux",
+    sizes: ["M", "L", "XL"],
+    colors: ["bordeaux", "noir"],
+    colorOptions: [
+      { value: "bordeaux", label: "Bordeaux", isPredefined: true, colorCodes: ["#800020"] },
+      { value: "noir", label: "Noir", isPredefined: true, colorCodes: ["#000000"] },
+    ],
     price: 219.99,
     promoPrice: 179.99,
     image: "/placeholder.jpg",
@@ -138,6 +184,94 @@ export const mockBooks: Book[] = [
     reviews: 156,
     status: "En stock",
     fabric: "Crêpe satiné avec perles",
+    care: "Nettoyage à sec recommandé",
+  },
+  {
+    id: "premium-collection",
+    title: "Abaya Prestige Collection - Édition Limitée",
+    author: "Baraa",
+    category: "abaya",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    // ✨ EXEMPLE COMPLET: Mélange de tous les types de couleurs
+    colors: [
+      // Couleurs prédéfinies (3)
+      "noir",
+      "blanc", 
+      "or",
+      // Couleurs personnalisées simples (2)
+      "Bleu Nuit",
+      "Vert Émeraude",
+      // Combinaisons de couleurs (3)
+      "Noir et Or",
+      "Blanc et Rose",
+      "Bordeaux et Or"
+    ],
+    colorOptions: [
+      // Prédéfinies
+      { value: "noir", label: "Noir", isPredefined: true, colorCodes: ["#000000"] },
+      { value: "blanc", label: "Blanc", isPredefined: true, colorCodes: ["#FFFFFF"] },
+      { value: "or", label: "Or", isPredefined: true, colorCodes: ["#FFD700"] },
+      // Personnalisées simples
+      { value: "Bleu Nuit", label: "Bleu Nuit", isPredefined: false, colorCodes: ["#191970"] },
+      { value: "Vert Émeraude", label: "Vert Émeraude", isPredefined: false, colorCodes: ["#50C878"] },
+      // Combinaisons
+      { value: "Noir et Or", label: "Noir et Or", isPredefined: false, colorCodes: ["#000000", "#FFD700"] },
+      { value: "Blanc et Rose", label: "Blanc et Rose", isPredefined: false, colorCodes: ["#FFFFFF", "#FFC0CB"] },
+      { value: "Bordeaux et Or", label: "Bordeaux et Or", isPredefined: false, colorCodes: ["#800020", "#FFD700"] },
+    ],
+    price: 299.99,
+    promoPrice: 249.99,
+    image: "/placeholder.jpg",
+    images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
+    description: "Collection prestige avec 8 options de couleurs exclusives. Mélange harmonieux de couleurs classiques, personnalisées et combinaisons élégantes. Édition limitée avec broderies main et finitions luxueuses.",
+    rating: 5.0,
+    reviews: 89,
+    status: "En stock",
+    fabric: "Soie naturelle premium avec broderies dorées à la main",
+    care: "Nettoyage à sec uniquement - Produit délicat",
+  },
+  {
+    id: "kaftan-luxury-mix",
+    title: "Kaftan Luxury - Mix Standard & Personalized",
+    author: "Baraa",
+    category: "kaftan",
+    sizes: ["M", "L", "XL", "XXL"],
+    // ✨ EXAMPLE: Standard colors + Personalized colors + Combinations
+    colors: [
+      // Standard predefined colors (4)
+      "bleu",        // Blue (standard)
+      "blanc",       // White (standard)
+      "marron",      // Marron/Brown (standard)
+      "bordeaux",    // Red/Bordeaux (standard)
+      // Personalized colors (2)
+      "Bleu Royal",  // Custom blue
+      "Rouge Rubis", // Custom red
+      // Combinations (2)
+      "Blue and White",
+      "Red and Gold"
+    ],
+    colorOptions: [
+      // Standard colors
+      { value: "bleu", label: "Bleu", isPredefined: true, colorCodes: ["#3B82F6"] },
+      { value: "blanc", label: "Blanc", isPredefined: true, colorCodes: ["#FFFFFF"] },
+      { value: "marron", label: "Marron", isPredefined: true, colorCodes: ["#8B4513"] },
+      { value: "bordeaux", label: "Bordeaux", isPredefined: true, colorCodes: ["#800020"] },
+      // Personalized colors
+      { value: "Bleu Royal", label: "Bleu Royal", isPredefined: false, colorCodes: ["#4169E1"] },
+      { value: "Rouge Rubis", label: "Rouge Rubis", isPredefined: false, colorCodes: ["#E0115F"] },
+      // Combinations
+      { value: "Blue and White", label: "Blue and White", isPredefined: false, colorCodes: ["#3B82F6", "#FFFFFF"] },
+      { value: "Red and Gold", label: "Red and Gold", isPredefined: false, colorCodes: ["#E0115F", "#FFD700"] },
+    ],
+    price: 279.99,
+    promoPrice: 229.99,
+    image: "/placeholder.jpg",
+    images: ["/placeholder.jpg", "/placeholder.jpg", "/placeholder.jpg"],
+    description: "Kaftan luxueux démontrant le mélange parfait de couleurs standards (Bleu, Blanc, Marron, Bordeaux) avec des couleurs personnalisées (Bleu Royal, Rouge Rubis) et des combinaisons élégantes (Blue and White, Red and Gold). 8 options de couleurs pour un choix maximal.",
+    rating: 4.9,
+    reviews: 67,
+    status: "En stock",
+    fabric: "Velours premium avec broderies perlées",
     care: "Nettoyage à sec recommandé",
   },
 ]
@@ -169,21 +303,11 @@ export const mockPartners: Partner[] = [
     phone: "+216 92 345 678",
     productTitle: "Collection Hijabs Premium",
     category: "hijab",
-    size: "Unique",
-    color: "or",
+    sizes: ["Unique"],
+    colors: ["or", "bronze"],
     description: "Collection exclusive de hijabs en soie avec finitions dorées",
     createdAt: new Date("2024-01-15"),
   },
 ]
 
-export const mockOrders: Order[] = [
-  {
-    id: "1",
-    bookId: "1",
-    quantity: 2,
-    totalPrice: 37.98,
-    customerName: "Amina Jouini",
-    customerEmail: "amina@example.com",
-    createdAt: new Date("2024-01-10"),
-  },
-]
+export const mockOrders: Order[] = []

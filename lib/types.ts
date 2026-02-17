@@ -1,17 +1,37 @@
 export type Category = "abaya" | "hijab" | "jilbab" | "kaftan" | "ensemble" | "accessories"
 export type Size = "S" | "M" | "L" | "XL" | "XXL" | "Unique"
-export type Color = "noir" | "blanc" | "beige" | "or" | "bronze" | "rose" | "bleu" | "vert" | "bordeaux"
+
+// Predefined colors
+export type PredefinedColor = "noir" | "blanc" | "beige" | "or" | "bronze" | "rose" | "bleu" | "vert" | "bordeaux" | "gris" | "marron" | "turquoise"
+
+// Color can be a predefined color, a custom color, or a combination
+export type Color = PredefinedColor | string // Allows custom colors like "Noir et Or"
 
 export type ProductStatus = "En stock" | "Hors stock" | "Préparation" | "Livraison" | "Livré"
 export type OrderStatus = "Préparation" | "Livraison" | "Livré"
+
+export interface ColorOption {
+  value: string // The color value (can be predefined or custom)
+  label: string // Display label
+  isPredefined: boolean // Whether it's a predefined color
+  colorCodes?: string[] // CSS color codes for display (supports multiple for combinations)
+}
+
+export interface ProductVariant {
+  size: Size
+  color: Color
+  stock: number
+}
 
 export interface Book {
   id: string
   title: string
   author: string
   category: Category
-  size: Size
-  color: Color
+  sizes: Size[] // Multiple sizes available
+  colors: Color[] // Multiple colors available (can include custom colors)
+  colorOptions?: ColorOption[] // Detailed color information for display
+  variants?: ProductVariant[] // Stock per size/color combination
   price: number
   promoPrice?: number
   image: string
@@ -54,29 +74,38 @@ export interface Partner {
   phone: string
   productTitle: string
   category: Category
-  size: Size
-  color: Color
+  sizes: Size[]
+  colors: Color[]
   description: string
   createdAt: Date
 }
 
+export interface OrderItem {
+  bookId: string
+  quantity: number
+  size: Size
+  color: Color
+  price: number
+}
+
 export interface Order {
   id: string
-  bookIds: string[] // Changed to support multiple books
-  quantities: number[] // Parallel quantities array
+  items: OrderItem[] // Changed to support size/color per item
   totalPrice: number
   customerName: string
   customerEmail: string
-  customerPhone: string // Added phone
-  address: string // Added address
-  paymentMethod: "Cash" | "Card" // Added payment method
-  status: OrderStatus // Added status
+  customerPhone: string
+  address: string
+  paymentMethod: "Cash" | "Card"
+  status: OrderStatus
   createdAt: Date
 }
 
 export interface CartItem {
   book: Book
   quantity: number
+  selectedSize: Size
+  selectedColor: Color
 }
 
 export interface CheckoutData {

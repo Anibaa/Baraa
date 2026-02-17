@@ -115,7 +115,7 @@ export async function getRelatedBooks(bookId: string, limit = 4): Promise<Book[]
 
     const related = await BookModel.find({
       _id: { $ne: bookId },
-      $or: [{ category: book.category }, { size: book.size }]
+      category: book.category
     }).limit(limit);
 
     return related.map(doc => sanitize(doc));

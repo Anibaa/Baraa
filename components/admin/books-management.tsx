@@ -29,6 +29,9 @@ export function BooksManagement({ books }: BooksManagementProps) {
   })
   const [galleryImageInput, setGalleryImageInput] = useState("")
   const [descriptionImageInput, setDescriptionImageInput] = useState("")
+  const [customColorInput, setCustomColorInput] = useState("")
+  const [customColorHex1, setCustomColorHex1] = useState("")
+  const [customColorHex2, setCustomColorHex2] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [isUploadingGallery, setIsUploadingGallery] = useState(false)
   const [isUploadingDescription, setIsUploadingDescription] = useState(false)
@@ -44,7 +47,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
   }
 
   const handleDelete = async (id: string) => {
-    if (confirm("Êtes-vous certain de vouloir supprimer ce livre?")) {
+    if (confirm("Êtes-vous certain de vouloir supprimer cet article?")) {
       try {
         const res = await fetch(`/api/books/${id}`, {
           method: "DELETE",
@@ -54,7 +57,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
 
         toast({
           title: "Succès",
-          description: "Livre supprimé avec succès",
+          description: "Article supprimé avec succès",
         })
 
         // Refresh the current page
@@ -72,7 +75,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
       } catch (error) {
         toast({
           title: "Erreur",
-          description: "Impossible de supprimer le livre",
+          description: "Impossible de supprimer l'article",
           variant: "destructive",
         })
       }
@@ -81,9 +84,94 @@ export function BooksManagement({ books }: BooksManagementProps) {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
+    
+    // Handle multi-select for sizes and colors
+    if (name === "sizes" || name === "colors") {
+      const select = e.target as HTMLSelectElement
+      const selectedOptions = Array.from(select.selectedOptions).map(option => option.value)
+      setFormData((prev) => ({
+        ...prev,
+        [name]: selectedOptions,
+      }))
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: name === "price" || name === "promoPrice" ? (value === "" ? undefined : Number.parseFloat(value)) : value,
+      }))
+    }
+  }
+
+  const toggleSize = (size: import("@/lib/types").Size) => {
+    setFormData((prev) => {
+      const sizes = prev.sizes || []
+      if (sizes.includes(size)) {
+        return { ...prev, sizes: sizes.filter(s => s !== size) }
+      } else {
+        return { ...prev, sizes: [...sizes, size] }
+      }
+    })
+  }
+
+  const toggleColor = (color: import("@/lib/types").Color) => {
+    setFormData((prev) => {
+      const colors = prev.colors || []
+      if (colors.includes(color)) {
+        return { ...prev, colors: colors.filter(c => c !== color) }
+      } else {
+        return { ...prev, colors: [...colors, color] }
+      }
+    })
+  }
+
+  const addCustomColor = () => {
+    if (customColorInput.trim()) {
+      const customColor = customColorInput.trim()
+      
+      // Create color option with hex codes if provided
+      const colorOption: import("@/lib/types").ColorOption = {
+        value: customColor,
+        label: customColor,
+        isPredefined: false,
+        colorCodes: []
+      }
+      
+      if (customColorHex1.trim()) {
+        colorOption.colorCodes!.push(customColorHex1.trim())
+      }
+      if (customColorHex2.trim()) {
+        colorOption.colorCodes!.push(customColorHex2.trim())
+      }
+      
+      setFormData((prev) => {
+        const colors = prev.colors || []
+        const colorOptions = prev.colorOptions || []
+        
+        if (!colors.includes(customColor)) {
+          return { 
+            ...prev, 
+            colors: [...colors, customColor],
+            colorOptions: [...colorOptions, colorOption]
+          }
+        }
+        return prev
+      })
+      
+      setCustomColorInput("")
+      setCustomColorHex1("")
+      setCustomColorHex2("")
+      
+      toast({
+        title: "Couleur ajoutée",
+        description: `La couleur "${customColor}" a été ajoutée`,
+      })
+    }
+  }
+
+  const removeCustomColor = (color: string) => {
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "price" || name === "promoPrice" ? (value === "" ? undefined : Number.parseFloat(value)) : value,
+      colors: (prev.colors || []).filter(c => c !== color),
+      colorOptions: (prev.colorOptions || []).filter(opt => opt.value !== color)
     }))
   }
 
@@ -228,6 +316,26 @@ export function BooksManagement({ books }: BooksManagementProps) {
       return
     }
 
+    // Ensure at least one size
+    if (!formData.sizes || formData.sizes.length === 0) {
+      toast({
+        title: "Erreur",
+        description: "Veuillez sélectionner au moins une taille",
+      })
+      setIsLoading(false)
+      return
+    }
+
+    // Ensure at least one color
+    if (!formData.colors || formData.colors.length === 0) {
+      toast({
+        title: "Erreur",
+        description: "Veuillez sélectionner au moins une couleur",
+      })
+      setIsLoading(false)
+      return
+    }
+
     try {
       const url = editingBook ? `/api/books/${editingBook.id}` : "/api/books"
       const method = editingBook ? "PUT" : "POST"
@@ -243,8 +351,8 @@ export function BooksManagement({ books }: BooksManagementProps) {
       toast({
         title: "Succès",
         description: editingBook
-          ? `Livre "${formData.title}" modifié avec succès`
-          : `Livre "${formData.title}" ajouté avec succès`,
+          ? `Article "${formData.title}" modifié avec succès`
+          : `Article "${formData.title}" ajouté avec succès`,
       })
 
       // Refresh the current page and clear cache
@@ -280,8 +388,8 @@ export function BooksManagement({ books }: BooksManagementProps) {
     <div className="animate-fadeInUp">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
         <div>
-          <h2 className="text-3xl font-bold text-foreground">Gestion des Livres</h2>
-          <p className="text-muted-foreground text-sm mt-1">Gérez votre catalogue de livres</p>
+          <h2 className="text-3xl font-bold text-foreground">Gestion des Articles</h2>
+          <p className="text-muted-foreground text-sm mt-1">Gérez votre catalogue d'articles</p>
         </div>
         <button
           onClick={() => {
@@ -294,7 +402,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
           className="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 w-full md:w-auto justify-center md:justify-start"
         >
           <Plus className="w-5 h-5" />
-          Ajouter un Livre
+          Ajouter un Article
         </button>
       </div>
 
@@ -303,8 +411,8 @@ export function BooksManagement({ books }: BooksManagementProps) {
         <table className="w-full text-sm">
           <thead className="bg-muted border-b border-border sticky top-0">
             <tr>
-              <th className="px-6 py-4 text-left font-semibold text-foreground">Livre</th>
-              <th className="px-6 py-4 text-left font-semibold text-foreground hidden sm:table-cell">Auteur</th>
+              <th className="px-6 py-4 text-left font-semibold text-foreground">Article</th>
+              <th className="px-6 py-4 text-left font-semibold text-foreground hidden sm:table-cell">Marque</th>
               <th className="px-6 py-4 text-left font-semibold text-foreground">Prix</th>
               <th className="px-6 py-4 text-left font-semibold text-foreground">Statut</th>
               <th className="px-6 py-4 text-left font-semibold text-foreground hidden md:table-cell">Note</th>
@@ -365,7 +473,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
           <div className="bg-white rounded-lg max-w-2xl w-full p-8 max-h-[90vh] overflow-y-auto shadow-lg border border-border">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-2xl font-bold text-foreground">
-                {editingBook ? "Modifier le Livre" : "Ajouter un Nouveau Livre"}
+                {editingBook ? "Modifier l'Article" : "Ajouter un Nouvel Article"}
               </h3>
               <button
                 onClick={() => {
@@ -388,7 +496,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   <input
                     type="text"
                     name="title"
-                    placeholder="Titre du livre"
+                    placeholder="Titre de l'article"
                     value={formData.title || ""}
                     onChange={handleInputChange}
                     required
@@ -396,11 +504,11 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Auteur</label>
+                  <label className="block text-sm font-semibold text-foreground mb-2">Marque</label>
                   <input
                     type="text"
                     name="author"
-                    placeholder="Nom de l'auteur"
+                    placeholder="Nom de la marque"
                     value={formData.author || ""}
                     onChange={handleInputChange}
                     required
@@ -445,45 +553,12 @@ export function BooksManagement({ books }: BooksManagementProps) {
                     className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   >
                     <option value="" disabled>Choisir une catégorie</option>
-                    <option value="writing">Writing</option>
-                    <option value="cours">Cours</option>
-                    <option value="devoirs">Devoirs</option>
-                    <option value="histoire">Histoire</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Niveau</label>
-                  <select
-                    name="level"
-                    value={formData.level || ""}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                  >
-                    <option value="" disabled>Choisir un niveau</option>
-                    <option value="college">Collège</option>
-                    <option value="lycee">Lycée</option>
-                    <option value="preparatoire">Préparatoire</option>
-                  </select>
-                </div>
-
-
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Langue</label>
-                  <select
-                    name="language"
-                    value={formData.language || ""}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                  >
-                    <option value="" disabled>Choisir une langue</option>
-                    <option value="ar">Arabe</option>
-                    <option value="fr">Français</option>
-                    <option value="en">Anglais</option>
+                    <option value="abaya">Abaya</option>
+                    <option value="hijab">Hijab</option>
+                    <option value="jilbab">Jilbab</option>
+                    <option value="kaftan">Kaftan</option>
+                    <option value="ensemble">Ensemble</option>
+                    <option value="accessories">Accessoires</option>
                   </select>
                 </div>
                 <div>
@@ -505,14 +580,214 @@ export function BooksManagement({ books }: BooksManagementProps) {
                 </div>
               </div>
 
+              {/* Tailles Selection */}
+              <div>
+                <label className="block text-sm font-semibold text-foreground mb-3">
+                  Tailles disponibles <span className="text-destructive">*</span>
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {(["S", "M", "L", "XL", "XXL", "Unique"] as const).map((size) => (
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() => toggleSize(size)}
+                      className={`px-4 py-2 rounded-lg border-2 font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
+                        formData.sizes?.includes(size)
+                          ? "border-primary bg-primary text-white shadow-md"
+                          : "border-border bg-background hover:border-primary/50"
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+                {(!formData.sizes || formData.sizes.length === 0) && (
+                  <p className="text-xs text-destructive mt-2">Veuillez sélectionner au moins une taille</p>
+                )}
+              </div>
+
+              {/* Couleurs Selection */}
+              <div>
+                <label className="block text-sm font-semibold text-foreground mb-3">
+                  Couleurs disponibles <span className="text-destructive">*</span>
+                </label>
+                
+                {/* Predefined Colors */}
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 mb-4">
+                  {([
+                    { value: "noir", label: "Noir", bg: "bg-black" },
+                    { value: "blanc", label: "Blanc", bg: "bg-white border-2 border-gray-300" },
+                    { value: "beige", label: "Beige", bg: "bg-[#F5F5DC]" },
+                    { value: "or", label: "Or", bg: "bg-[#FFD700]" },
+                    { value: "bronze", label: "Bronze", bg: "bg-[#CD7F32]" },
+                    { value: "rose", label: "Rose", bg: "bg-[#FFC0CB]" },
+                    { value: "bleu", label: "Bleu", bg: "bg-blue-500" },
+                    { value: "vert", label: "Vert", bg: "bg-green-500" },
+                    { value: "bordeaux", label: "Bordeaux", bg: "bg-[#800020]" },
+                    { value: "gris", label: "Gris", bg: "bg-gray-500" },
+                    { value: "marron", label: "Marron", bg: "bg-[#8B4513]" },
+                    { value: "turquoise", label: "Turquoise", bg: "bg-[#40E0D0]" },
+                  ] as const).map((color) => (
+                    <button
+                      key={color.value}
+                      type="button"
+                      onClick={() => toggleColor(color.value)}
+                      className={`flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-all duration-200 hover:scale-105 active:scale-95 ${
+                        formData.colors?.includes(color.value)
+                          ? "border-primary bg-primary/10 shadow-md"
+                          : "border-border bg-background hover:border-primary/50"
+                      }`}
+                    >
+                      <div className={`w-10 h-10 rounded-full ${color.bg} ring-2 ring-border`} />
+                      <span className="text-xs font-medium">{color.label}</span>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Add Custom Color */}
+                <div className="border-t border-border pt-4">
+                  <label className="block text-sm font-medium text-foreground mb-3">
+                    Ajouter une couleur personnalisée
+                  </label>
+                  
+                  <div className="space-y-3">
+                    {/* Color Name */}
+                    <div>
+                      <label className="block text-xs text-muted-foreground mb-1">Nom de la couleur</label>
+                      <input
+                        type="text"
+                        value={customColorInput}
+                        onChange={(e) => setCustomColorInput(e.target.value)}
+                        placeholder='Ex: "Noir et Or", "Vert Émeraude"'
+                        className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"
+                      />
+                    </div>
+
+                    {/* Hex Codes */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs text-muted-foreground mb-1">Code Hex 1 (optionnel)</label>
+                        <input
+                          type="text"
+                          value={customColorHex1}
+                          onChange={(e) => setCustomColorHex1(e.target.value)}
+                          placeholder="#000000"
+                          className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm font-mono"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs text-muted-foreground mb-1">Code Hex 2 (optionnel)</label>
+                        <input
+                          type="text"
+                          value={customColorHex2}
+                          onChange={(e) => setCustomColorHex2(e.target.value)}
+                          placeholder="#FFD700"
+                          className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm font-mono"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Preview */}
+                    {(customColorHex1 || customColorHex2) && (
+                      <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg">
+                        <span className="text-xs text-muted-foreground">Aperçu:</span>
+                        <div className="flex gap-2">
+                          {customColorHex1 && (
+                            <div
+                              className="w-8 h-8 rounded-full ring-2 ring-border"
+                              style={{ backgroundColor: customColorHex1 }}
+                            />
+                          )}
+                          {customColorHex2 && (
+                            <div
+                              className="w-8 h-8 rounded-full ring-2 ring-border"
+                              style={{ backgroundColor: customColorHex2 }}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Add Button */}
+                    <button
+                      type="button"
+                      onClick={addCustomColor}
+                      disabled={!customColorInput.trim()}
+                      className="w-full px-4 py-2 bg-secondary hover:bg-secondary/80 disabled:bg-secondary/50 text-secondary-foreground font-medium rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                    >
+                      <Plus className="w-5 h-5" />
+                      Ajouter la couleur
+                    </button>
+                  </div>
+
+                  <p className="text-xs text-muted-foreground mt-3">
+                    💡 Astuce: Ajoutez 2 codes hex pour créer une combinaison de couleurs
+                  </p>
+                </div>
+
+                {/* Selected Colors List */}
+                {formData.colors && formData.colors.length > 0 && (
+                  <div className="mt-4 p-4 bg-muted/30 rounded-lg">
+                    <p className="text-sm font-medium text-foreground mb-2">Couleurs sélectionnées:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {formData.colors.map((color) => (
+                        <div
+                          key={color}
+                          className="flex items-center gap-2 px-3 py-1 bg-background border border-border rounded-full text-sm"
+                        >
+                          <span>{color}</span>
+                          <button
+                            type="button"
+                            onClick={() => removeCustomColor(color)}
+                            className="text-destructive hover:text-destructive/80 transition-colors"
+                          >
+                            <X className="w-3 h-3" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {(!formData.colors || formData.colors.length === 0) && (
+                  <p className="text-xs text-destructive mt-2">Veuillez sélectionner au moins une couleur</p>
+                )}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-foreground mb-2">Tissu</label>
+                  <input
+                    type="text"
+                    name="fabric"
+                    placeholder="Type de tissu (ex: Coton, Soie, Polyester)"
+                    value={formData.fabric || ""}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  />
+                </div>
+              </div>
+
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-2">Description</label>
                 <textarea
                   name="description"
-                  placeholder="Description du livre..."
+                  placeholder="Description de l'article..."
                   value={formData.description || ""}
                   onChange={handleInputChange}
                   rows={4}
+                  className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-foreground mb-2">Instructions d'entretien</label>
+                <textarea
+                  name="care"
+                  placeholder="Instructions d'entretien (ex: Lavage à la main, Ne pas repasser)"
+                  value={formData.care || ""}
+                  onChange={handleInputChange}
+                  rows={3}
                   className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
                 />
               </div>

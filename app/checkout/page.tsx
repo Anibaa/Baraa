@@ -10,6 +10,7 @@ import { Footer } from "@/components/layout/footer"
 import Link from "next/link"
 import { ArrowLeft, CheckCircle2, AlertCircle } from "lucide-react"
 import { LoadingSpinner } from "@/components/common/loading-spinner"
+import { getColorLabel } from "@/lib/color-utils"
 import type { CheckoutData } from "@/lib/types"
 
 export default function CheckoutPage() {
@@ -64,8 +65,13 @@ export default function CheckoutPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          bookIds: cart.map((item) => item.book.id),
-          quantities: cart.map((item) => item.quantity),
+          items: cart.map((item) => ({
+            bookId: item.book.id,
+            quantity: item.quantity,
+            size: item.selectedSize,
+            color: item.selectedColor,
+            price: item.book.promoPrice || item.book.price
+          })),
           totalPrice: total,
           customerName: formData.name,
           customerEmail: formData.email,
@@ -214,20 +220,28 @@ export default function CheckoutPage() {
                 <div className="bg-white rounded-lg shadow-soft p-6 sticky top-20 animate-slideInRight">
                   <h2 className="text-lg font-bold text-foreground mb-4">Résumé de la commande</h2>
                   <div className="space-y-3 mb-4 max-h-64 overflow-y-auto">
-                    {cart.map((item, idx) => (
-                      <div
-                        key={item.book.id}
-                        className="flex justify-between text-sm animate-fadeInUp"
-                        style={{ animationDelay: `${idx * 0.05}s` }}
-                      >
-                        <span className="text-muted-foreground line-clamp-1">
-                          {item.book.title} <span className="font-semibold">x{item.quantity}</span>
-                        </span>
-                        <span className="font-medium flex-shrink-0 ml-2">
-                          {(item.book.price * item.quantity).toFixed(2)} DT
-                        </span>
-                      </div>
-                    ))}
+                    {cart.map((item, idx) => {
+                      const price = item.book.promoPrice || item.book.price
+                      return (
+                        <div
+                          key={`${item.book.id}-${item.selectedSize}-${item.selectedColor}-${idx}`}
+                          className="animate-fadeInUp"
+                          style={{ animationDelay: `${idx * 0.05}s` }}
+                        >
+                          <div className="flex justify-between text-sm mb-1">
+                            <span className="text-muted-foreground line-clamp-1">
+                              {item.book.title} <span className="font-semibold">x{item.quantity}</span>
+                            </span>
+                            <span className="font-medium flex-shrink-0 ml-2">
+                              {(price * item.quantity).toFixed(2)} DT
+                            </span>
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {item.selectedSize} • {getColorLabel(item.selectedColor)}
+                          </div>
+                        </div>
+                      )
+                    })}
                   </div>
                   <div className="border-t border-border pt-4">
                     <div className="flex justify-between font-bold text-lg animate-slideUp">

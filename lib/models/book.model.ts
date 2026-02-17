@@ -1,12 +1,27 @@
 
 import mongoose, { Schema } from 'mongoose';
 
+const ProductVariantSchema = new Schema({
+    size: { type: String, enum: ["S", "M", "L", "XL", "XXL", "Unique"], required: true },
+    color: { type: String, required: true }, // Allow any string for custom colors
+    stock: { type: Number, default: 0 }
+}, { _id: false });
+
+const ColorOptionSchema = new Schema({
+    value: { type: String, required: true },
+    label: { type: String, required: true },
+    isPredefined: { type: Boolean, default: false },
+    colorCodes: { type: [String], default: [] }
+}, { _id: false });
+
 const BookSchema = new Schema({
     title: { type: String, required: true },
     author: { type: String, required: true },
     category: { type: String, enum: ["abaya", "hijab", "jilbab", "kaftan", "ensemble", "accessories"], required: true },
-    size: { type: String, enum: ["S", "M", "L", "XL", "XXL", "Unique"], required: true },
-    color: { type: String, enum: ["noir", "blanc", "beige", "or", "bronze", "rose", "bleu", "vert", "bordeaux"], required: true },
+    sizes: { type: [String], enum: ["S", "M", "L", "XL", "XXL", "Unique"], required: true },
+    colors: { type: [String], required: true }, // Allow any strings for custom colors
+    colorOptions: { type: [ColorOptionSchema], default: [] }, // Detailed color info
+    variants: { type: [ProductVariantSchema], default: [] },
     price: { type: Number, required: true },
     promoPrice: { type: Number },
     image: { type: String, required: true },
