@@ -754,6 +754,104 @@ export function BooksManagement({ books }: BooksManagementProps) {
                 )}
               </div>
 
+              {/* Stock Management per Size/Color Combination */}
+              {formData.sizes && formData.sizes.length > 0 && formData.colors && formData.colors.length > 0 && (
+                <div className="border border-accent/20 rounded-lg p-5 bg-accent/5">
+                  <label className="block text-sm font-semibold text-foreground mb-4">
+                    Gestion du Stock par Taille et Couleur
+                  </label>
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm border-collapse">
+                      <thead>
+                        <tr className="border-b-2 border-border">
+                          <th className="text-left py-2 px-3 font-semibold text-foreground">Taille</th>
+                          <th className="text-left py-2 px-3 font-semibold text-foreground">Couleur</th>
+                          <th className="text-left py-2 px-3 font-semibold text-foreground">Stock</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {formData.sizes.map((size) =>
+                          formData.colors!.map((color) => {
+                            const variant = formData.variants?.find(
+                              (v) => v.size === size && v.color === color
+                            )
+                            return (
+                              <tr key={`${size}-${color}`} className="border-b border-border hover:bg-muted/30">
+                                <td className="py-3 px-3 font-medium">{size}</td>
+                                <td className="py-3 px-3">
+                                  <div className="flex items-center gap-2">
+                                    {(() => {
+                                      const colorOption = formData.colorOptions?.find(opt => opt.value === color)
+                                      const colorCodes = colorOption?.colorCodes || []
+                                      
+                                      if (colorCodes.length > 1) {
+                                        return (
+                                          <div className="flex gap-1">
+                                            {colorCodes.map((code, idx) => (
+                                              <div
+                                                key={idx}
+                                                className="w-4 h-4 rounded-full border border-gray-300"
+                                                style={{ backgroundColor: code }}
+                                              />
+                                            ))}
+                                          </div>
+                                        )
+                                      } else if (colorCodes.length === 1) {
+                                        return (
+                                          <div
+                                            className="w-5 h-5 rounded-full border border-gray-300"
+                                            style={{ backgroundColor: colorCodes[0] }}
+                                          />
+                                        )
+                                      }
+                                      return null
+                                    })()}
+                                    <span className="text-sm">{color}</span>
+                                  </div>
+                                </td>
+                                <td className="py-3 px-3">
+                                  <input
+                                    type="number"
+                                    min="0"
+                                    value={variant?.stock ?? 0}
+                                    onChange={(e) => {
+                                      const stock = Number.parseInt(e.target.value) || 0
+                                      setFormData((prev) => {
+                                        const variants = prev.variants || []
+                                        const existingIndex = variants.findIndex(
+                                          (v) => v.size === size && v.color === color
+                                        )
+                                        
+                                        if (existingIndex >= 0) {
+                                          const newVariants = [...variants]
+                                          newVariants[existingIndex] = { size, color, stock }
+                                          return { ...prev, variants: newVariants }
+                                        } else {
+                                          return {
+                                            ...prev,
+                                            variants: [...variants, { size, color, stock }],
+                                          }
+                                        }
+                                      })
+                                    }}
+                                    className="w-24 px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                                  />
+                                </td>
+                              </tr>
+                            )
+                          })
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                  <p className="text-xs text-muted-foreground mt-3">
+                    💡 Définissez le stock disponible pour chaque combinaison taille/couleur
+                  </p>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">Tissu</label>
