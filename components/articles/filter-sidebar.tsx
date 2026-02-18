@@ -98,14 +98,6 @@ export function FilterSidebar() {
       { value: "ensemble" as Category, label: "Ensembles", icon: "👔", shortLabel: "Ensemble" },
       { value: "accessories" as Category, label: "Accessoires", icon: "💎", shortLabel: "Access." },
     ],
-    sizes: [
-      { value: "S" as Size, label: "Small (S)", icon: "📏", shortLabel: "S" },
-      { value: "M" as Size, label: "Medium (M)", icon: "📏", shortLabel: "M" },
-      { value: "L" as Size, label: "Large (L)", icon: "📏", shortLabel: "L" },
-      { value: "XL" as Size, label: "Extra Large (XL)", icon: "📏", shortLabel: "XL" },
-      { value: "XXL" as Size, label: "Double XL (XXL)", icon: "📏", shortLabel: "XXL" },
-      { value: "Unique" as Size, label: "Taille Unique", icon: "📏", shortLabel: "Unique" },
-    ],
     colors: [
       { value: "noir" as Color, label: "Noir", icon: "⚫", shortLabel: "Noir" },
       { value: "blanc" as Color, label: "Blanc", icon: "⚪", shortLabel: "Blanc" },
@@ -183,29 +175,6 @@ export function FilterSidebar() {
               </div>
             </div>
 
-            {/* Sizes */}
-            <div className="space-y-2">
-              <span className="text-xs text-muted-foreground font-medium">Taille</span>
-              <div className="flex flex-wrap gap-2">
-                {filterData.sizes.map((item) => {
-                  const isSelected = currentFilters.size === item.value
-                  return (
-                    <button
-                      key={item.value}
-                      onClick={() => handleFilterChange("size", isSelected ? "" : item.value)}
-                      className={cn(
-                        "flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-all duration-200 border",
-                        isSelected
-                          ? "bg-primary text-primary-foreground border-primary shadow-sm scale-105"
-                          : "bg-background hover:bg-muted border-border hover:border-primary/30 hover:scale-105"
-                      )}
-                    >
-                      <span>{item.shortLabel}</span>
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
 
             {/* Colors */}
             <div className="space-y-2">
@@ -377,13 +346,6 @@ export function FilterSidebar() {
           items={filterData.categories}
           currentValue={currentFilters.category}
           filterKey="category"
-        />
-
-        <DesktopRadioGroup
-          title="Taille"
-          items={filterData.sizes}
-          currentValue={currentFilters.size}
-          filterKey="size"
         />
 
         <DesktopRadioGroup
