@@ -11,7 +11,8 @@ const ColorOptionSchema = new Schema({
     value: { type: String, required: true },
     label: { type: String, required: true },
     isPredefined: { type: Boolean, default: false },
-    colorCodes: { type: [String], default: [] }
+    colorCodes: { type: [String], default: [] },
+    imageUrl: { type: String, default: null } // Image linked to this color
 }, { _id: false });
 
 const BookSchema = new Schema({

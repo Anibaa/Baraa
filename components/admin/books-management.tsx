@@ -6,6 +6,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Edit2, Trash2, Plus, X } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { getColorLabel, getColorCodes } from "@/lib/color-utils"
 import type { Book } from "@/lib/types"
 
 interface BooksManagementProps {
@@ -40,7 +41,28 @@ export function BooksManagement({ books }: BooksManagementProps) {
 
   const handleEdit = (book: Book) => {
     setEditingBook(book)
-    setFormData(book)
+    
+    // Ensure colorOptions exist for all colors
+    const ensuredColorOptions = book.colors.map(color => {
+      // Check if colorOption already exists for this color
+      const existingOption = book.colorOptions?.find(opt => opt.value === color)
+      if (existingOption) {
+        return existingOption
+      }
+      // Create new colorOption with proper color codes
+      return {
+        value: color,
+        label: getColorLabel(color),
+        isPredefined: true,
+        colorCodes: getColorCodes(color),
+        imageUrl: null
+      }
+    })
+    
+    setFormData({
+      ...book,
+      colorOptions: ensuredColorOptions
+    })
     setGalleryImageInput("")
     setDescriptionImageInput("")
     setIsModalOpen(true)
@@ -115,10 +137,28 @@ export function BooksManagement({ books }: BooksManagementProps) {
   const toggleColor = (color: import("@/lib/types").Color) => {
     setFormData((prev) => {
       const colors = prev.colors || []
+      const colorOptions = prev.colorOptions || []
+      
       if (colors.includes(color)) {
-        return { ...prev, colors: colors.filter(c => c !== color) }
+        return { 
+          ...prev, 
+          colors: colors.filter(c => c !== color),
+          colorOptions: colorOptions.filter(opt => opt.value !== color)
+        }
       } else {
-        return { ...prev, colors: [...colors, color] }
+        // Add color with proper color option using color-utils
+        const newColorOption: import("@/lib/types").ColorOption = {
+          value: color,
+          label: getColorLabel(color),
+          isPredefined: true,
+          colorCodes: getColorCodes(color),
+          imageUrl: null
+        }
+        return { 
+          ...prev, 
+          colors: [...colors, color],
+          colorOptions: [...colorOptions, newColorOption]
+        }
       }
     })
   }
@@ -132,7 +172,8 @@ export function BooksManagement({ books }: BooksManagementProps) {
         value: customColor,
         label: customColor,
         isPredefined: false,
-        colorCodes: []
+        colorCodes: [],
+        imageUrl: null
       }
       
       if (customColorHex1.trim()) {
@@ -725,30 +766,6 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   </p>
                 </div>
 
-                {/* Selected Colors List */}
-                {formData.colors && formData.colors.length > 0 && (
-                  <div className="mt-4 p-4 bg-muted/30 rounded-lg">
-                    <p className="text-sm font-medium text-foreground mb-2">Couleurs sélectionnées:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {formData.colors.map((color) => (
-                        <div
-                          key={color}
-                          className="flex items-center gap-2 px-3 py-1 bg-background border border-border rounded-full text-sm"
-                        >
-                          <span>{color}</span>
-                          <button
-                            type="button"
-                            onClick={() => removeCustomColor(color)}
-                            className="text-destructive hover:text-destructive/80 transition-colors"
-                          >
-                            <X className="w-3 h-3" />
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
                 {(!formData.colors || formData.colors.length === 0) && (
                   <p className="text-xs text-destructive mt-2">Veuillez sélectionner au moins une couleur</p>
                 )}
@@ -968,6 +985,126 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   <p className="text-sm text-muted-foreground italic">Aucune image ajoutée</p>
                 )}
               </div>
+
+              {/* Color-Image Association - Only show if both colors and images exist */}
+              {formData.colors && formData.colors.length > 0 && formData.images && formData.images.length > 0 && (
+                <div className="border border-accent/20 rounded-lg p-5 bg-accent/5">
+                  <label className="block text-sm font-semibold text-foreground mb-4">
+                    Association Couleurs - Images
+                  </label>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Associez chaque couleur à une image de la galerie. L'image changera automatiquement quand le client sélectionne une couleur.
+                  </p>
+                  
+                  <div className="space-y-3">
+                    {formData.colors.map((color) => {
+                      const colorOption = formData.colorOptions?.find(opt => opt.value === color)
+                      return (
+                        <div
+                          key={color}
+                          className="flex items-center gap-3 p-3 bg-background border border-border rounded-lg hover:border-accent/50 transition-colors"
+                        >
+                          {/* Color preview */}
+                          <div className="flex items-center gap-2 min-w-[140px]">
+                            {colorOption?.colorCodes && colorOption.colorCodes.length > 0 && (
+                              <div className="flex gap-1">
+                                {colorOption.colorCodes.map((code, idx) => (
+                                  <div
+                                    key={idx}
+                                    className="w-7 h-7 rounded-full border-2 border-gray-300 shadow-sm"
+                                    style={{ backgroundColor: code }}
+                                  />
+                                ))}
+                              </div>
+                            )}
+                            <span className="font-semibold text-sm">{color}</span>
+                          </div>
+                          
+                          {/* Select from gallery dropdown */}
+                          <div className="flex-1">
+                            <select
+                              value={colorOption?.imageUrl || ""}
+                              onChange={(e) => {
+                                const newImageUrl = e.target.value
+                                setFormData((prev) => {
+                                  const colorOptions = prev.colorOptions || []
+                                  const optionIndex = colorOptions.findIndex(opt => opt.value === color)
+                                  
+                                  if (optionIndex >= 0) {
+                                    const newOptions = [...colorOptions]
+                                    newOptions[optionIndex] = {
+                                      ...newOptions[optionIndex],
+                                      imageUrl: newImageUrl || null
+                                    }
+                                    return { ...prev, colorOptions: newOptions }
+                                  } else {
+                                    // Create new color option if it doesn't exist
+                                    const newOption: import("@/lib/types").ColorOption = {
+                                      value: color,
+                                      label: color,
+                                      isPredefined: false,
+                                      colorCodes: [],
+                                      imageUrl: newImageUrl || null
+                                    }
+                                    return { ...prev, colorOptions: [...colorOptions, newOption] }
+                                  }
+                                })
+                              }}
+                              className="w-full px-4 py-2.5 border-2 border-border rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent bg-background hover:border-accent/50 transition-colors"
+                            >
+                              <option value="">🖼️ Aucune image (défaut)</option>
+                              {(formData.images || []).map((img, idx) => (
+                                <option key={idx} value={img}>
+                                  📷 Image {idx + 1} {idx === 0 ? '(Principale)' : ''}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          
+                          {/* Image preview */}
+                          {colorOption?.imageUrl ? (
+                            <div className="relative group">
+                              <img
+                                src={colorOption.imageUrl}
+                                alt={color}
+                                className="w-20 h-20 object-cover rounded-lg border-2 border-accent/40 shadow-md hover:shadow-lg transition-shadow"
+                              />
+                              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                                <span className="text-white text-xs font-semibold">✓ Liée</span>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="w-20 h-20 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center bg-gray-50">
+                              <span className="text-gray-400 text-xs">Défaut</span>
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })}
+                  </div>
+                  
+                  <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                    <p className="text-xs text-blue-800 flex items-start gap-2">
+                      <span className="text-base">💡</span>
+                      <span>
+                        <strong>Astuce:</strong> Sélectionnez une image pour chaque couleur. 
+                        Sur la page produit, l'image changera automatiquement quand le client clique sur une couleur. 
+                        Les couleurs sans image associée afficheront l'image principale par défaut.
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              )}
+              
+              {/* Warning if colors selected but no images */}
+              {formData.colors && formData.colors.length > 0 && (!formData.images || formData.images.length === 0) && (
+                <div className="p-4 bg-yellow-50 border-2 border-yellow-300 rounded-lg">
+                  <p className="text-sm text-yellow-900 font-medium flex items-center gap-2">
+                    <span className="text-xl">⚠️</span>
+                    Ajoutez des images à la galerie pour pouvoir les associer aux couleurs
+                  </p>
+                </div>
+              )}
 
               <div className=" gap-4">
                 <div>

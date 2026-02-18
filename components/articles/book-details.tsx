@@ -25,33 +25,51 @@ export function BookDetails({ book }: BookDetailsProps) {
   const [isFavorite, setIsFavorite] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
+  const [currentImage, setCurrentImage] = useState<string>(book.image)
 
   // Parse color options - merge both colors and colorOptions
   const colorOptions: ColorOption[] = (() => {
-    const allColors = new Set<string>()
     const optionsMap = new Map<string, ColorOption>()
     
-    // Add all colors from book.colors
-    book.colors.forEach(color => allColors.add(color))
-    
-    // Add all colors from book.colorOptions
-    if (book.colorOptions) {
+    // First, add all colorOptions from book.colorOptions (these have imageUrl)
+    if (book.colorOptions && book.colorOptions.length > 0) {
       book.colorOptions.forEach(option => {
-        allColors.add(option.value)
         optionsMap.set(option.value, option)
       })
     }
     
-    // Create ColorOption for each unique color
-    return Array.from(allColors).map(color => {
-      // Use existing colorOption if available, otherwise parse it
-      return optionsMap.get(color) || parseColorOptions([color])[0]
+    // Then, for each color in book.colors, use existing option or create new one
+    return book.colors.map(color => {
+      if (optionsMap.has(color)) {
+        return optionsMap.get(color)!
+      } else {
+        // Create a new ColorOption using parseColorOptions
+        const parsed = parseColorOptions([color])[0]
+        return {
+          ...parsed,
+          imageUrl: null // Ensure imageUrl is set to null for colors without options
+        }
+      }
     })
   })()
 
   useEffect(() => {
     setIsFavorite(isFavorited(book.id))
   }, [book.id])
+
+  // Handle color selection and image change
+  const handleColorSelect = (color: Color) => {
+    setSelectedColor(color)
+    
+    // Find the color option to check if it has a linked image
+    const colorOption = colorOptions.find(opt => opt.value === color)
+    if (colorOption?.imageUrl) {
+      setCurrentImage(colorOption.imageUrl)
+    } else {
+      // Fallback to default image
+      setCurrentImage(book.image)
+    }
+  }
 
   const handleAddToCart = () => {
     addToCart(book, quantity, selectedSize, selectedColor)
@@ -133,12 +151,15 @@ export function BookDetails({ book }: BookDetailsProps) {
 
   // Use images array if available, otherwise fall back to single image
   const galleryImages = book.images && book.images.length > 0 ? book.images : [book.image]
+  
+  // Create gallery with current image as first
+  const displayGallery = [currentImage, ...galleryImages.filter(img => img !== currentImage)]
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12 animate-fadeInUp">
       {/* Gallery */}
       <div>
-        <BookGallery images={galleryImages} title={book.title} />
+        <BookGallery images={displayGallery} title={book.title} />
       </div>
 
       {/* Details */}
@@ -191,7 +212,7 @@ export function BookDetails({ book }: BookDetailsProps) {
             {colorOptions.map((colorOption) => (
               <button
                 key={colorOption.value}
-                onClick={() => setSelectedColor(colorOption.value)}
+                onClick={() => handleColorSelect(colorOption.value)}
                 className="relative"
               >
                 {renderColorCircle(colorOption, selectedColor === colorOption.value)}

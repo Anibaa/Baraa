@@ -15,6 +15,7 @@ export interface ColorOption {
   label: string // Display label
   isPredefined: boolean // Whether it's a predefined color
   colorCodes?: string[] // CSS color codes for display (supports multiple for combinations)
+  imageUrl?: string | null // Image URL linked to this color
 }
 
 export interface ProductVariant {
