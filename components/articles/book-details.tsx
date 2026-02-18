@@ -141,35 +141,35 @@ export function BookDetails({ book }: BookDetailsProps) {
       </div>
 
       {/* Details */}
-      <div>
+      <div className="flex flex-col h-full">
         {/* Badges */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          <span className="text-xs md:text-sm text-white bg-primary px-3 py-1 rounded-full font-semibold">
+        <div className="flex flex-wrap gap-2 mb-4">
+          <span className="text-xs text-white bg-primary px-2.5 py-1 rounded-full font-semibold">
             {getCategoryLabel(book.category)}
           </span>
-          <span className="text-xs md:text-sm text-foreground bg-accent px-3 py-1 rounded-full font-semibold">
-            {book.sizes.length} taille{book.sizes.length > 1 ? 's' : ''} disponible{book.sizes.length > 1 ? 's' : ''}
+          <span className="text-xs text-foreground bg-accent px-2.5 py-1 rounded-full font-semibold">
+            {book.sizes.length} taille{book.sizes.length > 1 ? 's' : ''}
           </span>
-          <span className="text-xs md:text-sm text-foreground bg-secondary px-3 py-1 rounded-full font-semibold">
-            {book.colors.length} couleur{book.colors.length > 1 ? 's' : ''} disponible{book.colors.length > 1 ? 's' : ''}
+          <span className="text-xs text-foreground bg-secondary px-2.5 py-1 rounded-full font-semibold">
+            {book.colors.length} couleur{book.colors.length > 1 ? 's' : ''}
           </span>
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-bold text-card-foreground mb-3 md:mb-4 text-balance">{book.title}</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-card-foreground mb-2 text-balance">{book.title}</h1>
 
-        <p className="text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 font-medium">Par: {book.author}</p>
+        <p className="text-base md:text-lg text-muted-foreground mb-4 font-medium">Par: {book.author}</p>
 
         {/* Size Selection */}
-        <div className="mb-6">
-          <label className="block text-sm font-semibold text-foreground mb-3">
-            Choisir la taille
+        <div className="mb-4">
+          <label className="block text-xs font-semibold text-foreground mb-2">
+            Taille
           </label>
           <div className="flex flex-wrap gap-2">
             {book.sizes.map((size) => (
               <button
                 key={size}
                 onClick={() => setSelectedSize(size)}
-                className={`px-4 py-2 rounded-lg border-2 font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
+                className={`px-3 py-1.5 text-sm rounded-lg border-2 font-semibold transition-all duration-200 hover:scale-105 active:scale-95 ${
                   selectedSize === size
                     ? "border-primary bg-primary text-white shadow-md"
                     : "border-border bg-background hover:border-primary/50"
@@ -182,11 +182,11 @@ export function BookDetails({ book }: BookDetailsProps) {
         </div>
 
         {/* Color Selection */}
-        <div className="mb-8">
-          <label className="block text-sm font-semibold text-foreground mb-3">
-            Choisir la couleur: <span className="text-primary">{getColorLabel(selectedColor)}</span>
+        <div className="mb-4">
+          <label className="block text-xs font-semibold text-foreground mb-2">
+            Couleur: <span className="text-primary">{getColorLabel(selectedColor)}</span>
           </label>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2">
             {colorOptions.map((colorOption) => (
               <button
                 key={colorOption.value}
@@ -201,10 +201,10 @@ export function BookDetails({ book }: BookDetailsProps) {
 
         {/* Description */}
         {book.description && (
-          <div className="mb-8 p-6 md:p-7 bg-primary/5 border border-primary/20 rounded-lg md:rounded-xl hover:border-primary/40 transition-colors overflow-hidden">
-            <h3 className="font-semibold text-card-foreground mb-3 text-base md:text-lg">Description</h3>
+          <div className="mb-4 p-4 bg-primary/5 border border-primary/20 rounded-lg hover:border-primary/40 transition-colors overflow-hidden">
+            <h3 className="font-semibold text-card-foreground mb-2 text-sm">Description</h3>
             <p
-              className={`text-muted-foreground text-pretty text-sm md:text-base leading-relaxed wrap-break-word whitespace-pre-wrap ${!isExpanded ? "line-clamp-2" : ""
+              className={`text-muted-foreground text-pretty text-xs md:text-sm leading-relaxed wrap-break-word whitespace-pre-wrap ${!isExpanded ? "line-clamp-2" : ""
                 }`}
             >
               {book.description}
@@ -212,7 +212,7 @@ export function BookDetails({ book }: BookDetailsProps) {
             {book.description.length > 150 && (
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="mt-2 text-primary font-semibold hover:underline text-sm"
+                className="mt-1.5 text-primary font-semibold hover:underline text-xs"
               >
                 {isExpanded ? "Voir moins" : "Voir plus"}
               </button>
@@ -221,44 +221,44 @@ export function BookDetails({ book }: BookDetailsProps) {
         )}
 
         {/* Specifications */}
-        <div className="grid grid-cols-2 gap-4 mb-8">
-          <div className="p-4 md:p-5 border border-border rounded-lg md:rounded-xl hover:border-primary/50 transition-colors">
-            <div className="flex items-center gap-2 mb-2">
-              <Ruler className="w-4 h-4 text-primary" />
-              <p className="text-xs md:text-sm text-muted-foreground">Taille sélectionnée</p>
+        <div className="grid grid-cols-2 gap-2 mb-4">
+          <div className="p-2.5 border border-border rounded-lg hover:border-primary/50 transition-colors">
+            <div className="flex items-center gap-1.5 mb-1">
+              <Ruler className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+              <p className="text-[10px] text-muted-foreground">Taille</p>
             </div>
-            <p className="font-semibold text-card-foreground text-sm md:text-base">
+            <p className="font-semibold text-card-foreground text-sm">
               {selectedSize}
             </p>
           </div>
 
-          <div className="p-4 md:p-5 border border-border rounded-lg md:rounded-xl hover:border-primary/50 transition-colors">
-            <div className="flex items-center gap-2 mb-2">
-              <Palette className="w-4 h-4 text-primary" />
-              <p className="text-xs md:text-sm text-muted-foreground">Couleur sélectionnée</p>
+          <div className="p-2.5 border border-border rounded-lg hover:border-primary/50 transition-colors">
+            <div className="flex items-center gap-1.5 mb-1">
+              <Palette className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+              <p className="text-[10px] text-muted-foreground">Couleur</p>
             </div>
-            <p className="font-semibold text-card-foreground text-sm md:text-base">
+            <p className="font-semibold text-card-foreground text-sm truncate">
               {getColorLabel(selectedColor)}
             </p>
           </div>
 
-          <div className="p-4 md:p-5 border border-border rounded-lg md:rounded-xl hover:border-primary/50 transition-colors">
-            <div className="flex items-center gap-2 mb-2">
-              <Shirt className="w-4 h-4 text-primary" />
-              <p className="text-xs md:text-sm text-muted-foreground">Catégorie</p>
+          <div className="p-2.5 border border-border rounded-lg hover:border-primary/50 transition-colors">
+            <div className="flex items-center gap-1.5 mb-1">
+              <Shirt className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+              <p className="text-[10px] text-muted-foreground">Catégorie</p>
             </div>
-            <p className="font-semibold text-card-foreground text-sm md:text-base">
+            <p className="font-semibold text-card-foreground text-sm">
               {getCategoryLabel(book.category)}
             </p>
           </div>
 
           {book.fabric && (
-            <div className="p-4 md:p-5 border border-border rounded-lg md:rounded-xl hover:border-primary/50 transition-colors">
-              <div className="flex items-center gap-2 mb-2">
-                <Package className="w-4 h-4 text-primary" />
-                <p className="text-xs md:text-sm text-muted-foreground">Tissu</p>
+            <div className="p-2.5 border border-border rounded-lg hover:border-primary/50 transition-colors">
+              <div className="flex items-center gap-1.5 mb-1">
+                <Package className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                <p className="text-[10px] text-muted-foreground">Tissu</p>
               </div>
-              <p className="font-semibold text-card-foreground text-sm md:text-base">
+              <p className="font-semibold text-card-foreground text-sm">
                 {book.fabric}
               </p>
             </div>
@@ -267,85 +267,85 @@ export function BookDetails({ book }: BookDetailsProps) {
 
         {/* Care Instructions */}
         {book.care && (
-          <div className="mb-8 p-6 md:p-7 bg-accent/5 border border-accent/20 rounded-lg md:rounded-xl">
-            <h3 className="font-semibold text-card-foreground mb-3 text-base md:text-lg flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-accent" />
-              Instructions d'entretien
+          <div className="mb-4 p-3 bg-accent/5 border border-accent/20 rounded-lg">
+            <h3 className="font-semibold text-card-foreground mb-2 text-xs flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-accent" />
+              Entretien
             </h3>
-            <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+            <p className="text-muted-foreground text-xs leading-relaxed">
               {book.care}
             </p>
           </div>
         )}
 
         {/* Price and Actions */}
-        <div className="mb-8 p-6 md:p-8 bg-linear-to-br from-primary/10 to-accent/10 border border-primary/20 rounded-lg md:rounded-xl hover:border-primary/40 transition-colors relative overflow-hidden">
+        <div className="mt-auto p-4 bg-linear-to-br from-primary/10 to-accent/10 border border-primary/20 rounded-lg hover:border-primary/40 transition-colors relative overflow-hidden">
           {book.promoPrice && (
-            <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-md animate-pulse">
+            <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 rounded-full text-xs font-bold shadow-md animate-pulse">
               -{Math.round(((book.price - book.promoPrice) / book.price) * 100 / 5) * 5}%
             </div>
           )}
 
-          <div className="flex items-end gap-3 mb-6">
-            <div className="text-4xl md:text-5xl font-bold text-primary">
+          <div className="flex items-end gap-2 mb-3">
+            <div className="text-3xl font-bold text-primary">
               {book.promoPrice ? `${book.promoPrice} DT` : `${book.price} DT`}
             </div>
             {book.promoPrice && (
-              <div className="text-xl md:text-2xl text-muted-foreground line-through mb-2 opacity-70">
+              <div className="text-lg text-muted-foreground line-through mb-1 opacity-70">
                 {book.price} DT
               </div>
             )}
           </div>
 
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-2 mb-3">
             <button
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
-              className="px-3 md:px-4 py-2 md:py-3 border border-border rounded-lg hover:bg-muted transition-all duration-200 hover:scale-110 active:scale-95 font-semibold"
+              className="px-3 py-1.5 border border-border rounded-lg hover:bg-muted transition-all duration-200 hover:scale-110 active:scale-95 font-semibold text-sm"
             >
               −
             </button>
-            <span className="text-xl md:text-2xl font-bold text-card-foreground min-w-12 md:min-w-16 text-center">
+            <span className="text-lg font-bold text-card-foreground min-w-10 text-center">
               {quantity}
             </span>
             <button
               onClick={() => setQuantity(quantity + 1)}
-              className="px-3 md:px-4 py-2 md:py-3 border border-border rounded-lg hover:bg-muted transition-all duration-200 hover:scale-110 active:scale-95 font-semibold"
+              className="px-3 py-1.5 border border-border rounded-lg hover:bg-muted transition-all duration-200 hover:scale-110 active:scale-95 font-semibold text-sm"
             >
               +
             </button>
           </div>
 
-          <div className="flex flex-col gap-3 mb-6">
+          <div className="flex flex-col gap-2 mb-3">
             <button
               onClick={handleBuyNow}
               disabled={isLoading}
-              className="flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-accent hover:bg-accent/90 disabled:bg-accent/50 text-accent-foreground font-bold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 text-sm md:text-base"
+              className="flex items-center justify-center gap-2 px-4 py-2.5 bg-accent hover:bg-accent/90 disabled:bg-accent/50 text-accent-foreground font-bold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 text-sm"
             >
-              <Zap className="w-5 h-5 md:w-6 md:h-6" />
+              <Zap className="w-4 h-4" />
               {isLoading ? "Traitement..." : "Acheter maintenant"}
             </button>
             <button
               onClick={handleAddToCart}
-              className="flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 text-sm md:text-base"
+              className="flex items-center justify-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 text-sm"
             >
-              <ShoppingCart className="w-5 h-5 md:w-6 md:h-6" />
+              <ShoppingCart className="w-4 h-4" />
               Ajouter au Panier
             </button>
           </div>
 
           {/* Trust Badges */}
-          <div className="space-y-2 text-sm md:text-base">
-            <div className="flex items-center gap-3 text-muted-foreground">
-              <Truck className="w-5 h-5 text-accent" />
-              <span>Livraison rapide et sécurisée</span>
+          <div className="space-y-1.5 text-xs">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Truck className="w-3.5 h-3.5 text-accent flex-shrink-0" />
+              <span>Livraison rapide</span>
             </div>
-            <div className="flex items-center gap-3 text-muted-foreground">
-              <ShieldCheck className="w-5 h-5 text-accent" />
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <ShieldCheck className="w-3.5 h-3.5 text-accent flex-shrink-0" />
               <span>Paiement sécurisé</span>
             </div>
-            <div className="flex items-center gap-3 text-muted-foreground">
-              <Package className="w-5 h-5 text-accent" />
-              <span>Produits authentiques garantis</span>
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Package className="w-3.5 h-3.5 text-accent flex-shrink-0" />
+              <span>Produits authentiques</span>
             </div>
           </div>
         </div>
