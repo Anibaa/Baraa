@@ -7,6 +7,7 @@ import { useCart } from "@/hooks/use-cart"
 import { useToast } from "@/hooks/use-toast"
 import { isFavorited } from "@/lib/personalization"
 import { BookGallery } from "./book-gallery"
+import { QuickOrderForm } from "./quick-order-form"
 import { getColorLabel, getColorCodes, parseColorOptions } from "@/lib/color-utils"
 import type { Book, Size, Color, ColorOption } from "@/lib/types"
 
@@ -316,14 +317,7 @@ export function BookDetails({ book }: BookDetailsProps) {
           </div>
 
           <div className="flex flex-col gap-2 mb-3">
-            <button
-              onClick={handleBuyNow}
-              disabled={isLoading}
-              className="flex items-center justify-center gap-2 px-4 py-2.5 bg-accent hover:bg-accent/90 disabled:bg-accent/50 text-accent-foreground font-bold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 text-sm"
-            >
-              <Zap className="w-4 h-4" />
-              {isLoading ? "Traitement..." : "Acheter maintenant"}
-            </button>
+
             <button
               onClick={handleAddToCart}
               className="flex items-center justify-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 text-sm"
@@ -331,6 +325,14 @@ export function BookDetails({ book }: BookDetailsProps) {
               <ShoppingCart className="w-4 h-4" />
               Ajouter au Panier
             </button>
+            
+            {/* Quick Order Form */}
+            <QuickOrderForm 
+              book={book}
+              quantity={quantity}
+              selectedSize={selectedSize}
+              selectedColor={selectedColor}
+            />
           </div>
 
           {/* Trust Badges */}
