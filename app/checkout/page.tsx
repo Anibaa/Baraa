@@ -16,6 +16,10 @@ import type { CheckoutData } from "@/lib/types"
 export default function CheckoutPage() {
   const router = useRouter()
   const { cart, total, clearCart } = useCart()
+  const DELIVERY_FEE = 8
+  const subtotal = total
+  const totalWithDelivery = subtotal + DELIVERY_FEE
+  
   const [formData, setFormData] = useState<CheckoutData>({
     name: "",
     email: "",
@@ -82,7 +86,7 @@ export default function CheckoutPage() {
           color: item.selectedColor,
           price: item.book.promoPrice || item.book.price
         })),
-        totalPrice: total,
+        totalPrice: totalWithDelivery,
         customerName: formData.name,
         customerEmail: formData.email,
         customerPhone: formData.phone,
@@ -267,9 +271,19 @@ export default function CheckoutPage() {
                     })}
                   </div>
                   <div className="border-t border-border pt-4">
-                    <div className="flex justify-between font-bold text-lg animate-slideUp">
+                    <div className="space-y-2 mb-3">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Sous-total:</span>
+                        <span className="font-medium">{subtotal.toFixed(2)} DT</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Livraison:</span>
+                        <span className="font-medium">{DELIVERY_FEE.toFixed(2)} DT</span>
+                      </div>
+                    </div>
+                    <div className="flex justify-between font-bold text-lg animate-slideUp border-t border-border pt-3">
                       <span>Total :</span>
-                      <span className="text-primary text-xl">{total.toFixed(2)} DT</span>
+                      <span className="text-primary text-xl">{totalWithDelivery.toFixed(2)} DT</span>
                     </div>
                   </div>
                 </div>

@@ -23,8 +23,10 @@ export function QuickOrderForm({ book, quantity, selectedSize, selectedColor }: 
     address: "",
   })
 
+  const DELIVERY_FEE = 8
   const price = book.promoPrice || book.price
-  const totalPrice = price * quantity
+  const subtotal = price * quantity
+  const totalPrice = subtotal + DELIVERY_FEE
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -144,9 +146,19 @@ export function QuickOrderForm({ book, quantity, selectedSize, selectedColor }: 
           />
         </div>
 
-        <div className="flex items-center justify-between pt-1 border-t border-border">
-          <span className="text-xs text-muted-foreground">Total:</span>
-          <span className="text-sm font-bold text-primary">{totalPrice.toFixed(2)} DT</span>
+        <div className="space-y-1 pt-1 border-t border-border">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-muted-foreground">Sous-total:</span>
+            <span className="text-xs font-medium">{subtotal.toFixed(2)} DT</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-muted-foreground">Livraison:</span>
+            <span className="text-xs font-medium">{DELIVERY_FEE.toFixed(2)} DT</span>
+          </div>
+          <div className="flex items-center justify-between pt-1 border-t border-border">
+            <span className="text-xs font-semibold text-foreground">Total:</span>
+            <span className="text-sm font-bold text-primary">{totalPrice.toFixed(2)} DT</span>
+          </div>
         </div>
 
         <button
