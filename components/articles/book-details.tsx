@@ -222,7 +222,7 @@ export function BookDetails({ book }: BookDetailsProps) {
         )}
 
         {/* Specifications */}
-        <div className="grid grid-cols-2 gap-2 mb-4">
+        <div className="grid grid-cols-4 gap-2 mb-4">
           <div className="p-2.5 border border-border rounded-lg hover:border-primary/50 transition-colors">
             <div className="flex items-center gap-1.5 mb-1">
               <Ruler className="w-3.5 h-3.5 text-primary flex-shrink-0" />
