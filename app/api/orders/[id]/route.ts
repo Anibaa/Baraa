@@ -51,8 +51,8 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       )
     }
 
-    // Check if status is changing to "Confirmé"
-    const isConfirming = body.status === "Confirmé" && currentOrder.status !== "Confirmé"
+    // Check if status is changing to "مؤكد" (Confirmé)
+    const isConfirming = body.status === "مؤكد" && currentOrder.status !== "مؤكد"
 
     // Update the order
     const updated = await updateOrder(id, body)

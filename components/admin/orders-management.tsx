@@ -11,17 +11,17 @@ interface OrdersManagementProps {
 }
 
 const statusColors: Record<string, string> = {
-  Préparation: "bg-yellow-100 text-yellow-800",
-  Confirmé: "bg-purple-100 text-purple-800",
-  Livraison: "bg-blue-100 text-blue-800",
-  Livré: "bg-green-100 text-green-800",
+  "قيد التحضير": "bg-yellow-100 text-yellow-800",
+  "مؤكد": "bg-purple-100 text-purple-800",
+  "قيد التوصيل": "bg-blue-100 text-blue-800",
+  "تم التوصيل": "bg-green-100 text-green-800",
 }
 
 export function OrdersManagement({ orders }: OrdersManagementProps) {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
-  const [editingStatus, setEditingStatus] = useState<Order["status"]>("Préparation")
+  const [editingStatus, setEditingStatus] = useState<Order["status"]>("قيد التحضير")
   const [books, setBooks] = useState<any[]>([])
   const [isSaving, setIsSaving] = useState(false)
   const { toast } = useToast()
@@ -254,15 +254,15 @@ export function OrdersManagement({ orders }: OrdersManagementProps) {
                 onChange={(e) => setEditingStatus(e.target.value as Order["status"])}
                 className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
               >
-                <option value="Préparation">Préparation</option>
-                <option value="Confirmé">Confirmé</option>
-                <option value="Livraison">Livraison</option>
-                <option value="Livré">Livré</option>
+                <option value="قيد التحضير">قيد التحضير</option>
+                <option value="مؤكد">مؤكد</option>
+                <option value="قيد التوصيل">قيد التوصيل</option>
+                <option value="تم التوصيل">تم التوصيل</option>
               </select>
               
-              {editingStatus === "Confirmé" && selectedOrder.status !== "Confirmé" && (
+              {editingStatus === "مؤكد" && selectedOrder.status !== "مؤكد" && (
                 <p className="text-xs text-purple-600 mt-2 p-2 bg-purple-50 rounded">
-                  ⚠️ Le passage au statut "Confirmé" diminuera automatiquement le stock des articles
+                  ⚠️ تغيير الحالة إلى "مؤكد" سيقلل تلقائياً من مخزون المنتجات
                 </p>
               )}
             </div>

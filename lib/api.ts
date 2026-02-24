@@ -286,7 +286,7 @@ export async function reduceStock(
     // Update book status if all variants are out of stock
     const allOutOfStock = book.variants.every((v: any) => v.stock === 0);
     if (allOutOfStock) {
-      book.status = 'Hors stock';
+      book.status = 'غير متوفر';
     }
 
     await book.save();

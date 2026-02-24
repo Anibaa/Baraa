@@ -14,11 +14,11 @@ interface BooksManagementProps {
 }
 
 const statusColors: Record<string, string> = {
-  "En stock": "text-green-600",
-  "Hors stock": "text-red-600",
-  Préparation: "text-yellow-600",
-  Livraison: "text-blue-600",
-  Livré: "text-gray-600",
+  "متوفر": "text-green-600",
+  "غير متوفر": "text-red-600",
+  "قيد التحضير": "text-yellow-600",
+  "قيد التوصيل": "text-blue-600",
+  "تم التوصيل": "text-gray-600",
 }
 
 export function BooksManagement({ books }: BooksManagementProps) {
@@ -429,8 +429,8 @@ export function BooksManagement({ books }: BooksManagementProps) {
     <div className="animate-fadeInUp">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
         <div>
-          <h2 className="text-3xl font-bold text-foreground">Gestion des Articles</h2>
-          <p className="text-muted-foreground text-sm mt-1">Gérez votre catalogue d'articles</p>
+          <h2 className="text-3xl font-bold text-foreground">إدارة المنتجات</h2>
+          <p className="text-muted-foreground text-sm mt-1">إدارة كتالوج المنتجات</p>
         </div>
         <button
           onClick={() => {
@@ -443,7 +443,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
           className="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 w-full md:w-auto justify-center md:justify-start"
         >
           <Plus className="w-5 h-5" />
-          Ajouter un Article
+          إضافة منتج
         </button>
       </div>
 
@@ -514,7 +514,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
           <div className="bg-white rounded-lg max-w-2xl w-full p-8 max-h-[90vh] overflow-y-auto shadow-lg border border-border">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-2xl font-bold text-foreground">
-                {editingBook ? "Modifier l'Article" : "Ajouter un Nouvel Article"}
+                {editingBook ? "تعديل المنتج" : "إضافة منتج جديد"}
               </h3>
               <button
                 onClick={() => {
@@ -585,7 +585,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Catégorie</label>
+                  <label className="block text-sm font-semibold text-foreground mb-2">الفئة</label>
                   <select
                     name="category"
                     value={formData.category || ""}
@@ -593,17 +593,17 @@ export function BooksManagement({ books }: BooksManagementProps) {
                     required
                     className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   >
-                    <option value="" disabled>Choisir une catégorie</option>
-                    <option value="abaya">Abaya</option>
-                    <option value="hijab">Hijab</option>
-                    <option value="jilbab">Jilbab</option>
-                    <option value="kaftan">Kaftan</option>
-                    <option value="ensemble">Ensemble</option>
-                    <option value="accessories">Accessoires</option>
+                    <option value="" disabled>اختر الفئة</option>
+                    <option value="عباية">عباية</option>
+                    <option value="حجاب">حجاب</option>
+                    <option value="جلباب">جلباب</option>
+                    <option value="قفطان">قفطان</option>
+                    <option value="طقم">طقم</option>
+                    <option value="إكسسوارات">إكسسوارات</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Statut</label>
+                  <label className="block text-sm font-semibold text-foreground mb-2">الحالة</label>
                   <select
                     name="status"
                     value={formData.status || ""}
@@ -611,12 +611,12 @@ export function BooksManagement({ books }: BooksManagementProps) {
                     required
                     className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   >
-                    <option value="" disabled>Choisir un statut</option>
-                    <option value="En stock">En stock</option>
-                    <option value="Hors stock">Hors stock</option>
-                    <option value="Préparation">Préparation</option>
-                    <option value="Livraison">Livraison</option>
-                    <option value="Livré">Livré</option>
+                    <option value="" disabled>اختر الحالة</option>
+                    <option value="متوفر">متوفر</option>
+                    <option value="غير متوفر">غير متوفر</option>
+                    <option value="قيد التحضير">قيد التحضير</option>
+                    <option value="قيد التوصيل">قيد التوصيل</option>
+                    <option value="تم التوصيل">تم التوصيل</option>
                   </select>
                 </div>
               </div>
@@ -624,10 +624,10 @@ export function BooksManagement({ books }: BooksManagementProps) {
               {/* Tailles Selection */}
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-3">
-                  Tailles disponibles <span className="text-destructive">*</span>
+                  المقاسات المتوفرة <span className="text-destructive">*</span>
                 </label>
                 <div className="flex flex-wrap gap-2">
-                  {(["S", "M", "L", "XL", "XXL", "Unique"] as const).map((size) => (
+                  {(["S", "M", "L", "XL", "XXL", "مقاس واحد"] as const).map((size) => (
                     <button
                       key={size}
                       type="button"
@@ -643,31 +643,31 @@ export function BooksManagement({ books }: BooksManagementProps) {
                   ))}
                 </div>
                 {(!formData.sizes || formData.sizes.length === 0) && (
-                  <p className="text-xs text-destructive mt-2">Veuillez sélectionner au moins une taille</p>
+                  <p className="text-xs text-destructive mt-2">يرجى اختيار مقاس واحد على الأقل</p>
                 )}
               </div>
 
               {/* Couleurs Selection */}
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-3">
-                  Couleurs disponibles <span className="text-destructive">*</span>
+                  الألوان المتوفرة <span className="text-destructive">*</span>
                 </label>
                 
                 {/* Predefined Colors */}
                 <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 mb-4">
                   {([
-                    { value: "noir", label: "Noir", bg: "bg-black" },
-                    { value: "blanc", label: "Blanc", bg: "bg-white border-2 border-gray-300" },
-                    { value: "beige", label: "Beige", bg: "bg-[#F5F5DC]" },
-                    { value: "or", label: "Or", bg: "bg-[#FFD700]" },
-                    { value: "bronze", label: "Bronze", bg: "bg-[#CD7F32]" },
-                    { value: "rose", label: "Rose", bg: "bg-[#FFC0CB]" },
-                    { value: "bleu", label: "Bleu", bg: "bg-blue-500" },
-                    { value: "vert", label: "Vert", bg: "bg-green-500" },
-                    { value: "bordeaux", label: "Bordeaux", bg: "bg-[#800020]" },
-                    { value: "gris", label: "Gris", bg: "bg-gray-500" },
-                    { value: "marron", label: "Marron", bg: "bg-[#8B4513]" },
-                    { value: "turquoise", label: "Turquoise", bg: "bg-[#40E0D0]" },
+                    { value: "أسود", label: "أسود", bg: "bg-black" },
+                    { value: "أبيض", label: "أبيض", bg: "bg-white border-2 border-gray-300" },
+                    { value: "بيج", label: "بيج", bg: "bg-[#F5F5DC]" },
+                    { value: "ذهبي", label: "ذهبي", bg: "bg-[#FFD700]" },
+                    { value: "برونزي", label: "برونزي", bg: "bg-[#CD7F32]" },
+                    { value: "وردي", label: "وردي", bg: "bg-[#FFC0CB]" },
+                    { value: "أزرق", label: "أزرق", bg: "bg-blue-500" },
+                    { value: "أخضر", label: "أخضر", bg: "bg-green-500" },
+                    { value: "عنابي", label: "عنابي", bg: "bg-[#800020]" },
+                    { value: "رمادي", label: "رمادي", bg: "bg-gray-500" },
+                    { value: "بني", label: "بني", bg: "bg-[#8B4513]" },
+                    { value: "تركواز", label: "تركواز", bg: "bg-[#40E0D0]" },
                   ] as const).map((color) => (
                     <button
                       key={color.value}
@@ -688,7 +688,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
                 {/* Add Custom Color */}
                 <div className="border-t border-border pt-4">
                   <label className="block text-sm font-medium text-foreground mb-3">
-                    Ajouter une couleur personnalisée
+                    إضافة لون مخصص
                   </label>
                   
                   <div className="space-y-3">

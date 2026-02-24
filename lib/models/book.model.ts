@@ -2,7 +2,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 const ProductVariantSchema = new Schema({
-    size: { type: String, enum: ["S", "M", "L", "XL", "XXL", "Unique"], required: true },
+    size: { type: String, enum: ["S", "M", "L", "XL", "XXL", "مقاس واحد"], required: true },
     color: { type: String, required: true }, // Allow any string for custom colors
     stock: { type: Number, default: 0 }
 }, { _id: false });
@@ -18,8 +18,8 @@ const ColorOptionSchema = new Schema({
 const BookSchema = new Schema({
     title: { type: String, required: true },
     author: { type: String, required: true },
-    category: { type: String, enum: ["abaya", "hijab", "jilbab", "kaftan", "ensemble", "accessories"], required: true },
-    sizes: { type: [String], enum: ["S", "M", "L", "XL", "XXL", "Unique"], required: true },
+    category: { type: String, enum: ["عباية", "حجاب", "جلباب", "قفطان", "طقم", "إكسسوارات"], required: true },
+    sizes: { type: [String], enum: ["S", "M", "L", "XL", "XXL", "مقاس واحد"], required: true },
     colors: { type: [String], required: true }, // Allow any strings for custom colors
     colorOptions: { type: [ColorOptionSchema], default: [] }, // Detailed color info
     variants: { type: [ProductVariantSchema], default: [] },
@@ -30,7 +30,7 @@ const BookSchema = new Schema({
     description: { type: String },
     rating: { type: Number, default: 0 },
     reviews: { type: Number, default: 0 },
-    status: { type: String, enum: ["En stock", "Hors stock", "Préparation", "Livraison", "Livré"], default: "En stock" },
+    status: { type: String, enum: ["متوفر", "غير متوفر", "قيد التحضير", "قيد التوصيل", "تم التوصيل"], default: "متوفر" },
     specifications: { type: Map, of: String },
     descriptionImages: { type: [String], default: [] },
     fabric: { type: String },

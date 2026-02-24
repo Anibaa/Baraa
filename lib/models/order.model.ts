@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 const OrderItemSchema = new Schema({
     bookId: { type: String, required: true },
     quantity: { type: Number, required: true },
-    size: { type: String, enum: ["S", "M", "L", "XL", "XXL", "Unique"], required: true },
+    size: { type: String, enum: ["S", "M", "L", "XL", "XXL", "مقاس واحد"], required: true },
     color: { type: String, required: true }, // Allow any string for custom colors
     price: { type: Number, required: true }
 }, { _id: false });
@@ -16,7 +16,7 @@ const OrderSchema = new Schema({
     customerPhone: { type: String, required: true },
     address: { type: String, required: true },
     paymentMethod: { type: String, default: 'Card' },
-    status: { type: String, enum: ['Préparation', 'Confirmé', 'Livraison', 'Livré'], default: 'Préparation' },
+    status: { type: String, enum: ['قيد التحضير', 'مؤكد', 'قيد التوصيل', 'تم التوصيل'], default: 'قيد التحضير' },
     createdAt: { type: Date, default: Date.now },
 }, {
     timestamps: true,

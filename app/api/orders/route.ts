@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
       customerPhone: body.customerPhone,
       address: body.address,
       paymentMethod: body.paymentMethod || "Card",
-      status: "Préparation",
+      status: "قيد التحضير",
     })
 
     return NextResponse.json(

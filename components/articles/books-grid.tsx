@@ -60,9 +60,9 @@ export function BooksGrid({ books, searchQuery }: BooksGridProps) {
                     -{Math.round(((book.price - book.promoPrice) / book.price) * 100 / 5) * 5}%
                   </div>
                 )}
-                {book.status === "Hors stock" && (
+                {book.status === "غير متوفر" && (
                   <div className="bg-gray-900/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-medium shadow-xl">
-                    Épuisé
+                    غير متوفر
                   </div>
                 )}
               </div>
@@ -86,10 +86,10 @@ export function BooksGrid({ books, searchQuery }: BooksGridProps) {
                  book.category === "hijab" ? "Hijab" : 
                  book.category === "jilbab" ? "Jilbab" : 
                  book.category === "kaftan" ? "Kaftan" : 
-                 book.category === "ensemble" ? "Ensemble" : "Accessoire"}
+                 book.category === "طقم" ? "طقم" : "إكسسوار"}
               </span>
-              {book.status === "En stock" && (
-                <span className="text-[10px] text-green-600 dark:text-green-400 font-medium">● Stock</span>
+              {book.status === "متوفر" && (
+                <span className="text-[10px] text-green-600 dark:text-green-400 font-medium">● متوفر</span>
               )}
             </div>
 

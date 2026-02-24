@@ -12,8 +12,8 @@ export function AdminStatistics({ books, orders }: AdminStatisticsProps) {
   const totalBooks = books.length
   const totalOrders = orders.length
   const totalRevenue = orders.reduce((sum, order) => sum + order.totalPrice, 0)
-  const inStock = books.filter((b) => b.status === "En stock").length
-  const outOfStock = books.filter((b) => b.status === "Hors stock").length
+  const inStock = books.filter((b) => b.status === "متوفر").length
+  const outOfStock = books.filter((b) => b.status === "غير متوفر").length
 
   const stats = [
     { label: "Livres Totaux", value: totalBooks, icon: BookOpen, color: "text-blue-500" },
@@ -24,7 +24,7 @@ export function AdminStatistics({ books, orders }: AdminStatisticsProps) {
       icon: DollarSign,
       color: "text-amber-500",
     },
-    { label: "En Stock", value: inStock, icon: TrendingUp, color: "text-emerald-500" },
+    { label: "متوفر", value: inStock, icon: TrendingUp, color: "text-emerald-500" },
   ]
 
   return (
@@ -60,16 +60,16 @@ export function AdminStatistics({ books, orders }: AdminStatisticsProps) {
           <h3 className="text-lg font-bold text-foreground mb-4">État des Livres</h3>
           <div className="space-y-3">
             {[
-              { status: "En stock", count: inStock, color: "bg-green-500" },
-              { status: "Hors stock", count: outOfStock, color: "bg-red-500" },
+              { status: "متوفر", count: inStock, color: "bg-green-500" },
+              { status: "غير متوفر", count: outOfStock, color: "bg-red-500" },
               {
-                status: "En préparation",
-                count: books.filter((b) => b.status === "Préparation").length,
+                status: "قيد التحضير",
+                count: books.filter((b) => b.status === "قيد التحضير").length,
                 color: "bg-yellow-500",
               },
               {
-                status: "En livraison",
-                count: books.filter((b) => b.status === "Livraison").length,
+                status: "قيد التوصيل",
+                count: books.filter((b) => b.status === "قيد التوصيل").length,
                 color: "bg-blue-500",
               },
               { status: "Livré", count: books.filter((b) => b.status === "Livré").length, color: "bg-gray-500" },
@@ -91,13 +91,13 @@ export function AdminStatistics({ books, orders }: AdminStatisticsProps) {
           <div className="space-y-3">
             {[
               {
-                status: "Préparation",
-                count: orders.filter((o) => o.status === "Préparation").length,
+                status: "قيد التحضير",
+                count: orders.filter((o) => o.status === "قيد التحضير").length,
                 color: "bg-yellow-500",
               },
               {
-                status: "Livraison",
-                count: orders.filter((o) => o.status === "Livraison").length,
+                status: "قيد التوصيل",
+                count: orders.filter((o) => o.status === "قيد التوصيل").length,
                 color: "bg-blue-500",
               },
               { status: "Livré", count: orders.filter((o) => o.status === "Livré").length, color: "bg-green-500" },
