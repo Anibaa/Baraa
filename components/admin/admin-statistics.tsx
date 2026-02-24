@@ -19,8 +19,8 @@ export function AdminStatistics({ books, orders }: AdminStatisticsProps) {
     { label: "Livres Totaux", value: totalBooks, icon: BookOpen, color: "text-blue-500" },
     { label: "Commandes", value: totalOrders, icon: ShoppingBag, color: "text-green-500" },
     {
-      label: "Chiffre d'affaires",
-      value: `${totalRevenue.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} DT`, // Format to handle large numbers better
+      label: "رقم الأعمال",
+      value: `${totalRevenue.toLocaleString("ar-TN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} د.ت`,
       icon: DollarSign,
       color: "text-amber-500",
     },

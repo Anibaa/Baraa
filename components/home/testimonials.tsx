@@ -3,21 +3,21 @@ import { Star } from "lucide-react"
 export function Testimonials() {
   const testimonials = [
     {
-      name: "Amira Ben Salem",
-      role: "Cliente Fidèle",
-      content: "Des vêtements élégants et de qualité exceptionnelle. Barra comprend vraiment le style féminin moderne",
+      name: "أميرة بن سالم",
+      role: "عميلة مخلصة",
+      content: "ملابس أنيقة وجودة استثنائية. براءة تفهم حقاً الأسلوب النسائي العصري",
       rating: 5,
     },
     {
-      name: "Salma Trabelsi",
-      role: "Fashionista",
-      content: "J'adore la collection Barra ! Des pièces uniques qui me font sentir belle et confiante",
+      name: "سلمى الطرابلسي",
+      role: "عاشقة الموضة",
+      content: "أحب مجموعة براءة! قطع فريدة تجعلني أشعر بالجمال والثقة",
       rating: 5,
     },
     {
-      name: "Nour Hamdi",
-      role: "Professionnelle",
-      content: "Parfait pour le bureau et les sorties. Barra offre l'équilibre idéal entre élégance et confort",
+      name: "نور الحمدي",
+      role: "محترفة",
+      content: "مثالية للمكتب والخروجات. براءة تقدم التوازن المثالي بين الأناقة والراحة",
       rating: 4.5,
     },
   ]
@@ -26,10 +26,10 @@ export function Testimonials() {
     <section className="py-12 md:py-20 px-4 md:px-8 bg-card border-t border-border">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 text-primary animate-fadeInUp">
-          Avis de Nos Clientes
+          آراء عميلاتنا
         </h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto text-sm md:text-base animate-slideUp">
-          Découvrez ce que nos clientes disent de leur expérience avec Barra
+          اكتشفي ما تقوله عميلاتنا عن تجربتهن مع براءة
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

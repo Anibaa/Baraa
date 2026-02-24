@@ -22,18 +22,18 @@ export async function generateMetadata({ params }: BookPageProps): Promise<Metad
 
   if (!book) {
     return {
-      title: "Livre non trouvé",
+      title: "المنتج غير موجود",
     }
   }
 
   return {
-    title: `${book.title} - Baraa`,
+    title: `${book.title} - براءة`,
     description: book.description,
-    keywords: [book.title, book.author, book.category, book.level, "livre éducatif", "tunisie"],
+    keywords: [book.title, book.author, book.category, "أزياء إسلامية", "تونس"],
     openGraph: {
       type: "website",
-      locale: "fr_TN",
-      url: `https://Baraa.com/books/${book.id}`,
+      locale: "ar_TN",
+      url: `https://baraa.com/books/${book.id}`,
       title: book.title,
       description: book.description,
       images: [

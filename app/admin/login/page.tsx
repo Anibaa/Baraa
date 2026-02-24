@@ -79,7 +79,7 @@ export default function AdminLoginPage() {
 
             <div className="mt-6 pt-6 border-t border-border">
               <Link href="/" className="text-center block text-sm text-primary hover:text-primary/80 transition-colors">
-                Retour à l'accueil
+                العودة للرئيسية
               </Link>
             </div>
           </div>

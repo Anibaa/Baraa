@@ -5,17 +5,17 @@ export function PromotionBanner() {
   const features = [
     {
       icon: Sparkles,
-      text: "Nouvelle collection printemps",
+      text: "مجموعة الربيع الجديدة",
       delay: "0s",
     },
     {
       icon: TrendingUp,
-      text: "Tendances mode 2026",
+      text: "صيحات موضة 2026",
       delay: "0.1s",
     },
     {
       icon: Shirt,
-      text: "Qualité premium garantie",
+      text: "جودة فاخرة مضمونة",
       delay: "0.2s",
     },
   ]
@@ -32,10 +32,10 @@ export function PromotionBanner() {
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <div className="flex-1 animate-slideInLeft">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4 text-balance">
-              Découvrez notre collection de vêtements
+              اكتشفي مجموعة ملابسنا
             </h2>
             <p className="text-white/90 text-base md:text-lg mb-6 md:mb-8">
-              Explorez les dernières tendances mode et trouvez le style qui vous correspond
+              استكشفي أحدث صيحات الموضة واعثري على الأسلوب الذي يناسبك
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
@@ -43,14 +43,14 @@ export function PromotionBanner() {
                 className="inline-flex items-center gap-2 px-6 md:px-8 py-3 bg-secondary hover:bg-secondary/90 text-foreground font-semibold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 animate-slideUp"
               >
                 <Shirt className="w-5 h-5" />
-                Voir le blog mode
+                شاهد مدونة الموضة
               </Link>
               <Link
                 href="/faq"
                 className="inline-flex items-center gap-2 px-6 md:px-8 py-3 bg-white/20 hover:bg-white/30 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 animate-slideUp backdrop-blur-sm border border-white/30"
                 style={{ animationDelay: "0.1s" }}
               >
-                Questions fréquentes
+                الأسئلة الشائعة
               </Link>
             </div>
           </div>

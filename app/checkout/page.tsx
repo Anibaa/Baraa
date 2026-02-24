@@ -37,12 +37,12 @@ export default function CheckoutPage() {
         <Header />
         <main className="min-h-screen bg-muted/30 flex items-center justify-center">
           <div className="text-center animate-fadeInUp">
-            <p className="text-lg text-muted-foreground mb-4">Votre panier est vide</p>
+            <p className="text-lg text-muted-foreground mb-4">سلتك فارغة</p>
             <Link
               href="/books"
               className="inline-block bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-all duration-200 hover:scale-105 active:scale-95"
             >
-              Continuer vos achats
+              متابعة التسوق
             </Link>
           </div>
         </main>
@@ -75,7 +75,7 @@ export default function CheckoutPage() {
 
       if (invalidItems.length > 0) {
         console.error("Invalid cart items:", invalidItems)
-        throw new Error("Certains articles du panier sont invalides. Veuillez vider votre panier et réessayer.")
+        throw new Error("بعض المنتجات في السلة غير صالحة. يرجى إفراغ سلتك والمحاولة مرة أخرى.")
       }
 
       const orderData = {
@@ -106,7 +106,7 @@ export default function CheckoutPage() {
       console.log("Order response:", result)
 
       if (!response.ok) {
-        throw new Error(result.error || "Échec de la création de la commande")
+        throw new Error(result.error || "فشل في إنشاء الطلب")
       }
 
       setIsSuccess(true)
@@ -117,7 +117,7 @@ export default function CheckoutPage() {
       }, 1500)
     } catch (err) {
       console.error("Order error:", err)
-      setError(err instanceof Error ? err.message : "Une erreur est survenue lors de la création de votre commande")
+      setError(err instanceof Error ? err.message : "حدث خطأ أثناء إنشاء طلبك")
     } finally {
       setIsLoading(false)
     }
@@ -133,10 +133,10 @@ export default function CheckoutPage() {
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 mb-8 transition-all duration-200 hover:scale-105 active:scale-95 animate-slideInLeft"
           >
             <ArrowLeft className="w-4 h-4" />
-            Retour au panier
+            العودة للسلة
           </Link>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-8 animate-fadeInUp">Passer la commande</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-8 animate-fadeInUp">إتمام الطلب</h1>
 
           {isSuccess ? (
             <div className="flex items-center justify-center py-16 animate-scaleIn">
@@ -147,8 +147,8 @@ export default function CheckoutPage() {
                     <CheckCircle2 className="w-20 h-20 text-green-600 relative animate-scaleIn" />
                   </div>
                 </div>
-                <h2 className="text-2xl font-bold text-foreground mb-2">Commande en cours de traitement</h2>
-                <p className="text-muted-foreground mb-6">Redirection vers la confirmation...</p>
+                <h2 className="text-2xl font-bold text-foreground mb-2">جاري معالجة الطلب</h2>
+                <p className="text-muted-foreground mb-6">إعادة التوجيه إلى التأكيد...</p>
                 <LoadingSpinner />
               </div>
             </div>
@@ -168,7 +168,7 @@ export default function CheckoutPage() {
                     )}
 
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">Nom complet</label>
+                      <label className="block text-sm font-medium text-foreground mb-2">الاسم الكامل</label>
                       <input
                         type="text"
                         name="name"
@@ -176,26 +176,26 @@ export default function CheckoutPage() {
                         value={formData.name}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200"
-                        placeholder="Votre nom"
+                        placeholder="اسمك الكامل"
                         disabled={isLoading}
                       />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                        <label className="block text-sm font-medium text-foreground mb-2">البريد الإلكتروني</label>
                         <input
                           type="email"
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
                           className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200"
-                          placeholder="votre@email.com"
+                          placeholder="بريدك@الإلكتروني.com"
                           disabled={isLoading}
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">Téléphone</label>
+                        <label className="block text-sm font-medium text-foreground mb-2">رقم الهاتف</label>
                         <input
                           type="tel"
                           name="phone"
@@ -210,7 +210,7 @@ export default function CheckoutPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">Adresse</label>
+                      <label className="block text-sm font-medium text-foreground mb-2">العنوان</label>
                       <textarea
                         name="address"
                         required
@@ -218,7 +218,7 @@ export default function CheckoutPage() {
                         onChange={handleChange}
                         rows={4}
                         className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200 resize-none"
-                        placeholder="Votre adresse complète"
+                        placeholder="عنوانك الكامل"
                         disabled={isLoading}
                       />
                     </div>
@@ -236,7 +236,7 @@ export default function CheckoutPage() {
                           Traitement...
                         </>
                       ) : (
-                        "Confirmer l'achat"
+                        "تأكيد الشراء"
                       )}
                     </button>
                   </form>
@@ -245,7 +245,7 @@ export default function CheckoutPage() {
 
               <div className="lg:col-span-1">
                 <div className="bg-white rounded-lg shadow-soft p-6 sticky top-20 animate-slideInRight">
-                  <h2 className="text-lg font-bold text-foreground mb-4">Résumé de la commande</h2>
+                  <h2 className="text-lg font-bold text-foreground mb-4">ملخص الطلب</h2>
                   <div className="space-y-3 mb-4 max-h-64 overflow-y-auto">
                     {cart.map((item, idx) => {
                       const price = item.book.promoPrice || item.book.price
@@ -260,7 +260,7 @@ export default function CheckoutPage() {
                               {item.book.title} <span className="font-semibold">x{item.quantity}</span>
                             </span>
                             <span className="font-medium flex-shrink-0 ml-2">
-                              {(price * item.quantity).toFixed(2)} DT
+                              {(price * item.quantity).toFixed(2)} د.ت
                             </span>
                           </div>
                           <div className="text-xs text-muted-foreground">
@@ -273,17 +273,17 @@ export default function CheckoutPage() {
                   <div className="border-t border-border pt-4">
                     <div className="space-y-2 mb-3">
                       <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Sous-total:</span>
-                        <span className="font-medium">{subtotal.toFixed(2)} DT</span>
+                        <span className="text-muted-foreground">المجموع الفرعي:</span>
+                        <span className="font-medium">{subtotal.toFixed(2)} د.ت</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-muted-foreground">Livraison:</span>
-                        <span className="font-medium">{DELIVERY_FEE.toFixed(2)} DT</span>
+                        <span className="text-muted-foreground">التوصيل:</span>
+                        <span className="font-medium">{DELIVERY_FEE.toFixed(2)} د.ت</span>
                       </div>
                     </div>
                     <div className="flex justify-between font-bold text-lg animate-slideUp border-t border-border pt-3">
-                      <span>Total :</span>
-                      <span className="text-primary text-xl">{totalWithDelivery.toFixed(2)} DT</span>
+                      <span>المجموع:</span>
+                      <span className="text-primary text-xl">{totalWithDelivery.toFixed(2)} د.ت</span>
                     </div>
                   </div>
                 </div>

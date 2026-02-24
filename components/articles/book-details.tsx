@@ -74,8 +74,8 @@ export function BookDetails({ book }: BookDetailsProps) {
   const handleAddToCart = () => {
     addToCart(book, quantity, selectedSize, selectedColor)
     toast({
-      title: "Succès",
-      description: `${quantity} article(s) "${book.title}" (${selectedSize}, ${getColorLabel(selectedColor)}) ajouté(s) au panier`,
+      title: "نجح",
+      description: `تمت إضافة ${quantity} منتج "${book.title}" (${selectedSize}, ${getColorLabel(selectedColor)}) إلى السلة`,
     })
   }
 
@@ -86,15 +86,22 @@ export function BookDetails({ book }: BookDetailsProps) {
     router.push("/checkout")
   }
 
-  // Category labels
+  // Category labels in Arabic
   const getCategoryLabel = (category: string) => {
     const labels: Record<string, string> = {
-      abaya: "Abaya",
-      hijab: "Hijab",
-      jilbab: "Jilbab",
-      kaftan: "Kaftan",
-      ensemble: "Ensemble",
-      accessories: "Accessoires"
+      "عباية": "عباية",
+      "حجاب": "حجاب",
+      "جلباب": "جلباب",
+      "قفطان": "قفطان",
+      "طقم": "طقم",
+      "إكسسوارات": "إكسسوارات",
+      // Legacy support
+      abaya: "عباية",
+      hijab: "حجاب",
+      jilbab: "جلباب",
+      kaftan: "قفطان",
+      ensemble: "طقم",
+      accessories: "إكسسوارات"
     }
     return labels[category] || category
   }
@@ -104,7 +111,7 @@ export function BookDetails({ book }: BookDetailsProps) {
     const { colorCodes } = colorOption
     
     if (colorCodes && colorCodes.length > 1) {
-      // Combined colors - show 2 separate circles side by side
+      // Combined colors - show 2 separate circles side by side (reversed for RTL)
       return (
         <div
           className={`flex gap-1 p-1 rounded-full transition-all duration-200 hover:scale-110 active:scale-95 ${
@@ -114,12 +121,12 @@ export function BookDetails({ book }: BookDetailsProps) {
           }`}
           title={colorOption.label}
         >
-          {colorCodes.map((code, index) => {
+          {colorCodes.slice().reverse().map((code, index) => {
             const needsBorder = code.toLowerCase() === "#ffffff" || code.toLowerCase() === "#fff"
             return (
               <div
                 key={index}
-                className={`w-5 h-10 ${index === 0 ? 'rounded-l-full' : 'rounded-r-full'} ${
+                className={`w-5 h-10 ${index === 0 ? 'rounded-r-full' : 'rounded-l-full'} ${
                   needsBorder ? "border border-gray-300" : ""
                 }`}
                 style={{ backgroundColor: code }}
@@ -170,21 +177,21 @@ export function BookDetails({ book }: BookDetailsProps) {
             {getCategoryLabel(book.category)}
           </span>
           <span className="text-xs text-foreground bg-accent px-2.5 py-1 rounded-full font-semibold">
-            {book.sizes.length} taille{book.sizes.length > 1 ? 's' : ''}
+            {book.sizes.length} مقاس{book.sizes.length > 1 ? 'ات' : ''}
           </span>
           <span className="text-xs text-foreground bg-secondary px-2.5 py-1 rounded-full font-semibold">
-            {book.colors.length} couleur{book.colors.length > 1 ? 's' : ''}
+            {book.colors.length} لون{book.colors.length > 1 ? '' : ''}
           </span>
         </div>
 
         <h1 className="text-2xl md:text-3xl font-bold text-card-foreground mb-2 text-balance">{book.title}</h1>
 
-        <p className="text-base md:text-lg text-muted-foreground mb-4 font-medium">Par: {book.author}</p>
+        <p className="text-base md:text-lg text-muted-foreground mb-4 font-medium">من: {book.author}</p>
 
         {/* Size Selection */}
         <div className="mb-4">
           <label className="block text-xs font-semibold text-foreground mb-2">
-            Taille
+            المقاس
           </label>
           <div className="flex flex-wrap gap-2">
             {book.sizes.map((size) => (
@@ -206,7 +213,7 @@ export function BookDetails({ book }: BookDetailsProps) {
         {/* Color Selection */}
         <div className="mb-4">
           <label className="block text-xs font-semibold text-foreground mb-2">
-            Couleur: <span className="text-primary">{getColorLabel(selectedColor)}</span>
+            اللون: <span className="text-primary">{getColorLabel(selectedColor)}</span>
           </label>
           <div className="flex flex-wrap gap-2">
             {colorOptions.map((colorOption) => (
@@ -224,7 +231,7 @@ export function BookDetails({ book }: BookDetailsProps) {
         {/* Description */}
         {book.description && (
           <div className="mb-4 p-4 bg-primary/5 border border-primary/20 rounded-lg hover:border-primary/40 transition-colors overflow-hidden">
-            <h3 className="font-semibold text-card-foreground mb-2 text-sm">Description</h3>
+            <h3 className="font-semibold text-card-foreground mb-2 text-sm">الوصف</h3>
             <p
               className={`text-muted-foreground text-pretty text-xs md:text-sm leading-relaxed wrap-break-word whitespace-pre-wrap ${!isExpanded ? "line-clamp-2" : ""
                 }`}
@@ -236,7 +243,7 @@ export function BookDetails({ book }: BookDetailsProps) {
                 onClick={() => setIsExpanded(!isExpanded)}
                 className="mt-1.5 text-primary font-semibold hover:underline text-xs"
               >
-                {isExpanded ? "Voir moins" : "Voir plus"}
+                {isExpanded ? "عرض أقل" : "عرض المزيد"}
               </button>
             )}
           </div>
@@ -247,7 +254,7 @@ export function BookDetails({ book }: BookDetailsProps) {
           <div className="p-2.5 border border-border rounded-lg hover:border-primary/50 transition-colors">
             <div className="flex items-center gap-1.5 mb-1">
               <Ruler className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-              <p className="text-[10px] text-muted-foreground">Taille</p>
+              <p className="text-[10px] text-muted-foreground">المقاس</p>
             </div>
             <p className="font-semibold text-card-foreground text-sm">
               {selectedSize}
@@ -257,7 +264,7 @@ export function BookDetails({ book }: BookDetailsProps) {
           <div className="p-2.5 border border-border rounded-lg hover:border-primary/50 transition-colors">
             <div className="flex items-center gap-1.5 mb-1">
               <Palette className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-              <p className="text-[10px] text-muted-foreground">Couleur</p>
+              <p className="text-[10px] text-muted-foreground">اللون</p>
             </div>
             <p className="font-semibold text-card-foreground text-sm truncate">
               {getColorLabel(selectedColor)}
@@ -267,7 +274,7 @@ export function BookDetails({ book }: BookDetailsProps) {
           <div className="p-2.5 border border-border rounded-lg hover:border-primary/50 transition-colors">
             <div className="flex items-center gap-1.5 mb-1">
               <Shirt className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-              <p className="text-[10px] text-muted-foreground">Catégorie</p>
+              <p className="text-[10px] text-muted-foreground">الفئة</p>
             </div>
             <p className="font-semibold text-card-foreground text-sm">
               {getCategoryLabel(book.category)}
@@ -278,7 +285,7 @@ export function BookDetails({ book }: BookDetailsProps) {
             <div className="p-2.5 border border-border rounded-lg hover:border-primary/50 transition-colors">
               <div className="flex items-center gap-1.5 mb-1">
                 <Package className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                <p className="text-[10px] text-muted-foreground">Tissu</p>
+                <p className="text-[10px] text-muted-foreground">القماش</p>
               </div>
               <p className="font-semibold text-card-foreground text-sm">
                 {book.fabric}
@@ -292,7 +299,7 @@ export function BookDetails({ book }: BookDetailsProps) {
           <div className="mb-4 p-3 bg-accent/5 border border-accent/20 rounded-lg">
             <h3 className="font-semibold text-card-foreground mb-2 text-xs flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-accent" />
-              Entretien
+              العناية
             </h3>
             <p className="text-muted-foreground text-xs leading-relaxed">
               {book.care}
@@ -310,11 +317,11 @@ export function BookDetails({ book }: BookDetailsProps) {
 
           <div className="flex items-end gap-2 mb-3">
             <div className="text-3xl font-bold text-primary">
-              {book.promoPrice ? `${book.promoPrice} DT` : `${book.price} DT`}
+              {book.promoPrice ? `${book.promoPrice} د.ت` : `${book.price} د.ت`}
             </div>
             {book.promoPrice && (
               <div className="text-lg text-muted-foreground line-through mb-1 opacity-70">
-                {book.price} DT
+                {book.price} د.ت
               </div>
             )}
           </div>
@@ -344,7 +351,7 @@ export function BookDetails({ book }: BookDetailsProps) {
               className="flex items-center justify-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg transition-all duration-200 hover:shadow-soft-hover hover:scale-105 active:scale-95 text-sm"
             >
               <ShoppingCart className="w-4 h-4" />
-              Ajouter au Panier
+              أضف إلى السلة
             </button>
             
             {/* Quick Order Form */}
@@ -360,15 +367,15 @@ export function BookDetails({ book }: BookDetailsProps) {
           <div className="space-y-1.5 text-xs">
             <div className="flex items-center gap-2 text-muted-foreground">
               <Truck className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-              <span>Livraison rapide</span>
+              <span>توصيل سريع</span>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <ShieldCheck className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-              <span>Paiement sécurisé</span>
+              <span>دفع آمن</span>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Package className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-              <span>Produits authentiques</span>
+              <span>منتجات أصلية</span>
             </div>
           </div>
         </div>

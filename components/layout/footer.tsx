@@ -7,54 +7,54 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="font-bold text-lg mb-4">Barra</h3>
-            <p className="text-sm opacity-80">La marque de vêtements féminins qui célèbre l'élégance et le style moderne</p>
+            <h3 className="font-bold text-lg mb-4">براءة</h3>
+            <p className="text-sm opacity-80">العلامة التجارية للأزياء النسائية التي تحتفي بالأناقة والأسلوب العصري</p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4 text-sm md:text-base">Liens Rapides</h4>
+            <h4 className="font-semibold mb-4 text-sm md:text-base">روابط سريعة</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/books" className="hover:opacity-80 transition-opacity">
-                  Collections
+                  المجموعات
                 </Link>
               </li>
               <li>
                 <Link href="/partner" className="hover:opacity-80 transition-opacity">
-                  Devenir Partenaire
+                  كن شريكاً
                 </Link>
               </li>
               <li>
                 <Link href="/admin" className="hover:opacity-80 transition-opacity">
-                  Gestion
+                  الإدارة
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4 text-sm md:text-base">Politiques</h4>
+            <h4 className="font-semibold mb-4 text-sm md:text-base">السياسات</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="#" className="hover:opacity-80 transition-opacity">
-                  Confidentialité
+                  الخصوصية
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:opacity-80 transition-opacity">
-                  Conditions d'Utilisation
+                  شروط الاستخدام
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:opacity-80 transition-opacity">
-                  Contact
+                  اتصل بنا
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4 text-sm md:text-base">Suivez-Nous</h4>
+            <h4 className="font-semibold mb-4 text-sm md:text-base">تابعنا</h4>
             <div className="flex gap-4">
               <a href="#" className="hover:opacity-80 transition-opacity" aria-label="Facebook">
                 <Facebook className="w-5 h-5" />
@@ -70,7 +70,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-background/20 pt-8">
-          <p className="text-center text-sm opacity-80">© 2026 Baraa. Tous droits réservés.</p>
+          <p className="text-center text-sm opacity-80">© 2026 براءة. جميع الحقوق محفوظة.</p>
         </div>
       </div>
     </footer>

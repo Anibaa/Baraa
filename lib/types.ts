@@ -1,14 +1,14 @@
-export type Category = "abaya" | "hijab" | "jilbab" | "kaftan" | "ensemble" | "accessories"
-export type Size = "S" | "M" | "L" | "XL" | "XXL" | "Unique"
+export type Category = "عباية" | "حجاب" | "جلباب" | "قفطان" | "طقم" | "إكسسوارات"
+export type Size = "S" | "M" | "L" | "XL" | "XXL" | "مقاس واحد"
 
-// Predefined colors
-export type PredefinedColor = "noir" | "blanc" | "beige" | "or" | "bronze" | "rose" | "bleu" | "vert" | "bordeaux" | "gris" | "marron" | "turquoise"
+// Predefined colors in Arabic
+export type PredefinedColor = "أسود" | "أبيض" | "بيج" | "ذهبي" | "برونزي" | "وردي" | "أزرق" | "أخضر" | "عنابي" | "رمادي" | "بني" | "تركواز"
 
 // Color can be a predefined color, a custom color, or a combination
-export type Color = PredefinedColor | string // Allows custom colors like "Noir et Or"
+export type Color = PredefinedColor | string // Allows custom colors like "أسود وذهبي"
 
-export type ProductStatus = "En stock" | "Hors stock" | "Préparation" | "Livraison" | "Livré"
-export type OrderStatus = "Préparation" | "Confirmé" | "Livraison" | "Livré"
+export type ProductStatus = "متوفر" | "غير متوفر" | "قيد التحضير" | "قيد التوصيل" | "تم التوصيل"
+export type OrderStatus = "قيد التحضير" | "مؤكد" | "قيد التوصيل" | "تم التوصيل"
 
 export interface ColorOption {
   value: string // The color value (can be predefined or custom)
@@ -114,7 +114,7 @@ export interface CheckoutData {
   email: string
   phone: string
   address: string
-  paymentMethod: "Cash" | "Card"
+  paymentMethod: "الدفع عند الاستلام" | "بطاقة ائتمان"
 }
 
 export interface AdminUser {

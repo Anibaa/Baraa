@@ -12,9 +12,9 @@ import { WhatsAppButton } from "@/components/home/whatsapp-button"
 import { TrustedBy } from "@/components/home/trusted-by"
 
 export const metadata = {
-  title: "Baraa - براءة | Collection Mode Islamique Féminine",
+  title: "براءة - Baraa | مجموعة الأزياء الإسلامية النسائية",
   description:
-    "Découvrez notre collection exclusive de vêtements islamiques pour femmes. Abayas élégantes, hijabs raffinés, et tenues modestes de haute qualité.",
+    "اكتشفي مجموعتنا الحصرية من الملابس الإسلامية للنساء. عباءات أنيقة، حجابات راقية، وأزياء محتشمة عالية الجودة.",
 }
 
 // Ensure this page is not statically cached

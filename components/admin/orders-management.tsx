@@ -209,12 +209,12 @@ export function OrdersManagement({ orders }: OrdersManagementProps) {
                             Taille: {item.size} • Couleur: {item.color}
                           </p>
                           <p className="text-xs text-muted-foreground">
-                            Quantité: {item.quantity} × {item.price.toFixed(2)} DT
+                            الكمية: {item.quantity} × {item.price.toFixed(2)} د.ت
                           </p>
                         </div>
                         <div className="text-right">
                           <p className="text-sm font-bold text-primary">
-                            {(item.quantity * item.price).toFixed(2)} DT
+                            {(item.quantity * item.price).toFixed(2)} د.ت
                           </p>
                         </div>
                       </div>

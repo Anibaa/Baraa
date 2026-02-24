@@ -11,15 +11,15 @@ const rubik = Rubik({
 })
 
 export const metadata: Metadata = {
-  title: "Baraa - براءة | Mode Islamique Féminine de Luxe",
-  description: "Découvrez notre collection exclusive de vêtements islamiques pour femmes. Abayas, hijabs, et tenues modestes élégantes.",
-  keywords: ["mode islamique", "abaya", "hijab", "vêtements modestes", "mode féminine", "élégance", "luxe", "baraa", "براءة"],
+  title: "براءة - Baraa | أزياء إسلامية نسائية فاخرة",
+  description: "اكتشفي مجموعتنا الحصرية من الملابس الإسلامية للنساء. عباءات أنيقة، حجابات راقية، وأزياء محتشمة عالية الجودة.",
+  keywords: ["أزياء إسلامية", "عباية", "حجاب", "ملابس محتشمة", "أزياء نسائية", "أناقة", "فخامة", "براءة", "baraa"],
   openGraph: {
     type: "website",
-    locale: "fr_TN",
+    locale: "ar_TN",
     url: "https://baraa.com",
-    title: "Baraa - براءة | Mode Islamique Féminine",
-    description: "Collection exclusive de vêtements islamiques élégants pour femmes modernes",
+    title: "براءة - Baraa | أزياء إسلامية نسائية",
+    description: "مجموعة حصرية من الملابس الإسلامية الأنيقة للنساء العصريات",
     images: [
       {
         url: "/og-image.png",
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Baraa - براءة",
-    description: "Mode Islamique Féminine de Luxe",
+    title: "براءة - Baraa",
+    description: "أزياء إسلامية نسائية فاخرة",
   },
   icons: {
     icon: [
@@ -70,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="fr" dir="ltr">
+    <html lang="ar" dir="rtl">
       <body className={`${rubik.variable} font-sans antialiased`}>
         {children}
         <Analytics />

@@ -37,9 +37,9 @@ export function CartItems() {
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <p className="text-lg font-bold text-primary">{price} DT</p>
+                    <p className="text-lg font-bold text-primary">{price} د.ت</p>
                     {item.book.promoPrice && (
-                      <p className="text-sm text-muted-foreground line-through">{item.book.price} DT</p>
+                      <p className="text-sm text-muted-foreground line-through">{item.book.price} د.ت</p>
                     )}
                   </div>
                 </div>

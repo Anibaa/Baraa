@@ -283,7 +283,7 @@ export function PartnerForm() {
             Envoi en cours...
           </>
         ) : (
-          "Envoyer Votre Demande"
+          "إرسال طلبك"
         )}
       </button>
 

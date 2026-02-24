@@ -17,7 +17,7 @@ export function Header() {
       {/* Top Banner */}
       <div className="bg-primary text-primary-foreground py-2 px-4 text-center text-sm font-medium flex justify-center items-center gap-2">
         <span>📞</span>
-        <span>Appelez-nous au +216 98 711 586</span>
+        <span>اتصل بنا على +216 98 711 586</span>
       </div>
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
@@ -43,16 +43,16 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <Link href="/books" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-            Articles
+            المنتجات
           </Link>
           <Link href="/about" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-            À propos
+            من نحن
           </Link>
           <Link href="/blog" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-            Blog
+            المدونة
           </Link>
           <Link href="/faq" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
-            FAQ
+            الأسئلة الشائعة
           </Link>
 
         </nav>
@@ -70,7 +70,7 @@ export function Header() {
               </span>
             )}
             <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-foreground text-background px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-              Panier ({cart.length})
+              السلة ({cart.length})
             </span>
           </button>
           <button
@@ -91,31 +91,31 @@ export function Header() {
               href="/books"
               className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors font-medium"
             >
-              Articles
+              المنتجات
             </Link>
             <Link
               href="/about"
               className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors font-medium"
             >
-              À propos
+              من نحن
             </Link>
             <Link
               href="/blog"
               className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors font-medium"
             >
-              Blog
+              المدونة
             </Link>
             <Link
               href="/faq"
               className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors font-medium"
             >
-              FAQ
+              الأسئلة الشائعة
             </Link>
             <Link
               href="/admin"
               className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors font-medium"
             >
-              Tableau de Bord
+              لوحة التحكم
             </Link>
           </nav>
         </div>

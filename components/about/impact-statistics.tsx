@@ -26,9 +26,9 @@ function AnimatedCounter({ target }: { target: number }) {
 }
 
 const stats = [
-  { label: "Clientes satisfaites", value: 8500 },
-  { label: "Pièces vendues", value: 25000 },
-  { label: "Collections lancées", value: 45 },
+  { label: "عميلة راضية", value: 8500 },
+  { label: "قطعة مباعة", value: 25000 },
+  { label: "مجموعة أطلقت", value: 45 },
 ]
 
 export function ImpactStatistics() {
@@ -42,7 +42,7 @@ export function ImpactStatistics() {
           viewport={{ once: true, margin: "-100px" }}
           className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center"
         >
-          Notre Impact
+          تأثيرنا
         </motion.h2>
 
         <div className="grid md:grid-cols-3 gap-8">

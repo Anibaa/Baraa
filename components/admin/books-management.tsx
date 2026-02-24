@@ -472,11 +472,11 @@ export function BooksManagement({ books }: BooksManagementProps) {
                 <td className="px-6 py-4 font-bold text-primary">
                   {book.promoPrice ? (
                     <div className="flex flex-col">
-                      <span className="text-red-500 font-bold">{book.promoPrice} DT</span>
-                      <span className="text-muted-foreground line-through text-xs">{book.price} DT</span>
+                      <span className="text-red-500 font-bold">{book.promoPrice} د.ت</span>
+                      <span className="text-muted-foreground line-through text-xs">{book.price} د.ت</span>
                     </div>
                   ) : (
-                    <span>{book.price} DT</span>
+                    <span>{book.price} د.ت</span>
                   )}
                 </td>
                 <td className="px-6 py-4">
@@ -560,7 +560,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-semibold text-foreground mb-2">Prix (DT)</label>
+                  <label className="block text-sm font-semibold text-foreground mb-2">السعر (د.ت)</label>
                   <input
                     type="number"
                     name="price"

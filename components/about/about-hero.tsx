@@ -9,7 +9,7 @@ export function AboutHero() {
       <div className="max-w-4xl mx-auto text-center space-y-6 md:space-y-8">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-            À propos de <span className="text-primary">Baraa</span>
+            من نحن <span className="text-primary">براءة</span>
           </h1>
         </motion.div>
 
@@ -19,7 +19,7 @@ export function AboutHero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
         >
-          Mode islamique élégante et moderne pour la femme musulmane d'aujourd'hui.
+          أزياء إسلامية أنيقة وعصرية للمرأة المسلمة اليوم.
         </motion.p>
 
         <motion.div
@@ -32,7 +32,7 @@ export function AboutHero() {
             href="/books"
             className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-soft hover:shadow-soft-hover"
           >
-            Découvrir la collection
+            اكتشفي المجموعة
           </Link>
         </motion.div>
       </div>

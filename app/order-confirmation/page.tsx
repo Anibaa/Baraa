@@ -21,23 +21,23 @@ export default function OrderConfirmationPage() {
             </div>
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3 animate-slideUp">Commande Confirmée!</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3 animate-slideUp">تم تأكيد طلبك!</h1>
           <p
             className="text-muted-foreground mb-8 text-sm md:text-base animate-slideUp"
             style={{ animationDelay: "0.1s" }}
           >
-            Merci pour votre achat. Vous recevrez bientôt un email de confirmation avec les détails de votre commande.
+            شكراً لك على الشراء. ستتلقين قريباً بريداً إلكترونياً للتأكيد مع تفاصيل طلبك.
           </p>
 
           {/* <div
             className="bg-white rounded-lg shadow-soft p-6 mb-8 border border-primary/20 animate-slideUp"
             style={{ animationDelay: "0.2s" }}
           >
-            <p className="text-xs md:text-sm text-muted-foreground mb-2 font-medium">Numéro de suivi</p>
+            <p className="text-xs md:text-sm text-muted-foreground mb-2 font-medium">رقم التتبع</p>
             <p className="text-xl md:text-2xl font-mono font-bold text-primary hover:text-primary/80 transition-colors cursor-pointer">
               {orderNumber}
             </p>
-            <p className="text-xs text-muted-foreground mt-2">Conservez ce numéro pour votre référence</p>
+            <p className="text-xs text-muted-foreground mt-2">احتفظي بهذا الرقم للمرجعية</p>
           </div> */}
 
           <div className="space-y-3 animate-slideUp" style={{ animationDelay: "0.3s" }}>
@@ -45,13 +45,13 @@ export default function OrderConfirmationPage() {
               href="/books"
               className="block w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transition-all duration-200 font-semibold hover:shadow-soft-hover hover:scale-105 active:scale-95"
             >
-              Continuer vos achats
+              متابعة التسوق
             </Link>
             <Link
               href="/"
               className="block w-full border border-border text-foreground py-3 rounded-lg hover:bg-muted transition-all duration-200 font-semibold hover:scale-105 active:scale-95"
             >
-              Retour à l'accueil
+              العودة للرئيسية
             </Link>
           </div>
         </div>

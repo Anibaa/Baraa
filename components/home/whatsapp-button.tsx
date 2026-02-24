@@ -4,7 +4,7 @@ import { MessageCircle } from "lucide-react"
 
 export function WhatsAppButton() {
     const phoneNumber = "21698711586" // Using the mock data number as placeholder
-    const message = "Bonjour, je suis intéressé par vos livres."
+    const message = "مرحباً، أنا مهتمة بمنتجاتكم."
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
 
     return (
@@ -12,8 +12,8 @@ export function WhatsAppButton() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 animate-bounce-subtle group"
-            aria-label="Contactez-nous sur WhatsApp"
+            className="fixed bottom-6 left-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 animate-bounce-subtle group"
+            aria-label="تواصل معنا عبر واتساب"
         >
             {/* WhatsApp SVG Icon */}
             <svg
@@ -26,8 +26,8 @@ export function WhatsAppButton() {
             </svg>
 
             {/* Tooltip text */}
-            <span className="absolute right-full mr-3 bg-white text-foreground px-3 py-1 rounded-lg text-sm font-medium shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-max pointer-events-none">
-                Discuter sur WhatsApp
+            <span className="absolute left-full ml-3 bg-white text-foreground px-3 py-1 rounded-lg text-sm font-medium shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-max pointer-events-none">
+                تحدث عبر واتساب
             </span>
         </a>
     )

@@ -4,157 +4,157 @@ import { Footer } from "@/components/layout/footer"
 import { HelpCircle, Package, CreditCard, Truck, RefreshCw, Shield, MessageCircle } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "FAQ - Questions Fréquentes | Baraa - براءة",
-  description: "Trouvez des réponses à vos questions sur nos produits, la livraison, les paiements et les retours. Service client Baraa.",
-  keywords: ["faq", "questions", "aide", "support", "livraison", "paiement", "retours", "baraa"],
+  title: "الأسئلة الشائعة | براءة - Baraa",
+  description: "اعثري على إجابات لأسئلتك حول منتجاتنا، التوصيل، الدفع والإرجاع. خدمة عملاء براءة.",
+  keywords: ["أسئلة شائعة", "أسئلة", "مساعدة", "دعم", "توصيل", "دفع", "إرجاع", "براءة"],
 }
 
 const faqCategories = [
   {
-    title: "Commandes & Produits",
+    title: "الطلبات والمنتجات",
     icon: Package,
     questions: [
       {
-        q: "Comment puis-je passer une commande?",
-        a: "Pour passer une commande, parcourez notre collection, ajoutez les articles souhaités à votre panier, puis cliquez sur 'Passer la commande'. Remplissez vos informations de livraison et choisissez votre mode de paiement."
+        q: "كيف يمكنني تقديم طلب؟",
+        a: "لتقديم طلب، تصفحي مجموعتنا، أضيفي المنتجات المرغوبة إلى سلتك، ثم اضغطي على 'إتمام الطلب'. املأي معلومات التوصيل واختاري طريقة الدفع."
       },
       {
-        q: "Puis-je modifier ma commande après l'avoir passée?",
-        a: "Vous pouvez modifier votre commande dans les 2 heures suivant sa validation en nous contactant via WhatsApp au +216 53 386 886. Après ce délai, la commande est en préparation."
+        q: "هل يمكنني تعديل طلبي بعد تقديمه؟",
+        a: "يمكنك تعديل طلبك خلال ساعتين من تأكيده بالتواصل معنا عبر واتساب على +216 98 711 586. بعد هذه المدة، يكون الطلب قيد التحضير."
       },
       {
-        q: "Comment choisir la bonne taille?",
-        a: "Consultez notre guide des tailles disponible sur chaque page produit. Nous proposons des tailles S à XXL. En cas de doute, contactez notre service client pour des conseils personnalisés."
+        q: "كيف أختار المقاس المناسب؟",
+        a: "راجعي دليل المقاسات المتوفر على كل صفحة منتج. نقدم مقاسات من S إلى XXL. في حالة الشك، تواصلي مع خدمة العملاء للحصول على نصائح شخصية."
       },
       {
-        q: "Les couleurs des produits sont-elles fidèles aux photos?",
-        a: "Nous faisons de notre mieux pour représenter fidèlement les couleurs. Cependant, elles peuvent légèrement varier selon votre écran. Contactez-nous pour plus de détails sur un produit spécifique."
+        q: "هل ألوان المنتجات مطابقة للصور؟",
+        a: "نبذل قصارى جهدنا لتمثيل الألوان بدقة. ومع ذلك، قد تختلف قليلاً حسب شاشتك. تواصلي معنا للحصول على مزيد من التفاصيل حول منتج معين."
       },
     ]
   },
   {
-    title: "Paiement",
+    title: "الدفع",
     icon: CreditCard,
     questions: [
       {
-        q: "Quels modes de paiement acceptez-vous?",
-        a: "Nous acceptons le paiement en espèces à la livraison (Cash on Delivery) et les paiements par carte bancaire. Tous les paiements sont sécurisés."
+        q: "ما هي طرق الدفع المقبولة؟",
+        a: "نقبل الدفع نقداً عند التوصيل والدفع ببطاقة الائتمان. جميع المدفوعات آمنة ومحمية."
       },
       {
-        q: "Le paiement en ligne est-il sécurisé?",
-        a: "Oui, absolument. Nous utilisons des protocoles de sécurité SSL et nos paiements par carte sont traités via des plateformes sécurisées conformes aux normes PCI DSS."
+        q: "هل الدفع عبر الإنترنت آمن؟",
+        a: "نعم، بالتأكيد. نستخدم بروتوكولات أمان SSL ومدفوعاتنا بالبطاقة تتم معالجتها عبر منصات آمنة متوافقة مع معايير PCI DSS."
       },
       {
-        q: "Puis-je payer en plusieurs fois?",
-        a: "Actuellement, nous n'offrons pas de paiement échelonné. Cependant, nous travaillons à intégrer cette option prochainement."
+        q: "هل يمكنني الدفع على أقساط؟",
+        a: "حالياً، لا نقدم خيار الدفع بالتقسيط. ومع ذلك، نعمل على دمج هذا الخيار قريباً."
       },
       {
-        q: "Recevrai-je une facture?",
-        a: "Oui, une facture détaillée vous sera envoyée par email après confirmation de votre commande et sera également incluse dans votre colis."
+        q: "هل سأحصل على فاتورة؟",
+        a: "نعم، سيتم إرسال فاتورة مفصلة إليك عبر البريد الإلكتروني بعد تأكيد طلبك وستكون أيضاً مرفقة في طردك."
       },
     ]
   },
   {
-    title: "Livraison",
+    title: "التوصيل",
     icon: Truck,
     questions: [
       {
-        q: "Quels sont les délais de livraison?",
-        a: "Les délais de livraison sont de 2 à 5 jours ouvrables pour la Tunisie. Pour les zones éloignées, comptez 3 à 7 jours ouvrables."
+        q: "ما هي مدة التوصيل؟",
+        a: "مدة التوصيل من 2 إلى 5 أيام عمل لتونس. للمناطق البعيدة، احسبي من 3 إلى 7 أيام عمل."
       },
       {
-        q: "Quels sont les frais de livraison?",
-        a: "Les frais de livraison sont de 7 DT pour toute la Tunisie. La livraison est gratuite pour les commandes supérieures à 200 DT."
+        q: "ما هي تكلفة التوصيل؟",
+        a: "تكلفة التوصيل 7 د.ت لجميع أنحاء تونس. التوصيل مجاني للطلبات التي تزيد عن 200 د.ت."
       },
       {
-        q: "Livrez-vous à l'international?",
-        a: "Actuellement, nous livrons uniquement en Tunisie. Nous prévoyons d'étendre nos services à l'international prochainement."
+        q: "هل تقومون بالتوصيل الدولي؟",
+        a: "حالياً، نقوم بالتوصيل فقط داخل تونس. نخطط لتوسيع خدماتنا دولياً قريباً."
       },
       {
-        q: "Comment puis-je suivre ma commande?",
-        a: "Vous recevrez un numéro de suivi par SMS et email dès l'expédition de votre commande. Vous pouvez également nous contacter via WhatsApp pour connaître l'état de votre livraison."
+        q: "كيف يمكنني تتبع طلبي؟",
+        a: "ستتلقين رقم تتبع عبر الرسائل القصيرة والبريد الإلكتروني بمجرد شحن طلبك. يمكنك أيضاً التواصل معنا عبر واتساب لمعرفة حالة التوصيل."
       },
       {
-        q: "Que faire si je ne suis pas disponible à la livraison?",
-        a: "Le livreur vous contactera avant la livraison. Si vous n'êtes pas disponible, vous pouvez convenir d'un autre créneau ou désigner une personne pour réceptionner le colis."
+        q: "ماذا أفعل إذا لم أكن متواجدة عند التوصيل؟",
+        a: "سيتصل بك مندوب التوصيل قبل الوصول. إذا لم تكوني متواجدة، يمكنك الاتفاق على موعد آخر أو تعيين شخص لاستلام الطرد."
       },
     ]
   },
   {
-    title: "Retours & Échanges",
+    title: "الإرجاع والاستبدال",
     icon: RefreshCw,
     questions: [
       {
-        q: "Quelle est votre politique de retour?",
-        a: "Vous disposez de 14 jours à compter de la réception pour retourner un article non porté, avec étiquettes, dans son emballage d'origine. Les frais de retour sont à votre charge."
+        q: "ما هي سياسة الإرجاع؟",
+        a: "لديك 14 يوماً من تاريخ الاستلام لإرجاع منتج غير مستعمل، مع الملصقات، في عبوته الأصلية. تكاليف الإرجاع على عاتقك."
       },
       {
-        q: "Comment effectuer un retour?",
-        a: "Contactez notre service client via WhatsApp au +216 53 386 886 pour initier un retour. Nous vous fournirons les instructions et l'adresse de retour."
+        q: "كيف أقوم بالإرجاع؟",
+        a: "تواصلي مع خدمة العملاء عبر واتساب على +216 98 711 586 لبدء عملية الإرجاع. سنزودك بالتعليمات وعنوان الإرجاع."
       },
       {
-        q: "Puis-je échanger un article?",
-        a: "Oui, les échanges sont possibles dans les 14 jours. Contactez-nous pour organiser l'échange. Si la différence de prix existe, elle sera ajustée."
+        q: "هل يمكنني استبدال منتج؟",
+        a: "نعم، الاستبدال ممكن خلال 14 يوماً. تواصلي معنا لترتيب الاستبدال. إذا كان هناك فرق في السعر، سيتم تعديله."
       },
       {
-        q: "Quand serai-je remboursé?",
-        a: "Le remboursement est effectué dans les 7 à 10 jours ouvrables après réception et vérification de l'article retourné, sur le même mode de paiement utilisé."
+        q: "متى سأحصل على استرداد المبلغ؟",
+        a: "يتم الاسترداد خلال 7 إلى 10 أيام عمل بعد استلام والتحقق من المنتج المرتجع، بنفس طريقة الدفع المستخدمة."
       },
       {
-        q: "Les articles en promotion sont-ils échangeables?",
-        a: "Oui, les articles en promotion suivent la même politique de retour et d'échange que les articles à prix normal."
+        q: "هل المنتجات المخفضة قابلة للاستبدال؟",
+        a: "نعم، المنتجات المخفضة تتبع نفس سياسة الإرجاع والاستبدال مثل المنتجات بالسعر العادي."
       },
     ]
   },
   {
-    title: "Produits & Qualité",
+    title: "المنتجات والجودة",
     icon: Shield,
     questions: [
       {
-        q: "Quelle est la qualité de vos tissus?",
-        a: "Nous utilisons uniquement des tissus premium : soie naturelle, crêpe de haute qualité, jersey stretch, coton égyptien et velours côtelé. Chaque produit indique sa composition."
+        q: "ما هي جودة أقمشتكم؟",
+        a: "نستخدم فقط أقمشة فاخرة: حرير طبيعي، كريب عالي الجودة، جيرسي مطاطي، قطن مصري وقطيفة مضلعة. كل منتج يوضح تركيبته."
       },
       {
-        q: "Comment entretenir mes vêtements?",
-        a: "Chaque article est accompagné d'instructions d'entretien détaillées. En général, nous recommandons un lavage délicat à 30°C et un séchage à plat pour préserver la qualité."
+        q: "كيف أعتني بملابسي؟",
+        a: "كل منتج مرفق بتعليمات عناية مفصلة. بشكل عام، نوصي بالغسيل الرقيق على 30 درجة مئوية والتجفيف المسطح للحفاظ على الجودة."
       },
       {
-        q: "Vos produits sont-ils conformes aux normes islamiques?",
-        a: "Oui, tous nos vêtements sont conçus dans le respect des principes de modestie islamique, avec des coupes amples et des tissus opaques."
+        q: "هل منتجاتكم متوافقة مع المعايير الإسلامية؟",
+        a: "نعم، جميع ملابسنا مصممة باحترام مبادئ الحشمة الإسلامية، مع قصات واسعة وأقمشة معتمة."
       },
       {
-        q: "Proposez-vous des produits pour occasions spéciales?",
-        a: "Oui, nous avons une collection spéciale pour le Ramadan, l'Aïd et les mariages, avec des kaftans brodés et des abayas de cérémonie."
+        q: "هل تقدمون منتجات للمناسبات الخاصة؟",
+        a: "نعم، لدينا مجموعة خاصة لرمضان، العيد والأعراس، مع قفاطين مطرزة وعباءات احتفالية."
       },
       {
-        q: "Les broderies sont-elles faites à la main?",
-        a: "Nos pièces de luxe comportent des broderies faites à la main par des artisans qualifiés. Les détails sont précisés sur chaque fiche produit."
+        q: "هل التطريزات مصنوعة يدوياً؟",
+        a: "قطعنا الفاخرة تحتوي على تطريزات يدوية من قبل حرفيين مهرة. التفاصيل محددة في كل بطاقة منتج."
       },
     ]
   },
   {
-    title: "Compte & Service Client",
+    title: "الحساب وخدمة العملاء",
     icon: MessageCircle,
     questions: [
       {
-        q: "Dois-je créer un compte pour commander?",
-        a: "Non, vous pouvez commander en tant qu'invité. Cependant, créer un compte vous permet de suivre vos commandes et de bénéficier d'offres exclusives."
+        q: "هل يجب إنشاء حساب للطلب؟",
+        a: "لا، يمكنك الطلب كضيف. ومع ذلك، إنشاء حساب يسمح لك بتتبع طلباتك والاستفادة من عروض حصرية."
       },
       {
-        q: "Comment contacter le service client?",
-        a: "Vous pouvez nous contacter via WhatsApp au +216 53 386 886, par email à contact@baraa.com, ou via le formulaire de contact sur notre site."
+        q: "كيف أتواصل مع خدمة العملاء؟",
+        a: "يمكنك التواصل معنا عبر واتساب على +216 98 711 586، بالبريد الإلكتروني على contact@baraa.com، أو عبر نموذج الاتصال على موقعنا."
       },
       {
-        q: "Quels sont vos horaires de service client?",
-        a: "Notre service client est disponible du dimanche au jeudi de 9h à 18h, et le samedi de 9h à 13h. Fermé le vendredi."
+        q: "ما هي ساعات عمل خدمة العملاء؟",
+        a: "خدمة العملاء متاحة من الأحد إلى الخميس من 9 صباحاً إلى 6 مساءً، والسبت من 9 صباحاً إلى 1 ظهراً. مغلق يوم الجمعة."
       },
       {
-        q: "Proposez-vous un programme de fidélité?",
-        a: "Oui, nous préparons actuellement un programme de fidélité qui sera lancé prochainement. Inscrivez-vous à notre newsletter pour être informé."
+        q: "هل تقدمون برنامج ولاء؟",
+        a: "نعم، نحن نحضر حالياً برنامج ولاء سيتم إطلاقه قريباً. اشتركي في نشرتنا الإخبارية لتكوني على اطلاع."
       },
       {
-        q: "Comment puis-je recevoir les promotions?",
-        a: "Inscrivez-vous à notre newsletter et suivez-nous sur les réseaux sociaux (Instagram, Facebook) pour ne manquer aucune promotion ou nouveauté."
+        q: "كيف يمكنني تلقي العروض الترويجية؟",
+        a: "اشتركي في نشرتنا الإخبارية وتابعينا على وسائل التواصل الاجتماعي (إنستغرام، فيسبوك) لعدم تفويت أي عرض أو جديد."
       },
     ]
   },
@@ -170,10 +170,10 @@ export default function FAQPage() {
           <div className="max-w-6xl mx-auto px-4 md:px-8 text-center">
             <HelpCircle className="w-16 h-16 mx-auto mb-4 animate-float" />
             <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-slideInLeft">
-              Questions Fréquentes
+              الأسئلة الشائعة
             </h1>
             <p className="text-primary-foreground/90 text-base md:text-lg max-w-2xl mx-auto">
-              Trouvez rapidement des réponses à vos questions sur Baraa - براءة
+              اعثري بسرعة على إجابات لأسئلتك حول براءة
             </p>
           </div>
         </section>
@@ -183,29 +183,29 @@ export default function FAQPage() {
           <div className="max-w-6xl mx-auto">
             <div className="bg-card rounded-xl p-6 md:p-8 border border-primary/20 shadow-soft">
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="text-center md:text-left">
+                <div className="text-center md:text-right">
                   <h3 className="text-xl font-bold text-card-foreground mb-2">
-                    Vous ne trouvez pas votre réponse?
+                    لم تجدي إجابتك؟
                   </h3>
                   <p className="text-muted-foreground">
-                    Notre équipe est là pour vous aider
+                    فريقنا هنا لمساعدتك
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <a
-                    href="https://wa.me/21653386886"
+                    href="https://wa.me/21698711586"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors flex items-center gap-2 justify-center"
                   >
                     <MessageCircle className="w-5 h-5" />
-                    WhatsApp
+                    واتساب
                   </a>
                   <a
                     href="mailto:contact@baraa.com"
                     className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg font-semibold hover:bg-secondary/90 transition-colors"
                   >
-                    Email
+                    البريد الإلكتروني
                   </a>
                 </div>
               </div>
@@ -242,7 +242,7 @@ export default function FAQPage() {
                         className="group bg-card rounded-lg border border-border hover:border-primary/50 hover:shadow-soft transition-all duration-300"
                       >
                         <summary className="cursor-pointer p-5 md:p-6 font-semibold text-card-foreground hover:text-primary transition-colors list-none flex items-center justify-between">
-                          <span className="flex-1 pr-4">{item.q}</span>
+                          <span className="flex-1 pl-4">{item.q}</span>
                           <svg
                             className="w-5 h-5 text-primary transition-transform group-open:rotate-180"
                             fill="none"
@@ -270,26 +270,26 @@ export default function FAQPage() {
         <section className="py-12 md:py-16 px-4 md:px-8 bg-muted/40">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-card-foreground mb-4">
-              Encore des questions?
+              لا تزال لديك أسئلة؟
             </h2>
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-              N'hésitez pas à nous contacter. Notre équipe se fera un plaisir de vous aider et de répondre à toutes vos questions.
+              لا تترددي في التواصل معنا. سيسعد فريقنا بمساعدتك والإجابة على جميع أسئلتك.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://wa.me/21653386886"
+                href="https://wa.me/21698711586"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors inline-flex items-center gap-2 justify-center"
               >
                 <MessageCircle className="w-5 h-5" />
-                Contactez-nous sur WhatsApp
+                تواصلي معنا عبر واتساب
               </a>
               <a
                 href="/blog"
                 className="px-8 py-4 bg-card text-card-foreground border-2 border-primary rounded-lg font-semibold hover:bg-primary/10 transition-colors"
               >
-                Visitez notre Blog
+                زوري مدونتنا
               </a>
             </div>
           </div>

@@ -41,9 +41,9 @@ export function RecentlyViewed() {
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center gap-3 mb-3 animate-fadeInUp">
           <Clock className="w-6 h-6 text-primary/70" />
-          <h2 className="text-2xl md:text-4xl font-light text-foreground tracking-wide">Récemment Consultés</h2>
+          <h2 className="text-2xl md:text-4xl font-light text-foreground tracking-wide">شاهدت مؤخراً</h2>
         </div>
-        <p className="text-muted-foreground mb-10 font-light text-sm md:text-base">Retrouvez les articles que vous avez récemment découverts</p>
+        <p className="text-muted-foreground mb-10 font-light text-sm md:text-base">اعثري على المنتجات التي اكتشفتها مؤخراً</p>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
           {books.map((book, idx) => (
@@ -78,7 +78,7 @@ export function RecentlyViewed() {
                   <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
                     <button className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white/95 backdrop-blur-md hover:bg-primary hover:text-white text-foreground font-medium rounded-xl transition-all duration-400 shadow-2xl hover:shadow-primary/20 hover:scale-[1.02]">
                       <ShoppingCart className="w-4 h-4" />
-                      <span className="text-sm tracking-wide">Ajouter</span>
+                      <span className="text-sm tracking-wide">أضف للسلة</span>
                     </button>
                   </div>
                 </div>
@@ -89,11 +89,11 @@ export function RecentlyViewed() {
                 {/* Category Badge - Elegant */}
                 <div className="mb-2">
                   <span className="text-[10px] font-medium text-primary/70 uppercase tracking-wider">
-                    {book.category === "abaya" ? "Abaya" : 
-                     book.category === "hijab" ? "Hijab" : 
-                     book.category === "jilbab" ? "Jilbab" : 
-                     book.category === "kaftan" ? "Kaftan" : 
-                     book.category === "ensemble" ? "Ensemble" : "Accessoire"}
+                    {book.category === "عباية" ? "عباية" : 
+                     book.category === "حجاب" ? "حجاب" : 
+                     book.category === "جلباب" ? "جلباب" : 
+                     book.category === "قفطان" ? "قفطان" : 
+                     book.category === "طقم" ? "طقم" : "إكسسوار"}
                   </span>
                 </div>
 
@@ -112,11 +112,11 @@ export function RecentlyViewed() {
                   <div className="flex items-baseline gap-2">
                     {book.promoPrice ? (
                       <>
-                        <span className="text-lg md:text-xl font-semibold text-red-600">{book.promoPrice} DT</span>
-                        <span className="text-xs text-muted-foreground line-through font-light">{book.price} DT</span>
+                        <span className="text-lg md:text-xl font-semibold text-red-600">{book.promoPrice} د.ت</span>
+                        <span className="text-xs text-muted-foreground line-through font-light">{book.price} د.ت</span>
                       </>
                     ) : (
-                      <span className="text-lg md:text-xl font-semibold text-foreground">{book.price} DT</span>
+                      <span className="text-lg md:text-xl font-semibold text-foreground">{book.price} د.ت</span>
                     )}
                   </div>
 

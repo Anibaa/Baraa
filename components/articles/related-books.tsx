@@ -50,7 +50,7 @@ export function RelatedBooks({ books }: RelatedBooksProps) {
               <p className="text-xs md:text-sm text-muted-foreground mb-3 line-clamp-1">{book.author}</p>
 
               <div className="flex items-center justify-between">
-                <span className="text-base md:text-lg font-bold text-primary">{book.price} DT</span>
+                <span className="text-base md:text-lg font-bold text-primary">{book.price} د.ت</span>
               </div>
             </div>
           </Link>

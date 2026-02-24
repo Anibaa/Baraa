@@ -5,75 +5,75 @@ import { Calendar, User, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Blog - Baraa | براءة",
-  description: "Découvrez nos articles sur la mode islamique, les tendances, les conseils de style et l'inspiration pour femmes musulmanes modernes",
+  title: "المدونة - براءة | Baraa",
+  description: "اكتشفي مقالاتنا حول الأزياء الإسلامية، الصيحات، نصائح الأسلوب والإلهام للنساء المسلمات العصريات",
 }
 
-// Mock blog posts data
+// Mock blog posts data - ALL IN ARABIC
 const blogPosts = [
   {
     id: "1",
-    title: "Comment choisir la parfaite abaya pour chaque occasion",
-    excerpt: "Découvrez nos conseils pour sélectionner l'abaya idéale selon l'événement, la saison et votre style personnel.",
+    title: "كيف تختارين العباية المثالية لكل مناسبة",
+    excerpt: "اكتشفي نصائحنا لاختيار العباية المثالية حسب المناسبة والموسم وأسلوبك الشخصي.",
     image: "/placeholder.jpg",
-    category: "Style & Conseils",
-    author: "Équipe Baraa",
-    date: "15 Février 2026",
-    readTime: "5 min",
+    category: "أسلوب ونصائح",
+    author: "فريق براءة",
+    date: "١٥ فبراير ٢٠٢٦",
+    readTime: "٥ دقائق",
   },
   {
     id: "2",
-    title: "Les tendances hijab printemps-été 2026",
-    excerpt: "Explorez les dernières tendances en matière de hijabs : couleurs, tissus et styles qui feront sensation cette saison.",
+    title: "صيحات الحجاب لربيع وصيف ٢٠٢٦",
+    excerpt: "استكشفي أحدث صيحات الحجاب: الألوان والأقمشة والأساليب التي ستحدث ضجة هذا الموسم.",
     image: "/placeholder.jpg",
-    category: "Tendances",
-    author: "Équipe Baraa",
-    date: "10 Février 2026",
-    readTime: "4 min",
+    category: "صيحات",
+    author: "فريق براءة",
+    date: "١٠ فبراير ٢٠٢٦",
+    readTime: "٤ دقائق",
   },
   {
     id: "3",
-    title: "Guide d'entretien pour vos vêtements en soie",
-    excerpt: "Apprenez à prendre soin de vos hijabs et abayas en soie pour préserver leur beauté et leur qualité.",
+    title: "دليل العناية بملابسك الحريرية",
+    excerpt: "تعلمي كيفية العناية بحجاباتك وعباءاتك الحريرية للحفاظ على جمالها وجودتها.",
     image: "/placeholder.jpg",
-    category: "Entretien",
-    author: "Équipe Baraa",
-    date: "5 Février 2026",
-    readTime: "6 min",
+    category: "العناية",
+    author: "فريق براءة",
+    date: "٥ فبراير ٢٠٢٦",
+    readTime: "٦ دقائق",
   },
   {
     id: "4",
-    title: "L'élégance modeste : allier tradition et modernité",
-    excerpt: "Comment la mode islamique contemporaine célèbre l'identité tout en embrassant les tendances actuelles.",
+    title: "الأناقة المحتشمة: الجمع بين التقليد والحداثة",
+    excerpt: "كيف تحتفي الأزياء الإسلامية المعاصرة بالهوية مع احتضان الصيحات الحالية.",
     image: "/placeholder.jpg",
-    category: "Culture",
-    author: "Équipe Baraa",
-    date: "1 Février 2026",
-    readTime: "7 min",
+    category: "ثقافة",
+    author: "فريق براءة",
+    date: "١ فبراير ٢٠٢٦",
+    readTime: "٧ دقائق",
   },
   {
     id: "5",
-    title: "5 façons de porter votre hijab avec style",
-    excerpt: "Des tutoriels simples pour varier vos looks quotidiens et affirmer votre style personnel.",
+    title: "٥ طرق لارتداء حجابك بأناقة",
+    excerpt: "دروس بسيطة لتنويع إطلالاتك اليومية وإبراز أسلوبك الشخصي.",
     image: "/placeholder.jpg",
-    category: "Tutoriels",
-    author: "Équipe Baraa",
-    date: "28 Janvier 2026",
-    readTime: "5 min",
+    category: "دروس",
+    author: "فريق براءة",
+    date: "٢٨ يناير ٢٠٢٦",
+    readTime: "٥ دقائق",
   },
   {
     id: "6",
-    title: "Préparer sa garde-robe pour le Ramadan",
-    excerpt: "Nos suggestions pour constituer une collection élégante et confortable pour le mois sacré.",
+    title: "تحضير خزانة ملابسك لرمضان",
+    excerpt: "اقتراحاتنا لتكوين مجموعة أنيقة ومريحة للشهر الفضيل.",
     image: "/placeholder.jpg",
-    category: "Occasions Spéciales",
-    author: "Équipe Baraa",
-    date: "25 Janvier 2026",
-    readTime: "6 min",
+    category: "مناسبات خاصة",
+    author: "فريق براءة",
+    date: "٢٥ يناير ٢٠٢٦",
+    readTime: "٦ دقائق",
   },
 ]
 
-const categories = ["Tous", "Style & Conseils", "Tendances", "Entretien", "Culture", "Tutoriels", "Occasions Spéciales"]
+const categories = ["الكل", "أسلوب ونصائح", "صيحات", "العناية", "ثقافة", "دروس", "مناسبات خاصة"]
 
 export default function BlogPage() {
   return (
@@ -84,10 +84,10 @@ export default function BlogPage() {
         <section className="bg-gold-gradient text-primary-foreground py-12 md:py-16">
           <div className="max-w-6xl mx-auto px-4 md:px-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-balance animate-slideInLeft">
-              Blog Baraa
+              مدونة براءة
             </h1>
             <p className="text-primary-foreground/90 text-base md:text-lg max-w-2xl text-pretty">
-              Inspiration, conseils et tendances pour célébrer la mode islamique avec élégance
+              إلهام ونصائح وصيحات للاحتفال بالأزياء الإسلامية بأناقة
             </p>
           </div>
         </section>
@@ -125,7 +125,7 @@ export default function BlogPage() {
                 <div className="p-8 md:p-10 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full">
-                      À la une
+                      مميز
                     </span>
                     <span className="text-sm text-muted-foreground">{blogPosts[0].category}</span>
                   </div>
@@ -149,7 +149,7 @@ export default function BlogPage() {
                     href={`/blog/${blogPosts[0].id}`}
                     className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
                   >
-                    Lire l'article
+                    اقرأي المقال
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -161,7 +161,7 @@ export default function BlogPage() {
         {/* Blog Grid */}
         <section className="py-12 md:py-20 px-4 md:px-8">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-card-foreground mb-8">Articles récents</h2>
+            <h2 className="text-3xl font-bold text-card-foreground mb-8">مقالات حديثة</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {blogPosts.slice(1).map((post, idx) => (
@@ -194,14 +194,14 @@ export default function BlogPage() {
                         <Calendar className="w-3 h-3" />
                         <span>{post.date}</span>
                       </div>
-                      <span>{post.readTime} de lecture</span>
+                      <span>{post.readTime} قراءة</span>
                     </div>
                     
                     <Link
                       href={`/blog/${post.id}`}
                       className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all"
                     >
-                      Lire plus
+                      اقرأي المزيد
                       <ArrowRight className="w-3 h-3" />
                     </Link>
                   </div>
@@ -215,19 +215,19 @@ export default function BlogPage() {
         <section className="py-12 md:py-16 px-4 md:px-8 bg-gold-gradient">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-              Restez inspirée
+              ابقي ملهمة
             </h2>
             <p className="text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-              Inscrivez-vous à notre newsletter pour recevoir nos derniers articles, conseils de style et offres exclusives
+              اشتركي في نشرتنا الإخبارية لتلقي أحدث مقالاتنا ونصائح الأسلوب والعروض الحصرية
             </p>
             <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
                 type="email"
-                placeholder="Votre adresse email"
+                placeholder="بريدك الإلكتروني"
                 className="flex-1 px-4 py-3 rounded-lg border border-primary-foreground/20 bg-primary-foreground/10 text-primary-foreground placeholder:text-primary-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary-foreground/50"
               />
               <button className="px-6 py-3 bg-card text-primary font-semibold rounded-lg hover:bg-card/90 transition-colors">
-                S'inscrire
+                اشتركي
               </button>
             </div>
           </div>

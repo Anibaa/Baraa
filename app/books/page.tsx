@@ -10,8 +10,8 @@ import { SearchResultsSummary } from "@/components/articles/search-results-summa
 const ITEMS_PER_PAGE = 12
 
 export const metadata = {
-  title: "Collection - Baraa | براءة",
-  description: "Découvrez notre collection exclusive de vêtements islamiques élégants pour femmes",
+  title: "المجموعة - براءة | Baraa",
+  description: "اكتشفي مجموعتنا الحصرية من الملابس الإسلامية الأنيقة للنساء",
 }
 
 // Ensure this page is not statically cached
@@ -57,9 +57,9 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
         {/* Page Header */}
         <section className="bg-linear-to-r from-primary to-primary/80 text-white py-12 md:py-16">
           <div className="max-w-6xl mx-auto px-4 md:px-8">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold animate-slideInLeft mb-3">Notre Collection</h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold animate-slideInLeft mb-3">مجموعتنا</h1>
             <p className="text-white/90 mt-2 md:mt-3 text-base md:text-lg max-w-2xl">
-              Explorez notre sélection exclusive de vêtements islamiques modernes et élégants, conçus pour la femme musulmane contemporaine
+              استكشفي مجموعتنا الحصرية من الملابس الإسلامية العصرية والأنيقة، المصممة للمرأة المسلمة المعاصرة
             </p>
           </div>
         </section>
@@ -79,14 +79,14 @@ export default async function BooksPage({ searchParams }: BooksPageProps) {
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
               {/* Sidebar - More prominent on mobile */}
               <div className="lg:sticky lg:top-20 lg:h-fit">
-                <Suspense fallback={<div className="text-muted-foreground text-sm">Chargement des filtres...</div>}>
+                <Suspense fallback={<div className="text-muted-foreground text-sm">جاري تحميل الفلاتر...</div>}>
                   <FilterSidebar />
                 </Suspense>
               </div>
 
               {/* Main Content */}
               <div className="lg:col-span-3">
-                <Suspense fallback={<div className="text-muted-foreground text-sm">Chargement des livres...</div>}>
+                <Suspense fallback={<div className="text-muted-foreground text-sm">جاري تحميل المنتجات...</div>}>
                   <BooksGrid books={paginatedBooks} searchQuery={search} />
                   <Pagination currentPage={page} totalPages={totalPages} totalItems={totalItems} />
                 </Suspense>

@@ -5,16 +5,16 @@ import { Sparkles } from "lucide-react"
 export function PersonalizedGreeting() {
   const getGreeting = () => {
     const hour = new Date().getHours()
-    if (hour < 12) return "Bienvenue chez Baraa-براءة"
-    if (hour < 18) return "Bon après-midi chez Baraa-براءة"
-    return "Bonsoir chez Baraa-براءة "
+    if (hour < 12) return "مرحباً بك في براءة"
+    if (hour < 18) return "مساء الخير في براءة"
+    return "مساء الخير في براءة"
   }
 
   const getSubtitle = () => {
     const hour = new Date().getHours()
-    if (hour < 12) return "Commencez votre journée avec élégance et style"
-    if (hour < 18) return "Découvrez l'élégance intemporelle de la mode islamique"
-    return "Explorez notre collection de mode féminine de luxe"
+    if (hour < 12) return "ابدأي يومك بأناقة وأسلوب"
+    if (hour < 18) return "اكتشفي الأناقة الخالدة للأزياء الإسلامية"
+    return "استكشفي مجموعتنا من الأزياء النسائية الفاخرة"
   }
 
   return (

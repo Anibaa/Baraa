@@ -13,12 +13,12 @@ export function VisionSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="space-y-4"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Notre Vision</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">رؤيتنا</h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Devenir la référence de la mode islamique féminine en Tunisie et au-delà, en créant une communauté de femmes confiantes qui embrassent leur beauté naturelle et leur foi avec fierté.
+            أن نصبح المرجع في الأزياء الإسلامية النسائية في تونس وخارجها، من خلال إنشاء مجتمع من النساء الواثقات اللواتي يحتضن جمالهن الطبيعي وإيمانهن بفخر.
           </p>
           <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-            Nous aspirons à redéfinir les standards de l'élégance islamique en proposant des collections qui allient tradition et modernité, confort et raffinement, accessibilité et qualité premium.
+            نطمح لإعادة تعريف معايير الأناقة الإسلامية من خلال تقديم مجموعات تجمع بين التقليد والحداثة، الراحة والرقي، السهولة والجودة الفاخرة.
           </p>
         </motion.div>
       </div>

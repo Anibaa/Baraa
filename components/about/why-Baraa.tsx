@@ -6,23 +6,23 @@ import { Sparkles, Heart, Shield, Truck } from "lucide-react"
 const features = [
   {
     icon: Sparkles,
-    title: "Designs exclusifs",
-    description: "Collections uniques créées par nos designers pour allier élégance et pudeur avec raffinement.",
+    title: "تصاميم حصرية",
+    description: "مجموعات فريدة من تصميم مصممينا للجمع بين الأناقة والحشمة بأسلوب راقٍ.",
   },
   {
     icon: Heart,
-    title: "Qualité premium",
-    description: "Tissus nobles et finitions soignées pour un confort optimal et une durabilité exceptionnelle.",
+    title: "جودة فاخرة",
+    description: "أقمشة نبيلة ولمسات نهائية دقيقة لراحة مثالية ومتانة استثنائية.",
   },
   {
     icon: Shield,
-    title: "Respect des valeurs",
-    description: "Mode pudique et élégante qui célèbre la beauté de la femme musulmane moderne.",
+    title: "احترام القيم",
+    description: "أزياء محتشمة وأنيقة تحتفي بجمال المرأة المسلمة العصرية.",
   },
   {
     icon: Truck,
-    title: "Livraison soignée",
-    description: "Emballage élégant et livraison rapide partout en Tunisie pour une expérience premium.",
+    title: "توصيل مميز",
+    description: "تغليف أنيق وتوصيل سريع في جميع أنحاء تونس لتجربة فاخرة.",
   },
 ]
 
@@ -37,7 +37,7 @@ export function WhyBaraa() {
           viewport={{ once: true, margin: "-100px" }}
           className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center"
         >
-          Pourquoi Baraa ?
+          لماذا براءة؟
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-8">

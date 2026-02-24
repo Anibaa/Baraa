@@ -6,46 +6,46 @@ import { Sparkles, Heart, Star, Crown, Gift, Gem } from "lucide-react"
 export function CategorySection() {
   const categories = [
     {
-      id: "abaya",
-      label: "Abayas",
+      id: "عباية",
+      label: "عباءات",
       icon: Sparkles,
-      description: "Abayas élégantes pour toutes occasions",
-      href: "/books?category=abaya",
+      description: "عباءات أنيقة لجميع المناسبات",
+      href: "/books?category=عباية",
     },
     {
-      id: "hijab",
-      label: "Hijabs",
+      id: "حجاب",
+      label: "حجابات",
       icon: Heart,
-      description: "Hijabs premium en soie et mousseline",
-      href: "/books?category=hijab",
+      description: "حجابات فاخرة من الحرير والشيفون",
+      href: "/books?category=حجاب",
     },
     {
-      id: "jilbab",
-      label: "Jilbabs",
+      id: "جلباب",
+      label: "جلابيب",
       icon: Star,
-      description: "Jilbabs modernes et confortables",
-      href: "/books?category=jilbab",
+      description: "جلابيب عصرية ومريحة",
+      href: "/books?category=جلباب",
     },
     {
-      id: "kaftan",
-      label: "Kaftans",
+      id: "قفطان",
+      label: "قفاطين",
       icon: Crown,
-      description: "Kaftans luxueux pour cérémonies",
-      href: "/books?category=kaftan",
+      description: "قفاطين فاخرة للمناسبات",
+      href: "/books?category=قفطان",
     },
     {
-      id: "ensemble",
-      label: "Ensembles",
+      id: "طقم",
+      label: "أطقم",
       icon: Gift,
-      description: "Sets complets coordonnés",
-      href: "/books?category=ensemble",
+      description: "أطقم كاملة منسقة",
+      href: "/books?category=طقم",
     },
     {
-      id: "accessories",
-      label: "Accessoires",
+      id: "إكسسوارات",
+      label: "إكسسوارات",
       icon: Gem,
-      description: "Broches, épingles et plus",
-      href: "/books?category=accessories",
+      description: "بروشات ودبابيس وأكثر",
+      href: "/books?category=إكسسوارات",
     },
   ]
 
@@ -53,10 +53,10 @@ export function CategorySection() {
     <section className="py-8 md:py-20 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-2xl md:text-4xl font-bold text-center mb-3 text-primary animate-fadeInUp">
-          Nos Collections
+          مجموعاتنا
         </h2>
         <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto text-sm md:text-base animate-slideUp">
-          Découvrez notre sélection de vêtements islamiques élégants et modestes
+          اكتشفي مجموعتنا من الملابس الإسلامية الأنيقة والمحتشمة
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">

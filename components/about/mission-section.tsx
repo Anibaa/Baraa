@@ -13,12 +13,12 @@ export function MissionSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="space-y-4"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Notre Mission</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">مهمتنا</h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Offrir aux femmes musulmanes une mode élégante, pudique et moderne qui célèbre leur identité tout en respectant leurs valeurs. Nous croyons que chaque femme mérite de se sentir belle, confiante et authentique dans ses vêtements.
+            تقديم أزياء أنيقة ومحتشمة وعصرية للنساء المسلمات تحتفي بهويتهن مع احترام قيمهن. نؤمن بأن كل امرأة تستحق أن تشعر بالجمال والثقة والأصالة في ملابسها.
           </p>
           <p className="text-lg text-muted-foreground leading-relaxed mt-4">
-            Chez Baraa - براءة, nous combinons qualité exceptionnelle, designs contemporains et respect des traditions pour créer des pièces intemporelles qui accompagnent la femme moderne dans tous les moments de sa vie.
+            في براءة، نجمع بين الجودة الاستثنائية والتصاميم المعاصرة واحترام التقاليد لإنشاء قطع خالدة ترافق المرأة العصرية في جميع لحظات حياتها.
           </p>
         </motion.div>
       </div>

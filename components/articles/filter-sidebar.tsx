@@ -88,32 +88,32 @@ export function FilterSidebar() {
     router.push("/books")
   }, [router])
 
-  // Filter data for clothing
+  // Filter data - ALL IN ARABIC
   const filterData = useMemo(() => ({
     categories: [
-      { value: "abaya" as Category, label: "Abayas", icon: "👗", shortLabel: "Abaya" },
-      { value: "hijab" as Category, label: "Hijabs", icon: "🧕", shortLabel: "Hijab" },
-      { value: "jilbab" as Category, label: "Jilbabs", icon: "👘", shortLabel: "Jilbab" },
-      { value: "kaftan" as Category, label: "Kaftans", icon: "✨", shortLabel: "Kaftan" },
-      { value: "ensemble" as Category, label: "Ensembles", icon: "👔", shortLabel: "Ensemble" },
-      { value: "accessories" as Category, label: "Accessoires", icon: "💎", shortLabel: "Access." },
+      { value: "عباية" as Category, label: "عباءات", icon: "👗", shortLabel: "عباية" },
+      { value: "حجاب" as Category, label: "حجابات", icon: "🧕", shortLabel: "حجاب" },
+      { value: "جلباب" as Category, label: "جلابيب", icon: "👘", shortLabel: "جلباب" },
+      { value: "قفطان" as Category, label: "قفاطين", icon: "✨", shortLabel: "قفطان" },
+      { value: "طقم" as Category, label: "أطقم", icon: "👔", shortLabel: "طقم" },
+      { value: "إكسسوارات" as Category, label: "إكسسوارات", icon: "💎", shortLabel: "إكسسوارات" },
     ],
     colors: [
-      { value: "noir" as Color, label: "Noir", icon: "⚫", shortLabel: "Noir" },
-      { value: "blanc" as Color, label: "Blanc", icon: "⚪", shortLabel: "Blanc" },
-      { value: "beige" as Color, label: "Beige", icon: "🟤", shortLabel: "Beige" },
-      { value: "or" as Color, label: "Or", icon: "🟡", shortLabel: "Or" },
-      { value: "bronze" as Color, label: "Bronze", icon: "🟠", shortLabel: "Bronze" },
-      { value: "rose" as Color, label: "Rose", icon: "🌸", shortLabel: "Rose" },
-      { value: "bleu" as Color, label: "Bleu", icon: "🔵", shortLabel: "Bleu" },
-      { value: "vert" as Color, label: "Vert", icon: "🟢", shortLabel: "Vert" },
-      { value: "bordeaux" as Color, label: "Bordeaux", icon: "🔴", shortLabel: "Bordeaux" },
+      { value: "أسود" as Color, label: "أسود", icon: "⚫", shortLabel: "أسود" },
+      { value: "أبيض" as Color, label: "أبيض", icon: "⚪", shortLabel: "أبيض" },
+      { value: "بيج" as Color, label: "بيج", icon: "🟤", shortLabel: "بيج" },
+      { value: "ذهبي" as Color, label: "ذهبي", icon: "🟡", shortLabel: "ذهبي" },
+      { value: "برونزي" as Color, label: "برونزي", icon: "🟠", shortLabel: "برونزي" },
+      { value: "وردي" as Color, label: "وردي", icon: "🌸", shortLabel: "وردي" },
+      { value: "أزرق" as Color, label: "أزرق", icon: "🔵", shortLabel: "أزرق" },
+      { value: "أخضر" as Color, label: "أخضر", icon: "🟢", shortLabel: "أخضر" },
+      { value: "عنابي" as Color, label: "عنابي", icon: "🔴", shortLabel: "عنابي" },
     ],
     sortOptions: [
-      { value: "newest", label: "Plus récents", icon: "🆕" },
-      { value: "price-asc", label: "Prix croissant", icon: "💰" },
-      { value: "price-desc", label: "Prix décroissant", icon: "💎" },
-      { value: "popular", label: "Populaires", icon: "⭐" },
+      { value: "newest", label: "الأحدث", icon: "🆕" },
+      { value: "price-asc", label: "السعر: من الأقل للأعلى", icon: "💰" },
+      { value: "price-desc", label: "السعر: من الأعلى للأقل", icon: "💎" },
+      { value: "popular", label: "الأكثر شعبية", icon: "⭐" },
     ]
   }), [])
 
@@ -131,7 +131,7 @@ export function FilterSidebar() {
           >
             <div className="flex items-center gap-2">
               <Filter className="w-4 h-4" />
-              <span className="font-medium">Filtres</span>
+              <span className="font-medium">تصفية</span>
               {activeFiltersCount > 0 && (
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
@@ -152,7 +152,7 @@ export function FilterSidebar() {
           <div className="space-y-4 p-4 bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl shadow-sm">
             {/* Categories */}
             <div className="space-y-2">
-              <span className="text-xs text-muted-foreground font-medium">Catégorie</span>
+              <span className="text-xs text-muted-foreground font-medium">الفئة</span>
               <div className="flex flex-wrap gap-2">
                 {filterData.categories.map((item) => {
                   const isSelected = currentFilters.category === item.value
@@ -175,10 +175,9 @@ export function FilterSidebar() {
               </div>
             </div>
 
-
             {/* Colors */}
             <div className="space-y-2">
-              <span className="text-xs text-muted-foreground font-medium">Couleur</span>
+              <span className="text-xs text-muted-foreground font-medium">اللون</span>
               <div className="flex flex-wrap gap-2">
                 {filterData.colors.map((item) => {
                   const isSelected = currentFilters.color === item.value
@@ -203,7 +202,7 @@ export function FilterSidebar() {
 
             {/* Sort */}
             <div className="space-y-2">
-              <span className="text-xs text-muted-foreground font-medium">Trier par</span>
+              <span className="text-xs text-muted-foreground font-medium">ترتيب حسب</span>
               <div className="flex flex-wrap gap-2">
                 {filterData.sortOptions.map((item) => {
                   const isSelected = currentFilters.sort === item.value
@@ -231,7 +230,7 @@ export function FilterSidebar() {
                 onClick={clearAllFilters}
                 className="w-full px-3 py-2 text-xs font-medium text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
               >
-                Effacer tous les filtres
+                مسح جميع الفلاتر
               </button>
             )}
           </div>
@@ -284,21 +283,21 @@ export function FilterSidebar() {
       <div className="space-y-3 lg:space-y-4">
         <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
           <div className="w-1 h-4 bg-primary rounded-full" />
-          Recherche
+          بحث
           {currentFilters.search && (
             <div className="w-2 h-2 lg:w-2.5 lg:h-2.5 bg-primary rounded-full animate-pulse shadow-sm" />
           )}
         </h3>
         <div className="relative group">
-          <Search className="absolute left-3 lg:left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 group-focus-within:text-primary transition-colors" />
+          <Search className="absolute right-3 lg:right-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 group-focus-within:text-primary transition-colors" />
           <Input
             type="text"
             value={searchQuery}
             onChange={handleSearchInputChange}
-            placeholder="Rechercher des articles..."
-            className="pl-10 pr-10 lg:pl-12 lg:pr-12 h-10 lg:h-12 text-sm bg-background/90 border-2 border-border/60 focus:border-primary focus:bg-background transition-all duration-200 rounded-xl shadow-sm focus:shadow-md"
+            placeholder="ابحث عن المنتجات..."
+            className="pr-10 pl-10 lg:pr-12 lg:pl-12 h-10 lg:h-12 text-sm bg-background/90 border-2 border-border/60 focus:border-primary focus:bg-background transition-all duration-200 rounded-xl shadow-sm focus:shadow-md"
           />
-          <div className="absolute right-3 lg:right-4 top-1/2 transform -translate-y-1/2 flex items-center">
+          <div className="absolute left-3 lg:left-4 top-1/2 transform -translate-y-1/2 flex items-center">
             {isSearching ? (
               <Loader2 className="w-4 h-4 text-primary animate-spin" />
             ) : searchQuery ? (
@@ -325,14 +324,14 @@ export function FilterSidebar() {
         <div className="space-y-3">
           <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
             <ArrowUpDown className="w-4 h-4" />
-            Trier par
+            ترتيب حسب
           </h3>
           <select
             value={currentFilters.sort}
             onChange={(e) => handleFilterChange("sort", e.target.value)}
             className="w-full px-4 py-3 border-2 border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 bg-background transition-all"
           >
-            <option value="">Par défaut</option>
+            <option value="">افتراضي</option>
             {filterData.sortOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.icon} {option.label}
@@ -342,14 +341,14 @@ export function FilterSidebar() {
         </div>
 
         <DesktopRadioGroup
-          title="Catégorie"
+          title="الفئة"
           items={filterData.categories}
           currentValue={currentFilters.category}
           filterKey="category"
         />
 
         <DesktopRadioGroup
-          title="Couleur"
+          title="اللون"
           items={filterData.colors}
           currentValue={currentFilters.color}
           filterKey="color"
@@ -360,7 +359,7 @@ export function FilterSidebar() {
             onClick={clearAllFilters}
             className="w-full px-4 py-3 text-sm font-medium text-destructive hover:bg-destructive/10 rounded-xl transition-colors border-2 border-dashed border-destructive/30"
           >
-            Effacer tous les filtres
+            مسح جميع الفلاتر
           </button>
         )}
       </div>
@@ -369,8 +368,8 @@ export function FilterSidebar() {
       <div className="relative bg-linear-to-r from-muted/60 to-muted/40 rounded-xl p-3 lg:p-4 border border-border/50 shadow-sm">
         <p className="text-xs text-muted-foreground flex items-center gap-2 font-medium">
           <span className="text-base lg:text-lg">💡</span>
-          <span className="lg:hidden">Utilisez les filtres pour affiner</span>
-          <span className="hidden lg:inline">Combinez les filtres pour trouver l'article parfait</span>
+          <span className="lg:hidden">استخدمي الفلاتر للتحديد</span>
+          <span className="hidden lg:inline">اجمعي بين الفلاتر للعثور على المنتج المثالي</span>
         </p>
       </div>
     </div>

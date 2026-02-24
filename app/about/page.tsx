@@ -10,16 +10,16 @@ import { PartnerCTA } from "@/components/about/partner-cta"
 import { WhatsAppContact } from "@/components/about/whatsapp-contact"
 
 export const metadata: Metadata = {
-  title: "À propos de Baraa - براءة | Mode Islamique Féminine",
+  title: "من نحن - براءة | Baraa | أزياء إسلامية نسائية",
   description:
-    "Découvrez l'histoire de Baraa, notre passion pour la mode islamique élégante et notre engagement envers les femmes musulmanes modernes.",
-  keywords: ["à propos", "Baraa", "براءة", "mode islamique", "histoire", "valeurs", "mission"],
+    "اكتشفي قصة براءة، شغفنا بالأزياء الإسلامية الأنيقة والتزامنا تجاه النساء المسلمات العصريات.",
+  keywords: ["من نحن", "براءة", "Baraa", "أزياء إسلامية", "قصة", "قيم", "مهمة"],
   openGraph: {
     type: "website",
-    locale: "fr_TN",
+    locale: "ar_TN",
     url: "https://baraa.com/about",
-    title: "À propos de Baraa - براءة",
-    description: "Découvrez notre passion pour la mode islamique élégante",
+    title: "من نحن - براءة | Baraa",
+    description: "اكتشفي شغفنا بالأزياء الإسلامية الأنيقة",
     images: [
       {
         url: "/og-image.png",
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "À propos de Baraa - براءة",
-    description: "Mode Islamique Féminine de Luxe",
+    title: "من نحن - براءة | Baraa",
+    description: "أزياء إسلامية نسائية فاخرة",
   },
 }
 

@@ -71,7 +71,7 @@ export function BooksGrid({ books, searchQuery }: BooksGridProps) {
               <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
                 <button className="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3 bg-white/95 backdrop-blur-md hover:bg-primary hover:text-white text-foreground font-medium rounded-xl transition-all duration-400 shadow-2xl hover:shadow-primary/20 hover:scale-[1.02]">
                   <ShoppingCart className="w-4 h-4" />
-                  <span className="text-sm tracking-wide">Ajouter au panier</span>
+                  <span className="text-sm tracking-wide">أضف للسلة</span>
                 </button>
               </div>
             </div>
@@ -108,11 +108,11 @@ export function BooksGrid({ books, searchQuery }: BooksGridProps) {
               <div className="flex items-baseline gap-2">
                 {book.promoPrice ? (
                   <>
-                    <span className="text-lg md:text-xl font-semibold text-red-600">{book.promoPrice} DT</span>
-                    <span className="text-xs text-muted-foreground line-through font-light">{book.price} DT</span>
+                    <span className="text-lg md:text-xl font-semibold text-red-600">{book.promoPrice} د.ت</span>
+                    <span className="text-xs text-muted-foreground line-through font-light">{book.price} د.ت</span>
                   </>
                 ) : (
-                  <span className="text-lg md:text-xl font-semibold text-foreground">{book.price} DT</span>
+                  <span className="text-lg md:text-xl font-semibold text-foreground">{book.price} د.ت</span>
                 )}
               </div>
 
