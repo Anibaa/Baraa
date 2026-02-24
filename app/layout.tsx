@@ -1,11 +1,14 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Rubik } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const rubik = Rubik({ 
+  subsets: ["latin", "arabic"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-rubik",
+})
 
 export const metadata: Metadata = {
   title: "Baraa - براءة | Mode Islamique Féminine de Luxe",
@@ -68,7 +71,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" dir="ltr">
-      <body className={`font-sans antialiased`}>
+      <body className={`${rubik.variable} font-sans antialiased`}>
         {children}
         <Analytics />
       </body>
