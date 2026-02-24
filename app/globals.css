@@ -146,92 +146,97 @@
 }
 
 :root {
-  /* Islamic Women's Clothing Brand - Gold Palette */
-  --background: oklch(0.98 0.01 85);
-  --foreground: oklch(0.25 0.02 75);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.25 0.02 75);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.25 0.02 75);
+  /* Baraa Brand Palette */
+  /* #e5cca8 - Warm Beige */
+  --background: oklch(0.85 0.04 75);
+  --foreground: oklch(0.30 0.02 60);
+  --card: oklch(0.98 0.01 75);
+  --card-foreground: oklch(0.30 0.02 60);
+  --popover: oklch(0.98 0.01 75);
+  --popover-foreground: oklch(0.30 0.02 60);
 
-  /* Primary: Rich Gold (#D4AF37) */
-  --primary: 0.75 0.12 85;
-  --primary-foreground: oklch(0.2 0.02 75);
+  /* Primary: #4f4537 - Dark Brown */
+  --primary: 0.32 0.03 60;
+  --primary-foreground: oklch(0.98 0.01 75);
 
-  /* Secondary: Deep Bronze (#8B6914) */
-  --secondary: 0.52 0.10 75;
-  --secondary-foreground: oklch(1 0 0);
+  /* Secondary: #b5a999 - Taupe */
+  --secondary: 0.72 0.02 65;
+  --secondary-foreground: oklch(0.30 0.02 60);
 
-  /* Accent: Soft Rose Gold (#B76E79) */
-  --accent: 0.60 0.08 15;
-  --accent-foreground: oklch(1 0 0);
+  /* Accent: #9cd2bf - Mint Green */
+  --accent: 0.80 0.06 170;
+  --accent-foreground: oklch(0.30 0.02 60);
 
-  /* Muted: Cream */
-  --muted: oklch(0.96 0.01 85);
-  --muted-foreground: oklch(0.50 0.02 75);
+  /* Muted: Light Beige */
+  --muted: oklch(0.90 0.03 75);
+  --muted-foreground: oklch(0.50 0.02 60);
 
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.88 0.02 85);
-  --input: oklch(0.95 0.01 85);
-  --ring: oklch(0.75 0.12 85);
+  --border: oklch(0.78 0.03 70);
+  --input: oklch(0.88 0.03 75);
+  --ring: oklch(0.32 0.03 60);
 
-  --chart-1: oklch(0.75 0.12 85);
-  --chart-2: oklch(0.52 0.10 75);
-  --chart-3: oklch(0.60 0.08 15);
-  --chart-4: oklch(0.68 0.09 65);
-  --chart-5: oklch(0.82 0.06 95);
+  --chart-1: oklch(0.32 0.03 60);
+  --chart-2: oklch(0.72 0.02 65);
+  --chart-3: oklch(0.80 0.06 170);
+  --chart-4: oklch(0.85 0.04 75);
+  --chart-5: oklch(0.75 0.03 68);
 
   --radius: 0.5rem;
-  --sidebar: oklch(0.98 0.01 85);
-  --sidebar-foreground: oklch(0.25 0.02 75);
-  --sidebar-primary: 0.75 0.12 85;
-  --sidebar-primary-foreground: oklch(0.2 0.02 75);
-  --sidebar-accent: 0.60 0.08 15;
-  --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.88 0.02 85);
-  --sidebar-ring: oklch(0.75 0.12 85);
+  --sidebar: oklch(0.85 0.04 75);
+  --sidebar-foreground: oklch(0.30 0.02 60);
+  --sidebar-primary: 0.32 0.03 60;
+  --sidebar-primary-foreground: oklch(0.98 0.01 75);
+  --sidebar-accent: 0.80 0.06 170;
+  --sidebar-accent-foreground: oklch(0.30 0.02 60);
+  --sidebar-border: oklch(0.78 0.03 70);
+  --sidebar-ring: oklch(0.32 0.03 60);
 }
 
 .dark {
-  --background: oklch(0.18 0.02 75);
-  --foreground: oklch(0.95 0.01 85);
-  --card: oklch(0.22 0.02 75);
-  --card-foreground: oklch(0.95 0.01 85);
-  --popover: oklch(0.18 0.02 75);
-  --popover-foreground: oklch(0.95 0.01 85);
+  /* Dark mode with inverted palette */
+  --background: oklch(0.25 0.02 60);
+  --foreground: oklch(0.90 0.03 75);
+  --card: oklch(0.30 0.02 60);
+  --card-foreground: oklch(0.90 0.03 75);
+  --popover: oklch(0.28 0.02 60);
+  --popover-foreground: oklch(0.90 0.03 75);
 
-  --primary: 0.80 0.14 85;
-  --primary-foreground: oklch(0.18 0.02 75);
+  /* Primary: Lighter Brown for dark mode */
+  --primary: 0.72 0.02 65;
+  --primary-foreground: oklch(0.25 0.02 60);
 
-  --secondary: 0.58 0.12 75;
-  --secondary-foreground: oklch(0.95 0.01 85);
+  /* Secondary: Dark Brown */
+  --secondary: 0.40 0.03 60;
+  --secondary-foreground: oklch(0.90 0.03 75);
 
-  --accent: 0.65 0.10 15;
-  --accent-foreground: oklch(0.95 0.01 85);
+  /* Accent: Mint Green (slightly adjusted) */
+  --accent: 0.75 0.08 170;
+  --accent-foreground: oklch(0.25 0.02 60);
 
-  --muted: oklch(0.28 0.02 75);
-  --muted-foreground: oklch(0.70 0.02 85);
+  --muted: oklch(0.35 0.02 60);
+  --muted-foreground: oklch(0.70 0.03 70);
   --destructive: oklch(0.50 0.20 27);
-  --destructive-foreground: oklch(0.95 0.01 85);
-  --border: oklch(0.32 0.02 75);
-  --input: oklch(0.28 0.02 75);
-  --ring: oklch(0.80 0.14 85);
+  --destructive-foreground: oklch(0.90 0.03 75);
+  --border: oklch(0.40 0.02 60);
+  --input: oklch(0.35 0.02 60);
+  --ring: oklch(0.72 0.02 65);
 
-  --chart-1: oklch(0.80 0.14 85);
-  --chart-2: oklch(0.58 0.12 75);
-  --chart-3: oklch(0.65 0.10 15);
-  --chart-4: oklch(0.72 0.11 65);
-  --chart-5: oklch(0.85 0.08 95);
+  --chart-1: oklch(0.72 0.02 65);
+  --chart-2: oklch(0.40 0.03 60);
+  --chart-3: oklch(0.75 0.08 170);
+  --chart-4: oklch(0.60 0.04 75);
+  --chart-5: oklch(0.68 0.03 68);
 
-  --sidebar: oklch(0.20 0.02 75);
-  --sidebar-foreground: oklch(0.95 0.01 85);
-  --sidebar-primary: 0.80 0.14 85;
-  --sidebar-primary-foreground: oklch(0.18 0.02 75);
-  --sidebar-accent: 0.65 0.10 15;
-  --sidebar-accent-foreground: oklch(0.95 0.01 85);
-  --sidebar-border: oklch(0.32 0.02 75);
-  --sidebar-ring: oklch(0.80 0.14 85);
+  --sidebar: oklch(0.28 0.02 60);
+  --sidebar-foreground: oklch(0.90 0.03 75);
+  --sidebar-primary: 0.72 0.02 65;
+  --sidebar-primary-foreground: oklch(0.25 0.02 60);
+  --sidebar-accent: 0.75 0.08 170;
+  --sidebar-accent-foreground: oklch(0.25 0.02 60);
+  --sidebar-border: oklch(0.40 0.02 60);
+  --sidebar-ring: oklch(0.72 0.02 65);
 }
 
 @theme inline {
@@ -358,19 +363,23 @@ a {
 /* Added shadow utilities */
 .shadow-soft {
   @apply shadow-md;
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+  box-shadow: 0 4px 12px rgba(79, 69, 55, 0.15);
 }
 
 .shadow-soft-hover {
   @apply shadow-lg;
-  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 8px 24px rgba(79, 69, 55, 0.25);
 }
 
-/* Gold gradient backgrounds */
+/* Brand gradient backgrounds */
 .bg-gold-gradient {
-  background: linear-gradient(135deg, #D4AF37 0%, #F4E5C3 100%);
+  background: linear-gradient(135deg, #e5cca8 0%, #b5a999 100%);
 }
 
 .bg-gold-radial {
-  background: radial-gradient(circle at top right, #D4AF37, #8B6914);
+  background: radial-gradient(circle at top right, #e5cca8, #4f4537);
+}
+
+.bg-mint-accent {
+  background: linear-gradient(135deg, #9cd2bf 0%, #b5a999 100%);
 }
