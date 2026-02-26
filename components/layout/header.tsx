@@ -28,7 +28,7 @@ export function Header() {
         >
           <div className="relative w-8 h-8">
             <Image
-              src="/logo.jpeg"        // put your logo in /public/logo.png
+              src="/logo.png"        // put your logo in /public/logo.png
               alt="Baraa logo"
               fill
               className="object-contain"
