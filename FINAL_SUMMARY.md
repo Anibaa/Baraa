@@ -368,7 +368,7 @@ npm run start
    - Featured articles
    - Testimonials
 
-2. **Articles** (`/books`)
+2. **Articles** (`/articles`)
    - Product grid
    - Filters (category, size, color)
    - Search functionality

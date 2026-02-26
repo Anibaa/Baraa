@@ -3,7 +3,7 @@ import { getBooks } from "@/lib/api"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { FilterSidebar } from "@/components/articles/filter-sidebar"
-import { BooksGrid } from "@/components/articles/books-grid"
+import { BooksGrid } from "@/components/articles/articles-grid"
 import { Pagination } from "@/components/articles/pagination"
 import { SearchResultsSummary } from "@/components/articles/search-results-summary"
 

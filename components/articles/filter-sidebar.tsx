@@ -53,7 +53,7 @@ export function FilterSidebar() {
       }
 
       params.delete("page")
-      router.push(`/books?${params.toString()}`)
+      router.push(`/articles?${params.toString()}`)
       setIsSearching(false)
     }, 300)
   }, [router, searchParams])
@@ -80,12 +80,12 @@ export function FilterSidebar() {
     }
 
     params.delete("page")
-    router.push(`/books?${params.toString()}`)
+    router.push(`/articles?${params.toString()}`)
   }, [router, searchParams])
 
   // Clear all filters
   const clearAllFilters = useCallback(() => {
-    router.push("/books")
+    router.push("/articles")
   }, [router])
 
   // Filter data - ALL IN ARABIC

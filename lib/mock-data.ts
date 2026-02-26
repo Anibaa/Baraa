@@ -283,7 +283,7 @@ export const mockSliders: SliderItem[] = [
     subtitle: "Découvrez nos nouvelles abayas dorées",
     image: "/DEMO-BANNER.png",
     cta: "Découvrir",
-    link: "/books",
+    link: "/articles",
   },
   {
     id: "2",
@@ -291,7 +291,7 @@ export const mockSliders: SliderItem[] = [
     subtitle: "Mode islamique de luxe",
     image: "/demo-banner2.png",
     cta: "Voir la collection",
-    link: "/books",
+    link: "/articles",
   }
 ]
 

@@ -43,7 +43,7 @@ Complete professional UI motion system, micro-interactions, personalization feat
 - Gallery and specifications support
 - CreatedAt timestamp
 
-**Admin Form Sync** (`components/admin/books-management.tsx`):
+**Admin Form Sync** (`components/admin/articles-management.tsx`):
 - All form fields match frontend display fields
 - Real-time form state management
 - Proper type safety for all inputs
@@ -58,7 +58,7 @@ Complete professional UI motion system, micro-interactions, personalization feat
 - Promotion banner with floating background elements
 - Testimonials with interactive hover states
 
-**Book Details** (`components/books/book-details.tsx`):
+**Book Details** (`components/articles/book-details.tsx`):
 - Animated quantity changes
 - Loading states for buy now button
 - Toast notifications for add to cart/favorites

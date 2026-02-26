@@ -40,8 +40,8 @@ care: string
 
 #### Updated Pages
 - ✅ `/` - Homepage with clothing categories
-- ✅ `/books` - Articles page with filters & sorting
-- ✅ `/books/[id]` - Product details page
+- ✅ `/articles` - Articles page with filters & sorting
+- ✅ `/articles/[id]` - Product details page
 - ✅ `/about` - About Baraa brand
 
 ### 4. ✅ Navigation Structure
@@ -190,14 +190,14 @@ Articles | À propos | Blog | FAQ
 
 ```
 /                                    → Homepage
-/books                               → All articles
-/books?category=abaya                → Abayas only
-/books?size=M                        → Size M only
-/books?color=or                      → Gold items
-/books?sort=price-asc                → Sorted by price
-/books?category=hijab&color=noir     → Black hijabs
-/books?sort=newest&category=kaftan   → Newest kaftans
-/books/[id]                          → Product details
+/articles                               → All articles
+/articles?category=abaya                → Abayas only
+/articles?size=M                        → Size M only
+/articles?color=or                      → Gold items
+/articles?sort=price-asc                → Sorted by price
+/articles?category=hijab&color=noir     → Black hijabs
+/articles?sort=newest&category=kaftan   → Newest kaftans
+/articles/[id]                          → Product details
 /blog                                → Fashion blog
 /faq                                 → FAQ page
 /about                               → About Baraa

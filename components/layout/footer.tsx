@@ -15,7 +15,7 @@ export function Footer() {
             <h4 className="font-semibold mb-4 text-sm md:text-base">روابط سريعة</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/books" className="hover:opacity-80 transition-opacity">
+                <Link href="/articles" className="hover:opacity-80 transition-opacity">
                   المجموعات
                 </Link>
               </li>

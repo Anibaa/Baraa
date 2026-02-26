@@ -76,7 +76,7 @@ The entire website has been converted to Arabic with full RTL support!
   - All product categories in Arabic
 
 ### 4. صفحات المنتجات / Product Pages (100%)
-- ✅ `app/books/page.tsx` - Products page in Arabic
+- ✅ `app/articles/page.tsx` - Products page in Arabic
   - "مجموعتنا" (Our Collection)
   - "استكشفي مجموعتنا الحصرية..." (Explore our exclusive collection...)
   - "جاري تحميل الفلاتر..." (Loading filters...)

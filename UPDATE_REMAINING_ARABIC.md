@@ -18,7 +18,7 @@
 - [x] `components/home/personalized-greeting.tsx`
 - [x] `components/home/promotion-banner.tsx`
 - [x] `components/home/whatsapp-button.tsx`
-- [x] `app/books/page.tsx`
+- [x] `app/articles/page.tsx`
 - [x] `components/articles/filter-sidebar.tsx` - FULLY ARABIC
 
 ## 🔄 يحتاج للتحديث اليدوي / Needs Manual Update
@@ -129,7 +129,7 @@ const testimonials = [
  book.category === "طقم" ? "طقم" : "إكسسوار"}
 ```
 
-### 5. components/articles/books-grid.tsx
+### 5. components/articles/articles-grid.tsx
 ```typescript
 // رسائل / Messages
 "لا توجد منتجات"
@@ -230,10 +230,10 @@ if (category === "عباية") return "عباية"
 ### تحديث الروابط / Update Links
 ```typescript
 // قبل / Before
-href="/books?category=abaya"
+href="/articles?category=abaya"
 
 // بعد / After
-href="/books?category=عباية"
+href="/articles?category=عباية"
 ```
 
 ### الأرقام العربية (اختياري) / Arabic Numerals (Optional)
@@ -250,7 +250,7 @@ function toArabicNumerals(num: number | string): string {
 ## 🎯 الأولوية / Priority
 
 1. **عالية جداً / Very High**
-   - components/articles/books-grid.tsx
+   - components/articles/articles-grid.tsx
    - components/articles/pagination.tsx
    - components/articles/search-results-summary.tsx
 

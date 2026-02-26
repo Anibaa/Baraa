@@ -29,7 +29,7 @@ export function AboutHero() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link
-            href="/books"
+            href="/articles"
             className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-soft hover:shadow-soft-hover"
           >
             اكتشفي المجموعة

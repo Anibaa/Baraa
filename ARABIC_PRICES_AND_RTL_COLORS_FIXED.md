@@ -26,7 +26,7 @@ Tous les prix ont été convertis de "DT" ou "TND" vers "د.ت" (Dinar Tunisien 
    - Labels en arabe: "المجموع الفرعي", "التوصيل", "المجموع"
    - Placeholder: "عنوان التوصيل"
 
-4. **components/articles/books-grid.tsx** ✅
+4. **components/articles/articles-grid.tsx** ✅
    - Prix promo: `{book.promoPrice} د.ت`
    - Prix normal: `{book.price} د.ت`
    - Bouton: "أضف للسلة"
@@ -63,7 +63,7 @@ Tous les prix ont été convertis de "DT" ou "TND" vers "د.ت" (Dinar Tunisien 
    - Quantité: `الكمية: {item.quantity} × {item.price.toFixed(2)} د.ت`
    - Total: `{(item.quantity * item.price).toFixed(2)} د.ت`
 
-10. **components/admin/books-management.tsx** ✅
+10. **components/admin/articles-management.tsx** ✅
     - Prix: `{book.price} د.ت`
     - Prix promo: `{book.promoPrice} د.ت`
     - Label: "السعر (د.ت)"

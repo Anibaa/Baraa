@@ -29,7 +29,7 @@
 
 ### 2. ⚠️ Admin Forms Need Update
 
-**File**: `components/admin/books-management.tsx`
+**File**: `components/admin/articles-management.tsx`
 
 **Required Changes:**
 
@@ -140,7 +140,7 @@ export async function getBooks(filters?: {
 
 ### 5. ⚠️ Books Page Needs Sort Parameter
 
-**File**: `app/books/page.tsx`
+**File**: `app/articles/page.tsx`
 
 **Add sort to interface:**
 
@@ -175,10 +175,10 @@ const allBooks = await getBooks({
 ### Step 1: Update API (lib/api.ts)
 Add sorting logic to `getBooks()` function as shown above.
 
-### Step 2: Update Books Page (app/books/page.tsx)
+### Step 2: Update Books Page (app/articles/page.tsx)
 Add `sort` parameter to searchParams and pass to getBooks().
 
-### Step 3: Update Admin Form (components/admin/books-management.tsx)
+### Step 3: Update Admin Form (components/admin/articles-management.tsx)
 
 Replace category dropdown:
 ```tsx
@@ -297,13 +297,13 @@ Similar changes as admin form but simpler:
 ## URL Examples
 
 ```
-/books                           → All products
-/books?category=abaya            → Only abayas
-/books?size=M                    → Only size M
-/books?color=or                  → Only gold color
-/books?sort=price-asc            → Sorted by price low to high
-/books?category=hijab&color=noir → Black hijabs
-/books?sort=newest&category=kaftan → Newest kaftans
+/articles                           → All products
+/articles?category=abaya            → Only abayas
+/articles?size=M                    → Only size M
+/articles?color=or                  → Only gold color
+/articles?sort=price-asc            → Sorted by price low to high
+/articles?category=hijab&color=noir → Black hijabs
+/articles?sort=newest&category=kaftan → Newest kaftans
 ```
 
 ---

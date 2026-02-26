@@ -95,8 +95,8 @@ Special RTL CSS rules have been added:
 The following components need to be updated with Arabic text:
 
 ### صفحات / Pages
-- [ ] `app/books/page.tsx` - صفحة المنتجات
-- [ ] `app/books/[id]/page.tsx` - صفحة تفاصيل المنتج
+- [ ] `app/articles/page.tsx` - صفحة المنتجات
+- [ ] `app/articles/[id]/page.tsx` - صفحة تفاصيل المنتج
 - [ ] `app/cart/page.tsx` - صفحة السلة
 - [ ] `app/checkout/page.tsx` - صفحة الدفع
 - [ ] `app/order-confirmation/page.tsx` - صفحة تأكيد الطلب
@@ -108,7 +108,7 @@ The following components need to be updated with Arabic text:
 - [ ] `app/admin/login/page.tsx` - تسجيل دخول الإدارة
 
 ### مكونات المنتجات / Product Components
-- [ ] `components/articles/books-grid.tsx`
+- [ ] `components/articles/articles-grid.tsx`
 - [ ] `components/articles/book-details.tsx`
 - [ ] `components/articles/book-gallery.tsx`
 - [ ] `components/articles/filter-sidebar.tsx`
@@ -134,7 +134,7 @@ The following components need to be updated with Arabic text:
 ### مكونات الإدارة / Admin Components
 - [ ] `components/admin/admin-nav.tsx`
 - [ ] `components/admin/admin-statistics.tsx`
-- [ ] `components/admin/books-management.tsx`
+- [ ] `components/admin/articles-management.tsx`
 - [ ] `components/admin/orders-management.tsx`
 - [ ] `components/admin/partners-management.tsx`
 - [ ] `components/admin/sliders-management.tsx`
@@ -177,12 +177,12 @@ Make sure to update query parameters for categories:
 
 **قبل / Before:**
 ```typescript
-href="/books?category=abaya"
+href="/articles?category=abaya"
 ```
 
 **بعد / After:**
 ```typescript
-href="/books?category=عباية"
+href="/articles?category=عباية"
 ```
 
 ## البيانات الوهمية / Mock Data
@@ -197,7 +197,7 @@ Mock data needs to be updated in:
 يجب تحديث واجهات API لدعم القيم العربية:
 API routes need to be updated to support Arabic values:
 
-- `app/api/books/route.ts`
+- `app/api/articles/route.ts`
 - `app/api/orders/route.ts`
 - `app/api/partners/route.ts`
 - `app/api/sliders/route.ts`

@@ -19,7 +19,6 @@ export function AdminNav({ activeTab }: AdminNavProps) {
     { id: "books", label: "Articles", icon: BookOpen },
     { id: "orders", label: "Commandes", icon: ShoppingCart },
     { id: "sliders", label: "Promotions", icon: Sliders },
-    { id: "partners", label: "Partenaires", icon: Users },
   ]
 
   const handleLogout = () => {

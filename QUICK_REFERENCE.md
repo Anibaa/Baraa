@@ -19,7 +19,7 @@ Cream:     #F8F6F0  (Background)
 ## Navigation
 ```
 /           → Homepage
-/books      → Articles (Products)
+/articles      → Articles (Products)
 /about      → About Baraa
 /blog       → Fashion Blog
 /cart       → Shopping Cart

@@ -119,10 +119,10 @@ import { translations, t } from '@/lib/translations'
 ### تحديث الروابط / Updating Links
 ```typescript
 // قبل / Before
-<Link href="/books?category=abaya">Abayas</Link>
+<Link href="/articles?category=abaya">Abayas</Link>
 
 // بعد / After
-<Link href="/books?category=عباية">عباءات</Link>
+<Link href="/articles?category=عباية">عباءات</Link>
 ```
 
 ### تحديث الأنواع / Updating Types

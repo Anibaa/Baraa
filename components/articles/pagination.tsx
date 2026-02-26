@@ -20,7 +20,7 @@ export function Pagination({ currentPage, totalPages, totalItems }: PaginationPr
     } else {
       params.set("page", page.toString())
     }
-    router.push(`/books?${params.toString()}`)
+    router.push(`/articles?${params.toString()}`)
   }
 
   if (totalPages <= 1) return null

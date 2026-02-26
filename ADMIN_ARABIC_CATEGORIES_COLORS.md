@@ -8,7 +8,7 @@
 
 ### 1. Formulaire Admin - Catégories en Arabe ✅
 
-**Fichier**: `components/admin/books-management.tsx`
+**Fichier**: `components/admin/articles-management.tsx`
 
 #### Avant:
 ```typescript
@@ -36,7 +36,7 @@
 
 ### 2. Formulaire Admin - Couleurs en Arabe ✅
 
-**Fichier**: `components/admin/books-management.tsx`
+**Fichier**: `components/admin/articles-management.tsx`
 
 #### Avant:
 ```typescript
@@ -99,7 +99,7 @@ export const PREDEFINED_COLORS: Record<PredefinedColor, ...> = {
 
 ### 4. Statuts en Arabe ✅
 
-**Fichier**: `components/admin/books-management.tsx`
+**Fichier**: `components/admin/articles-management.tsx`
 
 #### Avant:
 ```typescript
@@ -123,7 +123,7 @@ export const PREDEFINED_COLORS: Record<PredefinedColor, ...> = {
 
 ### 5. Tailles en Arabe ✅
 
-**Fichier**: `components/admin/books-management.tsx`
+**Fichier**: `components/admin/articles-management.tsx`
 
 #### Changement:
 ```typescript
@@ -137,7 +137,7 @@ export const PREDEFINED_COLORS: Record<PredefinedColor, ...> = {
 
 ### 6. Labels du Formulaire en Arabe ✅
 
-**Fichier**: `components/admin/books-management.tsx`
+**Fichier**: `components/admin/articles-management.tsx`
 
 #### Traductions:
 - "Gestion des Articles" → "إدارة المنتجات"

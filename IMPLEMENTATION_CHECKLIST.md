@@ -20,14 +20,14 @@
 ### Phase 2: Product Pages (Pending)
 
 ### أولوية عالية جداً / Very High Priority
-- [ ] `app/books/page.tsx`
+- [ ] `app/articles/page.tsx`
   - [ ] تحديث العنوان والوصف
   - [ ] تحديث نصوص البحث
   - [ ] تحديث نصوص التصفية
   - [ ] تحديث نصوص الترتيب
   - [ ] تحديث رسائل "لا توجد نتائج"
 
-- [ ] `app/books/[id]/page.tsx`
+- [ ] `app/articles/[id]/page.tsx`
   - [ ] تحديث تفاصيل المنتج
   - [ ] تحديث أزرار الإجراءات
   - [ ] تحديث المواصفات
@@ -42,7 +42,7 @@
   - [ ] تحديث نطاق السعر
   - [ ] تحديث أزرار التطبيق والمسح
 
-- [ ] `components/articles/books-grid.tsx`
+- [ ] `components/articles/articles-grid.tsx`
   - [ ] تحديث عرض البطاقات
   - [ ] تحديث نصوص الحالة
   - [ ] تحديث أزرار الإجراءات
@@ -149,7 +149,7 @@
   - [ ] تحديث عناوين الإحصائيات
   - [ ] تحديث التسميات
 
-- [ ] `components/admin/books-management.tsx`
+- [ ] `components/admin/articles-management.tsx`
   - [ ] تحديث عناوين الأعمدة
   - [ ] تحديث نماذج الإضافة/التعديل
   - [ ] تحديث رسائل التأكيد
@@ -178,11 +178,11 @@
   - [ ] تحديث الحالات
   - [ ] تحديث بيانات السلايدر
 
-- [ ] `app/api/books/route.ts`
+- [ ] `app/api/articles/route.ts`
   - [ ] دعم القيم العربية في الاستعلامات
   - [ ] تحديث رسائل الخطأ
 
-- [ ] `app/api/books/[id]/route.ts`
+- [ ] `app/api/articles/[id]/route.ts`
   - [ ] دعم القيم العربية
   - [ ] تحديث رسائل الخطأ
 

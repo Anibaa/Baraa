@@ -39,7 +39,7 @@ export default function CheckoutPage() {
           <div className="text-center animate-fadeInUp">
             <p className="text-lg text-muted-foreground mb-4">سلتك فارغة</p>
             <Link
-              href="/books"
+              href="/articles"
               className="inline-block bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-all duration-200 hover:scale-105 active:scale-95"
             >
               متابعة التسوق

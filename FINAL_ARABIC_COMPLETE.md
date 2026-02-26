@@ -196,8 +196,8 @@ After: د.ت (Tunisian Dinar in Arabic)
 15. ✅ `components/home/hero-slider.tsx`
 
 ### Product Pages (3)
-16. ✅ `app/books/page.tsx`
-17. ✅ `app/books/[id]/page.tsx`
+16. ✅ `app/articles/page.tsx`
+17. ✅ `app/articles/[id]/page.tsx`
 18. ✅ `components/articles/filter-sidebar.tsx`
 19. ✅ `components/articles/book-details.tsx` + **د.ت**
 

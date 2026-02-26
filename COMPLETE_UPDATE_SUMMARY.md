@@ -84,7 +84,7 @@
 - ✅ Badge changed from language to size
 - ✅ Category badge: Collège/Lycée → Abaya/Hijab/etc.
 
-#### Books Page (`app/books/page.tsx`)
+#### Books Page (`app/articles/page.tsx`)
 - ✅ Title: "Parcourir les Livres" → "Nos Articles"
 - ✅ Description updated
 - ✅ Metadata updated
@@ -211,11 +211,11 @@ query.$or = [
 ### Current Routes
 ```
 /                  → Homepage
-/books             → Articles (Products)
-/books?category=abaya    → Filter by category
-/books?size=M            → Filter by size
-/books?color=or          → Filter by color
-/books/[id]        → Product detail
+/articles             → Articles (Products)
+/articles?category=abaya    → Filter by category
+/articles?size=M            → Filter by size
+/articles?color=or          → Filter by color
+/articles/[id]        → Product detail
 /about             → About Baraa
 /blog              → Fashion blog
 /faq               → FAQ page (NEW)
@@ -293,7 +293,7 @@ query.$or = [
 
 ### Files Created/Updated
 1. ✅ `app/faq/page.tsx` - NEW FAQ page
-2. ✅ `app/books/page.tsx` - Updated terminology
+2. ✅ `app/articles/page.tsx` - Updated terminology
 3. ✅ `components/home/category-section.tsx` - Clothing categories
 4. ✅ `components/home/featured-books.tsx` - Product display
 5. ✅ `components/layout/header.tsx` - Navigation with FAQ
@@ -403,7 +403,7 @@ query.$or = [
 ### Manual Testing
 1. Visit `/faq` and test all accordions
 2. Navigate through all menu items
-3. Test category filters on `/books`
+3. Test category filters on `/articles`
 4. Try size and color filters
 5. Search for products
 6. Test on mobile device

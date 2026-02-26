@@ -33,7 +33,7 @@ export function CartSummary() {
       )}
 
       <Link
-        href="/books"
+        href="/articles"
         className="block text-center text-sm text-primary hover:text-primary/80 mt-4 transition-colors"
       >
         متابعة التسوق

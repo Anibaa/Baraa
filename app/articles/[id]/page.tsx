@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: BookPageProps): Promise<Metad
     openGraph: {
       type: "website",
       locale: "ar_TN",
-      url: `https://baraa.com/books/${book.id}`,
+      url: `https://baraa.com/articles/${book.id}`,
       title: book.title,
       description: book.description,
       images: [

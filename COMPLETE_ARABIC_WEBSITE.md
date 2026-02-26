@@ -261,8 +261,8 @@ Authentic Products → منتجات أصلية
 15. ✅ `components/home/hero-slider.tsx`
 
 ### Product Pages
-16. ✅ `app/books/page.tsx` - Products listing
-17. ✅ `app/books/[id]/page.tsx` - Product details page
+16. ✅ `app/articles/page.tsx` - Products listing
+17. ✅ `app/articles/[id]/page.tsx` - Product details page
 18. ✅ `components/articles/filter-sidebar.tsx` - **100% Arabic**
 19. ✅ `components/articles/book-details.tsx` - **100% Arabic**
 

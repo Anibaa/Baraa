@@ -86,7 +86,7 @@ size: { type: String, enum: ["S", "M", "L", "XL", "XXL", "مقاس واحد"], r
 
 ### 3. Composants Admin Mis à Jour ✅
 
-#### `components/admin/books-management.tsx`:
+#### `components/admin/articles-management.tsx`:
 ```typescript
 // Avant:
 const statusColors: Record<string, string> = {

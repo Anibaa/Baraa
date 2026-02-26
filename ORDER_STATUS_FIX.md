@@ -78,7 +78,7 @@ const outOfStock = books.filter((b) => b.status === "غير متوفر").length
 
 ---
 
-### 3. Books Grid (`components/articles/books-grid.tsx`) ✅
+### 3. Books Grid (`components/articles/articles-grid.tsx`) ✅
 
 #### Badge de Statut:
 ```typescript

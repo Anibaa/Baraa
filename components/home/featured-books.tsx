@@ -32,7 +32,7 @@ export function FeaturedBooks({ books }: FeaturedBooksProps) {
               style={{ animationDelay: `${(idx + 2) * 0.05}s` }}
             >
               {/* Image Container */}
-              <Link href={`/books/${book.id}`} className="block relative">
+              <Link href={`/articles/${book.id}`} className="block relative">
                 <div className="relative overflow-hidden bg-linear-to-br from-muted/30 to-muted aspect-3/4">
                   <img
                     src={book.image || "/placeholder.svg"}
@@ -77,7 +77,7 @@ export function FeaturedBooks({ books }: FeaturedBooksProps) {
                 </div>
 
                 {/* Title - Prominent */}
-                <Link href={`/books/${book.id}`}>
+                <Link href={`/articles/${book.id}`}>
                   <h3 className="font-medium text-card-foreground line-clamp-2 group-hover:text-primary transition-colors duration-300 text-base md:text-lg leading-snug mb-2">
                     {book.title}
                   </h3>

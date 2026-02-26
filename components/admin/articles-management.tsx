@@ -71,7 +71,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
   const handleDelete = async (id: string) => {
     if (confirm("Êtes-vous certain de vouloir supprimer cet article?")) {
       try {
-        const res = await fetch(`/api/books/${id}`, {
+        const res = await fetch(`/api/articles/${id}`, {
           method: "DELETE",
         })
 
@@ -378,7 +378,7 @@ export function BooksManagement({ books }: BooksManagementProps) {
     }
 
     try {
-      const url = editingBook ? `/api/books/${editingBook.id}` : "/api/books"
+      const url = editingBook ? `/api/articles/${editingBook.id}` : "/api/articles"
       const method = editingBook ? "PUT" : "POST"
 
       const res = await fetch(url, {

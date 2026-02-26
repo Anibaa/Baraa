@@ -128,7 +128,7 @@ components/
 
 app/
 ├── books/               ⚠️ Rename to 'products'
-└── api/books/           ⚠️ Rename to 'api/products'
+└── api/articles/           ⚠️ Rename to 'api/products'
 ```
 
 ---
@@ -184,7 +184,7 @@ const BookSchema = new Schema({
 ## 🎯 Component Updates Needed
 
 ### 1. Filter Sidebar
-**File**: `components/books/filter-sidebar.tsx`
+**File**: `components/articles/filter-sidebar.tsx`
 
 ```typescript
 // OLD filters
@@ -201,7 +201,7 @@ const BookSchema = new Schema({
 ```
 
 ### 2. Product Cards
-**Files**: `components/books/book-*.tsx`
+**Files**: `components/articles/book-*.tsx`
 
 Update to show:
 - Size badge instead of level
@@ -210,7 +210,7 @@ Update to show:
 - "Ajouter au panier" button with gold styling
 
 ### 3. Product Details
-**File**: `components/books/book-details.tsx`
+**File**: `components/articles/book-details.tsx`
 
 Add sections for:
 - Size selector with size guide link
@@ -225,12 +225,12 @@ Add sections for:
 Update categories:
 ```typescript
 const categories = [
-  { name: "Abayas", icon: "👗", link: "/books?category=abaya" },
-  { name: "Hijabs", icon: "🧕", link: "/books?category=hijab" },
-  { name: "Jilbabs", icon: "👘", link: "/books?category=jilbab" },
-  { name: "Kaftans", icon: "✨", link: "/books?category=kaftan" },
-  { name: "Ensembles", icon: "👔", link: "/books?category=ensemble" },
-  { name: "Accessoires", icon: "💎", link: "/books?category=accessories" },
+  { name: "Abayas", icon: "👗", link: "/articles?category=abaya" },
+  { name: "Hijabs", icon: "🧕", link: "/articles?category=hijab" },
+  { name: "Jilbabs", icon: "👘", link: "/articles?category=jilbab" },
+  { name: "Kaftans", icon: "✨", link: "/articles?category=kaftan" },
+  { name: "Ensembles", icon: "👔", link: "/articles?category=ensemble" },
+  { name: "Accessoires", icon: "💎", link: "/articles?category=accessories" },
 ];
 ```
 
@@ -288,14 +288,14 @@ const categories = [
 ### Navigation
 ```typescript
 // OLD
-{ name: "Livres", href: "/books" }
-{ name: "Catégories", href: "/books" }
+{ name: "Livres", href: "/articles" }
+{ name: "Catégories", href: "/articles" }
 { name: "Devenir Partenaire", href: "/partner" }
 
 // NEW
-{ name: "Collections", href: "/books" }
-{ name: "Nouveautés", href: "/books?sort=new" }
-{ name: "Promotions", href: "/books?promo=true" }
+{ name: "Collections", href: "/articles" }
+{ name: "Nouveautés", href: "/articles?sort=new" }
+{ name: "Promotions", href: "/articles?promo=true" }
 { name: "Guide des Tailles", href: "/size-guide" }
 { name: "Devenir Revendeur", href: "/partner" }
 ```
@@ -316,14 +316,14 @@ Update to include:
 ### Rename Routes
 ```bash
 # OLD
-/api/books
-/api/books/[id]
+/api/articles
+/api/articles/[id]
 
 # NEW (or keep as is, just update logic)
 /api/products
 /api/products/[id]
 
-# Or keep /api/books but treat as products internally
+# Or keep /api/articles but treat as products internally
 ```
 
 ### Query Parameters

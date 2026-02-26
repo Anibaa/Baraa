@@ -17,7 +17,7 @@ export default function CartPage() {
       <main className="min-h-screen bg-muted/30">
         <div className="max-w-6xl mx-auto px-4 md:px-8 py-8">
           <Link
-            href="/books"
+            href="/articles"
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 mb-8 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -30,7 +30,7 @@ export default function CartPage() {
             <div className="text-center py-16">
               <p className="text-lg text-muted-foreground mb-4">سلتك فارغة</p>
               <Link
-                href="/books"
+                href="/articles"
                 className="inline-block bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
               >
                 متابعة التسوق

@@ -54,7 +54,7 @@
 
 ### Test 1: Produit avec Combinaisons
 ```
-1. Aller sur /books/kaftan-luxury-mix
+1. Aller sur /articles/kaftan-luxury-mix
 2. Vérifier l'affichage de 8 cercles de couleurs
 3. Vérifier que "Blue and White" affiche 2 demi-cercles
 4. Vérifier que "Red and Gold" affiche 2 demi-cercles
@@ -62,7 +62,7 @@
 
 ### Test 2: Produit Simple
 ```
-1. Aller sur /books/5 (Ensemble Prière)
+1. Aller sur /articles/5 (Ensemble Prière)
 2. Vérifier l'affichage de 3 cercles simples
 3. Sélectionner une couleur
 4. Ajouter au panier
@@ -70,7 +70,7 @@
 
 ### Test 3: Produit Prestige
 ```
-1. Aller sur /books/premium-collection
+1. Aller sur /articles/premium-collection
 2. Vérifier l'affichage de 8 cercles
 3. Vérifier les couleurs personnalisées (Bleu Nuit, Vert Émeraude)
 4. Vérifier les combinaisons (Noir et Or, etc.)

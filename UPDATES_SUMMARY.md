@@ -128,7 +128,7 @@ app/
 ### Navigation
 ```
 Desktop & Mobile:
-├── Articles (links to /books)
+├── Articles (links to /articles)
 ├── À propos (links to /about)
 └── Blog (links to /blog)
 ```
@@ -153,9 +153,9 @@ Desktop & Mobile:
 
 ### High Priority
 1. **Rename folder structure**:
-   - `app/books/` → `app/articles/`
-   - `components/books/` → `components/articles/`
-   - `app/api/books/` → `app/api/articles/`
+   - `app/articles/` → `app/articles/`
+   - `components/articles/` → `components/articles/`
+   - `app/api/articles/` → `app/api/articles/`
 
 2. **Update component files**:
    - All component names with "book" → "article"
@@ -215,7 +215,7 @@ const articles = await getBooks() // API function name can stay
 ### Navigation Links
 ```typescript
 // Correct navigation structure
-<Link href="/books">Articles</Link>
+<Link href="/articles">Articles</Link>
 <Link href="/about">À propos</Link>
 <Link href="/blog">Blog</Link>
 ```
@@ -238,7 +238,7 @@ const articles = await getBooks() // API function name can stay
 
 ### What Stays the Same
 
-1. **URL Structure**: `/books` still works (internal routing)
+1. **URL Structure**: `/articles` still works (internal routing)
 2. **Functionality**: All features work as before
 3. **Design**: Gold color palette maintained
 4. **Product Types**: Abayas, hijabs, etc. unchanged

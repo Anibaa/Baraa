@@ -18,7 +18,7 @@ export function RecentlyViewed() {
       const recentBooks: Book[] = []
       for (const id of recentIds.slice(0, 4)) {
         try {
-          const res = await fetch(`/api/books/${id}`)
+          const res = await fetch(`/api/articles/${id}`)
           const data = await res.json()
           if (data.success && data.data) {
             recentBooks.push(data.data)
@@ -53,7 +53,7 @@ export function RecentlyViewed() {
               style={{ animationDelay: `${idx * 0.05}s` }}
             >
               {/* Image Container */}
-              <Link href={`/books/${book.id}`} className="block relative">
+              <Link href={`/articles/${book.id}`} className="block relative">
                 <div className="relative overflow-hidden bg-linear-to-br from-muted/30 to-muted aspect-3/4">
                   <img
                     src={book.image || "/placeholder.svg"}
@@ -98,7 +98,7 @@ export function RecentlyViewed() {
                 </div>
 
                 {/* Title - Prominent */}
-                <Link href={`/books/${book.id}`}>
+                <Link href={`/articles/${book.id}`}>
                   <h3 className="font-medium text-card-foreground line-clamp-2 group-hover:text-primary transition-colors duration-300 text-base md:text-lg leading-snug mb-2">
                     {book.title}
                   </h3>

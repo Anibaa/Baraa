@@ -62,7 +62,7 @@
 - [ ] Update `recently-viewed.tsx` for products
 
 #### Product Components (books/ folder)
-- [ ] Rename `components/books/` to `components/products/`
+- [ ] Rename `components/articles/` to `components/products/`
 - [ ] Update `book-card.tsx` → `product-card.tsx`
   - [ ] Show size badge instead of level
   - [ ] Show color swatch instead of language
@@ -125,12 +125,12 @@
 ### 🚧 Phase 3: Pages & Routes (IN PROGRESS)
 
 #### App Routes
-- [ ] Rename `app/books/` to `app/products/` (or keep as is)
-- [ ] Update `app/books/page.tsx`
+- [ ] Rename `app/articles/` to `app/products/` (or keep as is)
+- [ ] Update `app/articles/page.tsx`
   - [ ] Update metadata
   - [ ] Update page title
   - [ ] Update filters logic
-- [ ] Update `app/books/[id]/page.tsx`
+- [ ] Update `app/articles/[id]/page.tsx`
   - [ ] Update metadata
   - [ ] Update product display
 - [ ] Update `app/cart/page.tsx`
@@ -144,11 +144,11 @@
 - [ ] Create `app/size-guide/page.tsx` (NEW)
 
 #### API Routes
-- [ ] Rename `app/api/books/` to `app/api/products/` (optional)
-- [ ] Update `app/api/books/route.ts`
+- [ ] Rename `app/api/articles/` to `app/api/products/` (optional)
+- [ ] Update `app/api/articles/route.ts`
   - [ ] Update query parameters (size, color)
   - [ ] Update filtering logic
-- [ ] Update `app/api/books/[id]/route.ts`
+- [ ] Update `app/api/articles/[id]/route.ts`
 - [ ] Update `app/api/orders/route.ts`
   - [ ] Ensure size/color are saved
 - [ ] Update `app/api/orders/[id]/route.ts`
@@ -405,8 +405,8 @@ find . -type f -name "*.tsx" -exec sed -i 's/book/product/g' {} +
 ### Component Renaming
 ```bash
 # Rename files
-mv components/books components/products
-mv app/books app/products
+mv components/articles components/products
+mv app/articles app/products
 
 # Update imports automatically with your IDE
 # Or use find & replace

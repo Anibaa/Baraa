@@ -99,7 +99,7 @@ Hex 2: #FFD700
 1. **lib/types.ts** - Types ColorOption et Color étendu
 2. **lib/color-utils.ts** - Utilitaires de gestion des couleurs
 3. **lib/models/book.model.ts** - Schéma avec colorOptions
-4. **components/admin/books-management.tsx** - Formulaire d'ajout
+4. **components/admin/articles-management.tsx** - Formulaire d'ajout
 5. **components/articles/book-details.tsx** - Affichage 2 cercles
 6. **lib/mock-data.ts** - Exemples de données
 

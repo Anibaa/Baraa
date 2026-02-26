@@ -22,7 +22,7 @@ export function RelatedBooks({ books }: RelatedBooksProps) {
         {books.map((book, idx) => (
           <Link
             key={book.id}
-            href={`/books/${book.id}`}
+            href={`/articles/${book.id}`}
             className="group bg-card rounded-lg md:rounded-xl overflow-hidden border border-border hover:border-primary/50 hover:shadow-soft-hover transition-all duration-300 hover:-translate-y-2 animate-fadeInUp"
             style={{ animationDelay: `${idx * 0.05}s` }}
           >

@@ -42,7 +42,7 @@ export default function OrderConfirmationPage() {
 
           <div className="space-y-3 animate-slideUp" style={{ animationDelay: "0.3s" }}>
             <Link
-              href="/books"
+              href="/articles"
               className="block w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transition-all duration-200 font-semibold hover:shadow-soft-hover hover:scale-105 active:scale-95"
             >
               متابعة التسوق

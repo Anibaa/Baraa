@@ -27,7 +27,7 @@ export function OrdersManagement({ orders }: OrdersManagementProps) {
   const { toast } = useToast()
 
   useEffect(() => {
-    fetch("/api/books")
+    fetch("/api/articles")
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

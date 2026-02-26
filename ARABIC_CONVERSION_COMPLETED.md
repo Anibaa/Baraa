@@ -142,11 +142,11 @@
 ## 📋 المكونات المتبقية للتحديث / Remaining Components
 
 ### أولوية عالية / High Priority
-- [ ] `app/books/page.tsx` - صفحة المنتجات
-- [ ] `app/books/[id]/page.tsx` - صفحة تفاصيل المنتج
+- [ ] `app/articles/page.tsx` - صفحة المنتجات
+- [ ] `app/articles/[id]/page.tsx` - صفحة تفاصيل المنتج
 - [ ] `app/cart/page.tsx` - صفحة السلة
 - [ ] `components/articles/filter-sidebar.tsx` - شريط التصفية
-- [ ] `components/articles/books-grid.tsx` - شبكة المنتجات
+- [ ] `components/articles/articles-grid.tsx` - شبكة المنتجات
 - [ ] `components/cart/cart-items.tsx` - عناصر السلة
 - [ ] `components/cart/cart-summary.tsx` - ملخص السلة
 
@@ -176,7 +176,7 @@
 - [ ] تحديث أسماء المنتجات والأوصاف
 
 ### 2. واجهات API / API Routes
-- [ ] تحديث `app/api/books/route.ts`
+- [ ] تحديث `app/api/articles/route.ts`
 - [ ] تحديث `app/api/orders/route.ts`
 - [ ] تحديث `app/api/partners/route.ts`
 - [ ] تحديث `app/api/sliders/route.ts`
@@ -290,7 +290,7 @@
 
 2. **تحديث الروابط**
    - استخدام القيم العربية في معاملات الاستعلام
-   - مثال: `href="/books?category=عباية"`
+   - مثال: `href="/articles?category=عباية"`
 
 3. **الخط**
    - يستخدم الموقع خط Rubik الذي يدعم العربية

@@ -42,7 +42,7 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="/books" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
+          <Link href="/articles" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
             المنتجات
           </Link>
           <Link href="/about" className="text-foreground hover:text-primary transition-colors font-medium text-sm">
@@ -88,7 +88,7 @@ export function Header() {
         <div className="md:hidden border-t border-border bg-card animate-slideInLeft">
           <nav className="px-4 py-4 space-y-3">
             <Link
-              href="/books"
+              href="/articles"
               className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors font-medium"
             >
               المنتجات
