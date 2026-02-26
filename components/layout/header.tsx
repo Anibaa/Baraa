@@ -26,7 +26,7 @@ export function Header() {
           href="/"
           className="flex items-center gap-2 hover:opacity-80 transition-opacity"
         >
-          <div className="relative w-8 h-8">
+          <div className="relative w-24 h-24">
             <Image
               src="/logo.png"        // put your logo in /public/logo.png
               alt="Baraa logo"
@@ -36,9 +36,7 @@ export function Header() {
             />
           </div>
 
-          <span className="font-bold text-lg text-primary hidden sm:inline">
-            براءة
-          </span>
+
         </Link>
 
         {/* Desktop Navigation */}
