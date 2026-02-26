@@ -19,16 +19,6 @@ export function Footer() {
                   المجموعات
                 </Link>
               </li>
-              <li>
-                <Link href="/partner" className="hover:opacity-80 transition-opacity">
-                  كن شريكاً
-                </Link>
-              </li>
-              <li>
-                <Link href="/admin" className="hover:opacity-80 transition-opacity">
-                  الإدارة
-                </Link>
-              </li>
             </ul>
           </div>
 
