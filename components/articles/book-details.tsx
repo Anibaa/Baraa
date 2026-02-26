@@ -230,18 +230,19 @@ export function BookDetails({ book }: BookDetailsProps) {
 
         {/* Description */}
         {book.description && (
-          <div className="mb-4 p-4 bg-primary/5 border border-primary/20 rounded-lg hover:border-primary/40 transition-colors overflow-hidden">
+          <div className="mb-4 p-4 bg-primary/5 border border-primary/20 rounded-lg hover:border-primary/40 transition-colors">
             <h3 className="font-semibold text-card-foreground mb-2 text-sm">الوصف</h3>
             <p
-              className={`text-muted-foreground text-pretty text-xs md:text-sm leading-relaxed wrap-break-word whitespace-pre-wrap ${!isExpanded ? "line-clamp-2" : ""
-                }`}
+              className={`text-muted-foreground text-pretty text-xs md:text-sm leading-relaxed break-words whitespace-pre-wrap ${
+                !isExpanded ? "line-clamp-3" : ""
+              }`}
             >
               {book.description}
             </p>
             {book.description.length > 150 && (
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="mt-1.5 text-primary font-semibold hover:underline text-xs"
+                className="mt-2 text-primary font-semibold hover:underline text-xs transition-colors"
               >
                 {isExpanded ? "عرض أقل" : "عرض المزيد"}
               </button>
