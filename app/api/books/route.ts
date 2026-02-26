@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
       {
         success: true,
         data: newBook,
-        message: "Livre créé avec succès",
+        message: "Article créé avec succès",
       },
       { status: 201 },
     )
@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: "Impossible de créer le livre",
+        error: "Impossible de créer le article",
       },
       { status: 500 },
     )

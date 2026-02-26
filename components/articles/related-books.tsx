@@ -13,9 +13,9 @@ export function RelatedBooks({ books }: RelatedBooksProps) {
 
   return (
     <section className="py-12 md:py-16 border-t border-border animate-fadeInUp">
-      <h2 className="text-2xl md:text-3xl font-bold text-card-foreground mb-2 md:mb-3">Livres Connexes</h2>
+      <h2 className="text-2xl md:text-3xl font-bold text-card-foreground mb-2 md:mb-3">Articles Connexes</h2>
       <p className="text-muted-foreground mb-8 md:mb-10 text-sm md:text-base">
-        Découvrez d'autres livres similaires qui pourraient vous intéresser
+        Découvrez d'autres articles similaires qui pourraient vous intéresser
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

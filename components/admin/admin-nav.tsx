@@ -16,7 +16,7 @@ export function AdminNav({ activeTab }: AdminNavProps) {
 
   const tabs = [
     { id: "statistics", label: "Statistiques", icon: BarChart3 },
-    { id: "books", label: "Livres", icon: BookOpen },
+    { id: "books", label: "Articles", icon: BookOpen },
     { id: "orders", label: "Commandes", icon: ShoppingCart },
     { id: "sliders", label: "Promotions", icon: Sliders },
     { id: "partners", label: "Partenaires", icon: Users },

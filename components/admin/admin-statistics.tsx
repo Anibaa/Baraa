@@ -16,7 +16,7 @@ export function AdminStatistics({ books, orders }: AdminStatisticsProps) {
   const outOfStock = books.filter((b) => b.status === "غير متوفر").length
 
   const stats = [
-    { label: "Livres Totaux", value: totalBooks, icon: BookOpen, color: "text-blue-500" },
+    { label: "Articles Totaux", value: totalBooks, icon: BookOpen, color: "text-blue-500" },
     { label: "Commandes", value: totalOrders, icon: ShoppingBag, color: "text-green-500" },
     {
       label: "رقم الأعمال",
@@ -57,7 +57,7 @@ export function AdminStatistics({ books, orders }: AdminStatisticsProps) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Books Status Overview */}
         <div className="bg-white rounded-lg shadow-soft p-6">
-          <h3 className="text-lg font-bold text-foreground mb-4">État des Livres</h3>
+          <h3 className="text-lg font-bold text-foreground mb-4">État des Articles</h3>
           <div className="space-y-3">
             {[
               { status: "متوفر", count: inStock, color: "bg-green-500" },

@@ -14,7 +14,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       return NextResponse.json(
         {
           success: false,
-          error: "Livre non trouvé",
+          error: "Article non trouvé",
         },
         { status: 404 },
       )
@@ -55,7 +55,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       return NextResponse.json(
         {
           success: false,
-          error: "Livre non trouvé",
+          error: "Article non trouvé",
         },
         { status: 404 },
       )
@@ -71,7 +71,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       {
         success: true,
         data: updatedBook,
-        message: "Livre mis à jour avec succès",
+        message: "Article mis à jour avec succès",
       },
       { status: 200 },
     )
@@ -80,7 +80,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
     return NextResponse.json(
       {
         success: false,
-        error: "Impossible de mettre à jour le livre",
+        error: "Impossible de mettre à jour le article",
       },
       { status: 500 },
     )
@@ -99,7 +99,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
       return NextResponse.json(
         {
           success: false,
-          error: "Livre non trouvé",
+          error: "Article non trouvé",
         },
         { status: 404 },
       )
@@ -158,7 +158,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     return NextResponse.json(
       {
         success: true,
-        message: "Livre supprimé avec succès",
+        message: "Article supprimé avec succès",
       },
       { status: 200 },
     )

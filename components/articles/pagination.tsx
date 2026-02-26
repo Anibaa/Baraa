@@ -72,7 +72,7 @@ export function Pagination({ currentPage, totalPages, totalItems }: PaginationPr
         >
           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
         </button>
-        <div className="text-xs md:text-sm text-muted-foreground whitespace-nowrap">{totalItems} livres</div>
+        <div className="text-xs md:text-sm text-muted-foreground whitespace-nowrap">{totalItems} articles</div>
       </div>
     </div>
   )

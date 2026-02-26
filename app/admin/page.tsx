@@ -18,7 +18,7 @@ interface AdminPageProps {
 
 export const metadata = {
   title: "Tableau de Bord - Baraa",
-  description: "Gérez les livres, les commandes et les promotions",
+  description: "Gérez les articles, les commandes et les promotions",
 }
 
 export default async function AdminPage({ searchParams }: AdminPageProps) {
@@ -42,7 +42,7 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
             )}
 
             {tab === "books" && (
-              <Suspense fallback={<div className="text-muted-foreground text-sm">Chargement des livres...</div>}>
+              <Suspense fallback={<div className="text-muted-foreground text-sm">Chargement des articles...</div>}>
                 <BooksManagement books={books} />
               </Suspense>
             )}

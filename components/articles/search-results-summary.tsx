@@ -25,7 +25,7 @@ export function SearchResultsSummary({ totalItems, currentPage, itemsPerPage }: 
           <BookOpen className="w-4 h-4" />
         )}
         <span>
-          <strong className="text-foreground">{totalItems}</strong> livre{totalItems !== 1 ? 's' : ''}
+          <strong className="text-foreground">{totalItems}</strong> article{totalItems !== 1 ? 's' : ''}
           {search && (
             <span className="ml-1">
               pour <strong className="text-primary">"{search}"</strong>
