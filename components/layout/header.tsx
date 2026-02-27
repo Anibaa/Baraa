@@ -26,7 +26,7 @@ export function Header() {
           href="/"
           className="flex items-center gap-2 hover:opacity-80 transition-opacity"
         >
-          <div className="relative w-24 h-24">
+          <div className="relative w-32 h-32">
             <Image
               src="/logo.png"        // put your logo in /public/logo.png
               alt="Baraa logo"
